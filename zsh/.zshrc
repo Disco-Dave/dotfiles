@@ -1,4 +1,4 @@
-export ZSH=$HOME/.config/oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # Use vim keybindings
 bindkey -v
