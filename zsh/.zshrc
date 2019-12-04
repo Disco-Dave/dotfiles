@@ -12,6 +12,8 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 bindkey '^[[Z' reverse-menu-complete
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
+setopt correct
+export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
 
 # Set ZSH theme
 ZSH_THEME="clean-newline"
@@ -19,9 +21,6 @@ zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '$XDG_DATA_HOME/zsh/.zshrc'
 autoload -U colors && colors
 
-# Correction
-setopt correct
-export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
 
 # Enable plugins
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions history-substring-search)
