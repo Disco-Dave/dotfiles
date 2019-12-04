@@ -36,4 +36,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ln -sf `pwd`/zsh $HOME/.config/zsh
 
 # Add zsh theme
-ln -sf $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
+cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
