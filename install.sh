@@ -57,4 +57,4 @@ sudo pacman -S --noconfirm --needed gvim xclip node ruby python python2 stack
 mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
 
 # Link Vim files
-ln -sf `pwd`/zsh $HOME/.config/vim
+ln -sf `pwd`/vim $HOME/.config/vim
