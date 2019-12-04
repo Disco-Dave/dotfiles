@@ -41,3 +41,20 @@ ln -sf `pwd`/zsh $HOME/.config/zsh
 
 # Add zsh theme
 cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
+
+
+
+
+
+###################################
+#               VIM               #
+###################################
+
+# Install vim and other dependencies
+sudo pacman -S --noconfirm --needed gvim xclip node ruby python python2 stack
+
+# Create vim directories
+mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+
+# Link Vim files
+ln -sf `pwd`/zsh $HOME/.config/vim
