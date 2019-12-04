@@ -51,7 +51,7 @@ cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clea
 ###################################
 
 # Install vim and other dependencies
-sudo pacman -S --noconfirm --needed gvim xclip node ruby python python2 stack
+sudo pacman -S --noconfirm --needed gvim xclip nodejs npm ruby python python2 stack
 
 # Create vim directories
 mkdir -p $HOME/.local/share/vim/{undo,swap,backup}
