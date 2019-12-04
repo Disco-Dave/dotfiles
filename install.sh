@@ -8,9 +8,9 @@
 pacman -S zsh xdg-utils xdg-user-dirs
 
 # Ensure that the XDG env variables are set
-echo XDG_CONFIG_HOME=$HOME/.config >> /etc/environment
-echo XDG_CACHE_HOME=$HOME/.cache >> /etc/environment
-echo XDG_DATA_HOME=$HOME/.local/share >> /etc/environment
+echo XDG_CONFIG_HOME=\$HOME/.config >> /etc/environment
+echo XDG_CACHE_HOME=\$HOME/.cache >> /etc/environment
+echo XDG_DATA_HOME=\$HOME/.local/share >> /etc/environment
 
 # Set ZSH dot directory
-echo "export ZDOTDIR=$HOME/.config/zsh" >> /etc/zsh/zshenv
+echo "export ZDOTDIR=\$HOME/.config/zsh" >> /etc/zsh/zshenv
