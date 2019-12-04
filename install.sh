@@ -6,9 +6,9 @@
 
 # Ensure that the XDG env variables are set
 mkdir -p $HOME/.config $HOME/.cache $HOME/.local/share
-echo XDG_CONFIG_HOME=\$HOME/.config | sudo tee -a /etc/environment > /dev/null
-echo XDG_CACHE_HOME=\$HOME/.cache | sudo tee -a /etc/environment > /dev/null
-echo XDG_DATA_HOME=\$HOME/.local/share | sudo tee -a /etc/environment > /dev/null
+echo "export XDG_CONFIG_HOME=\$HOME/.config" | sudo tee -a /etc/zsh/zshenv > /dev/null
+echo "export XDG_CACHE_HOME=\$HOME/.cache" | sudo tee -a /etc/zsh/zshenv > /dev/null
+echo "export XDG_DATA_HOME=\$HOME/.local/share" | sudo tee -a /etc/zsh/zshenv > /dev/null
 
 
 
