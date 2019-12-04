@@ -24,9 +24,6 @@ sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-autosuggesti
 # Set ZSH dot directory
 echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/null
 
-# Link ZSH files
-ln -sf `pwd`/zsh $HOME/.config/zsh
-
 # Ensure history file is made
 mkdir -p $HOME/.local/share/zsh
 touch $HOME/.local/share/zsh/history
@@ -35,6 +32,8 @@ touch $HOME/.local/share/zsh/history
 export ZSH=$HOME/.config/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+# Link ZSH files
+ln -sf `pwd`/zsh $HOME/.config/zsh
+
 # Add zsh theme
 ln -sf $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
-
