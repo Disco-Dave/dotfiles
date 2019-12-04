@@ -1,3 +1,7 @@
+" Add line numbers
+set number
+set relativenumber
+
 " Correct vim to use XDG Base Directory
 set undodir=$XDG_DATA_HOME/vim/undo
 set directory=$XDG_DATA_HOME/vim/swap
