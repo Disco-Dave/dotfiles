@@ -17,9 +17,10 @@ COMPLETION_WAITING_DOTS="true"
 ZSH_THEME="clean-newline"
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '$XDG_DATA_HOME/zsh/.zshrc'
-stty -ixon
-setopt correct
 autoload -U colors && colors
+
+# Correction
+setopt correct
 export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
 
 # Enable plugins
