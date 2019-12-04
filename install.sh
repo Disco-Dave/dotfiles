@@ -26,7 +26,7 @@ echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/nu
 
 # Ensure history file is made
 mkdir -p $HOME/.local/share/zsh
-mkdir -P $HOME/.cache/zsh
+mkdir -p $HOME/.cache/zsh
 touch $HOME/.local/share/zsh/history
 
 # Install oh-my-zsh
