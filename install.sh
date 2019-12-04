@@ -54,7 +54,7 @@ cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clea
 sudo pacman -S --noconfirm --needed gvim xclip node ruby python python2 stack
 
 # Create vim directories
-mkdir -p "$XDG_DATA_HOME"/vim/{undo,swap,backup}
+mkdir -p $HOME/.local/share/vim/{undo,swap,backup}
 
 # Link Vim files
 ln -sf `pwd`/vim $HOME/.config/vim
