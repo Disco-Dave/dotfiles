@@ -18,10 +18,11 @@ COMPLETION_WAITING_DOTS="true"
 # Set ZSH theme
 ZSH_THEME="clean-newline"
 zstyle ':completion:*' completer _complete _ignored
-zstyle :compinstall filename '$HOME/.zshrc'
+zstyle :compinstall filename '$XDG_DATA_HOME/zsh/.zshrc'
 stty -ixon
 setopt correct
 autoload -U colors && colors
+export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
 
 # Enable plugins
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions history-substring-search)
