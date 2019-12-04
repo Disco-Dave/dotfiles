@@ -22,7 +22,7 @@ echo XDG_DATA_HOME=\$HOME/.local/share | sudo tee -a /etc/environment > /dev/nul
 sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search
 
 # Set ZSH dot directory
-echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv
+echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/null
 
 # Link ZSH files
 ln -sf `pwd`/zsh $HOME/.config/zsh
