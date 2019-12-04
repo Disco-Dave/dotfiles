@@ -27,6 +27,10 @@ echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/nu
 # Link ZSH files
 ln -sf `pwd`/zsh $HOME/.config/zsh
 
+# Ensure history file is made
+mkdir -p $HOME/.local/share/zsh
+touch $HOME/.local/share/zsh/history
+
 # Install oh-my-zsh
 export ZSH=$HOME/.config/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
