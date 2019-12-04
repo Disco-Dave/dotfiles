@@ -1,3 +1,5 @@
+export ZSH=$HOME/.config/oh-my-zsh
+
 # Use vim keybindings
 bindkey -v
 
