@@ -34,3 +34,6 @@ touch $HOME/.local/share/zsh/history
 # Install oh-my-zsh
 export ZSH=$HOME/.config/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Add zsh theme
+ln -sf $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
