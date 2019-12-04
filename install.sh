@@ -19,7 +19,7 @@ echo "export XDG_DATA_HOME=\$HOME/.local/share" | sudo tee -a /etc/zsh/zshenv > 
 ###################################
 
 # Install zsh
-sudo pacman -S --noconfirm --needed zsh zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-search
+sudo pacman -S --noconfirm --needed zsh
 
 # Set ZSH dot directory
 echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/null
@@ -31,6 +31,9 @@ touch $HOME/.local/share/zsh/history
 # Install oh-my-zsh
 export ZSH=$HOME/.config/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting
+git clone git://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-history-substring-search  ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search
 
 # Link ZSH files
 ln -sf `pwd`/zsh $HOME/.config/zsh
