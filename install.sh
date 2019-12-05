@@ -56,5 +56,9 @@ sudo pacman -S --noconfirm --needed gvim xclip nodejs npm ruby python python2 st
 # Create vim directories
 mkdir -p $HOME/.local/share/vim/{undo,swap,backup}
 
+# Install vim-plug
+curl -fLo ~/.local/share/vim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # Link Vim files
 ln -sf `pwd`/vim $HOME/.config/vim
