@@ -31,7 +31,7 @@ sudo pacman -S --noconfirm --needed zsh
 
 # Set ZSH dot directory
 $zdotdir="export ZDOTDIR=\$HOME/.config/zsh"
-if grep -q $zdotdir; then
+if grep -q $zdotdir /etc/zsh/zshenv; then
     echo $zdotdir | sudo tee -a /etc/zsh/zshenv > /dev/null
 fi
 
