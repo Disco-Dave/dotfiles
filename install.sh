@@ -8,12 +8,12 @@
 mkdir -p $HOME/.config $HOME/.cache $HOME/.local/share
 xdg_vars=("export XDG_CONFIG_HOME=\$HOME/.config" 
           "export XDG_CACHE_HOME=\$HOME/.cache" 
-          "export XDG_DATA_HOME=\$HOME/.localshare")
+          "export XDG_DATA_HOME=\$HOME/.local/share")
 if [ ! -f /etc/zsh/zshenv ]; then
     sudo touch /etc/zsh/zshenv
 fi
 for var in $xdg_vars; do
-    if grep -q $var /etc/zsh/zshenv; then
+    if ! grep -q $var /etc/zsh/zshenv ; then
         echo $var | sudo tee -a /etc/zsh/zshenv > /dev/null
     fi
 done
@@ -31,7 +31,7 @@ sudo pacman -S --noconfirm --needed zsh
 
 # Set ZSH dot directory
 $zdotdir="export ZDOTDIR=\$HOME/.config/zsh"
-if grep -q $zdotdir /etc/zsh/zshenv; then
+if ! grep -q $zdotdir /etc/zsh/zshenv; then
     echo $zdotdir | sudo tee -a /etc/zsh/zshenv > /dev/null
 fi
 
