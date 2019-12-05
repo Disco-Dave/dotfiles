@@ -50,10 +50,7 @@ if [ ! -d $ZSH ]; then
 fi
 
 # Link ZSH files
-if [ ! -e `pwd`/zsh ]; then
-    echo "Linking zsh"
-    ln -sf `pwd`/zsh $HOME/.config/zsh
-fi
+ln -sfn `pwd`/zsh $HOME/.config/zsh
 
 # Add zsh theme
 cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
@@ -80,7 +77,4 @@ if [ ! -f ~/.local/share/vim/site/autoload/plug.vim ]; then
 fi
 
 # Link Vim files
-if [ ! -e `pwd`/vim ]; then
-    echo "Linking vim"
-    ln -sf `pwd`/vim $HOME/.config/vim
-fi
+ln -sfn `pwd`/vim $HOME/.config/vim
