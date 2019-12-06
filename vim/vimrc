@@ -1,3 +1,15 @@
+" Search settings
+set incsearch
+set smartcase
+set path+=**
+
+" Indent settings
+set autoindent
+set expandtab
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+
 " Add line numbers
 set number
 set relativenumber
@@ -9,7 +21,152 @@ set backupdir=$XDG_DATA_HOME/vim/backup
 set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/site
 
+" Tab completion for : commands
+set wildmenu
+
+" Auto reload the file when it changes on disk
+set autoread
+
+" Show current command in the bottom left
+set showcmd
+
+" Avoid resizing panes when another closes
+set noea
+
+" Turn syntax highlighting on
+syntax on
+
+" Required for operations modifying multiple buffers
+" Recommended for LanguageClient-neovim
+set hidden
+
+" Enable ftplugins
+filetype plugin on
+
+" SLIME
+let g:slime_target = "neovim"
+command JobID :echo b:terminal_job_id
+map <leader>i <Plug>SlimeRegionSend
+
+" Show number of matches in command line
+let g:CoolTotalMatches = 1
+
+" NERDTree Toggle
+noremap <leader>; :NERDTreeToggle<CR>
+
+" Terminal
+nnoremap <leader>ntt :tabe<CR><ESC>:terminal<CR>
+nnoremap <leader>nts :split<CR><ESC>:terminal<CR>
+nnoremap <leader>ntv :vsplit<CR><ESC>:terminal<CR>
+
+" CoC Key Bindings
+inoremap <silent><expr> <c-n> coc#refresh()
+
+nmap <silent> <leader>I <Plug>(coc-implementation)
+nmap <silent> <leader>h :call CocAction('doHover')<CR>
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>t <Plug>(coc-type-definition)
+nmap <silent> <leader>r <Plug>(coc-references)
+nmap <silent> <leader>R <Plug>(coc-rename)
+vmap <silent> <leader>f <Plug>(coc-format-selected)
+nmap <silent> <leader>f :call CocAction('format')<CR>
+nmap <silent> <leader>m <Plug>(coc-codeaction)
+nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
+
+
+" Appearance
+colorscheme Tomorrow-Night-Mine
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
+hi Normal  ctermbg=NONE
+hi Folded  ctermbg=NONE 
+
+" Rainbow parens
+autocmd Syntax * RainbowParenthesesActivate
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
 
 " Plugins
 call plug#begin('~/.local/share/vim/plugged')
+Plug 'duff/vim-bufonly'
+Plug 'felixhummel/setcolors.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'itchyny/lightline.vim'
+Plug 'jpalardy/vim-slime'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'romainl/vim-cool'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/Tabmerge'
 call plug#end()
+
+
+
+" Lightline settings
+let g:lightline = {
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'LightlineModified',
+      \   'readonly': 'LightlineReadonly',
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \ },
+		\ 'separator': { 'left': '', 'right': '' },
+		\ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
