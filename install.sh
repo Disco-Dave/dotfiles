@@ -14,7 +14,7 @@ if [ ! -f /etc/zsh/zshenv ]; then
 fi
 for var in $xdg_vars; do
     if ! grep -q $var /etc/zsh/zshenv ; then
-        echo $var | sudo tee -a /etc/zsh/zshenv > /dev/null
+        echo "$var" | sudo tee -a /etc/zsh/zshenv > /dev/null
     fi
 done
 
