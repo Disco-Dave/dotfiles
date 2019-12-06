@@ -85,4 +85,4 @@ ln -sfn `pwd`/vim $HOME/.config/vim
 vim +PlugInstall +qall
 
 ## Link custom color theme
-ln -sf `pwd`/Tomorrow-Night-Mine.vim ~/.local/share/vim/plugged/vim-colorschemes/colors/
+ln -sfn `pwd`/Tomorrow-Night-Mine.vim ~/.local/share/vim/plugged/vim-colorschemes/colors/
