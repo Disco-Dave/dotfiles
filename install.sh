@@ -55,6 +55,9 @@ ln -sfn `pwd`/zsh $HOME/.config/zsh
 # Add zsh theme
 cp $HOME/.config/zsh/clean-newline.zsh-theme $HOME/.config/oh-my-zsh/themes/clean-newline.zsh-theme
 
+source /etc/zsh/zshenv
+source $HOME/.config/zsh/.zshenv
+source $HOME/.config/zsh/.zshrc
 
 
 
@@ -77,3 +80,9 @@ fi
 
 # Link Vim files
 ln -sfn `pwd`/vim $HOME/.config/vim
+
+# Install plugins
+vim +PlugInstall +qall
+
+## Link custom color theme
+ln -sf `pwd`/Tomorrow-Night-Mine.vim ~/.local/share/vim/plugged/vim-colorschemes/colors/
