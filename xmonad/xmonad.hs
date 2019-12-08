@@ -1,12 +1,18 @@
 {-# Language RecordWildCards #-}
+{-# Language BangPatterns #-}
 
-import           XMonad
-import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops      ( fullscreenEventHook, ewmh )
-import           XMonad.Hooks.ManageDocks       ( manageDocks, avoidStruts )
-import           XMonad.Layout.NoBorders        ( smartBorders )
-import           XMonad.Util.Cursor             ( setDefaultCursor )
-import           XMonad.Util.SpawnOnce          ( spawnOnce )
+import           XMonad                   hiding ( (|||) )
+import           XMonad.Hooks.DynamicLog         ( xmobar )
+import           XMonad.Hooks.EwmhDesktops       ( fullscreenEventHook, ewmh )
+import           XMonad.Hooks.ManageDocks        ( manageDocks, avoidStruts )
+import           XMonad.Layout.LayoutCombinators ( JumpToLayout(..), (|||) )
+import           XMonad.Layout.NoBorders         ( smartBorders )
+import           XMonad.Layout.Grid              ( Grid(..) )
+import           XMonad.Util.Cursor              ( setDefaultCursor )
+import           XMonad.Util.SpawnOnce           ( spawnOnce )
+
+import qualified XMonad.Hooks.ManageHelpers    as MH
+import qualified XMonad.StackSet               as W
 
 import           Control.Monad
 import           Data.Maybe
@@ -14,9 +20,7 @@ import           Data.Semigroup
 import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 
-import qualified XMonad.Hooks.ManageHelpers    as MH
 import qualified Data.Map                      as M
-import qualified XMonad.StackSet               as W
 
 
 
@@ -31,10 +35,13 @@ altKey = mod1Mask
 -- | List of programs to spawn on start
 programsToSpawn :: [String]
 programsToSpawn =
-  [ "redshift"
+  [ "redshift-gtk"
   , "xfce4-power-manager"
   , "feh --bg-center ~/.dotfiles/wallpaper/fields_of_utopia_2_nebula_by_starkiteckt-d8p2v1w.jpg"
   , "picom"
+  , "stalonetray"
+  , "nm-applet"
+  , "blueman-applet"
   ]
 
 
@@ -89,16 +96,21 @@ myKeys conf@XConfig {..} = M.fromList $
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -D pulse sset Master 5%-")
     , ((0, xF86XK_AudioMute)       , spawn "amixer -D pulse sset Master toggle")
 
+    -- Change to specific layouts
+    , ((modMask, xK_f), sendMessage $ JumpToLayout "Full")
+
     -- Autolaunch programs
-    , ((superKey             , xK_w     ), spawn "firefox")
+    , ((superKey, xK_w), spawn "firefox")
+    , ((superKey, xK_v), spawn "pavucontrol")
+    , ((superKey, xK_f), spawn "thunar")
     ]
-    ++
+    <>
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N
     [((m .|. modMask, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
+    <>
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
@@ -111,12 +123,17 @@ myManageHook = composeAll
   ] 
   <+> manageDocks 
 
-myLayoutHook = avoidStruts $ smartBorders $ layoutHook def
+myLayoutHook = avoidStruts $ smartBorders layouts
+ where
+  nmaster = 1
+  ratio   = 1 / 2
+  delta   = 3 / 100
+  tall    = Tall nmaster delta ratio
+  layouts = tall ||| Mirror tall ||| Full ||| Grid
 
 
 main :: IO ()
 main = 
-  --xmproc <- spawnPipe "xmobar"
   xmonad =<< xmobar
     (ewmh $ def
       { focusedBorderColor = "#4c7899"
@@ -140,7 +157,7 @@ main =
     wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
     mapM_ addNETSupported [wms, wfs]
    where
-    addNETSupported x = withDisplay $ \dpy -> do
+    addNETSupported !x = withDisplay $ \(!dpy) -> do
       r               <- asks theRoot
       a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
       a               <- getAtom "ATOM"
