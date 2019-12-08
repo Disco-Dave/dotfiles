@@ -2,12 +2,13 @@
 {-# Language BangPatterns #-}
 
 import           XMonad                   hiding ( (|||) )
+import           XMonad.Actions.SwapWorkspaces   ( swapWithCurrent )
 import           XMonad.Hooks.DynamicLog         ( xmobar )
 import           XMonad.Hooks.EwmhDesktops       ( fullscreenEventHook, ewmh )
-import           XMonad.Hooks.ManageDocks        ( manageDocks, avoidStruts )
+import           XMonad.Hooks.ManageDocks        ( avoidStruts )
+import           XMonad.Layout.Grid              ( Grid(..) )
 import           XMonad.Layout.LayoutCombinators ( JumpToLayout(..), (|||) )
 import           XMonad.Layout.NoBorders         ( smartBorders )
-import           XMonad.Layout.Grid              ( Grid(..) )
 import           XMonad.Util.Cursor              ( setDefaultCursor )
 import           XMonad.Util.SpawnOnce           ( spawnOnce )
 
@@ -15,6 +16,7 @@ import qualified XMonad.Hooks.ManageHelpers    as MH
 import qualified XMonad.StackSet               as W
 
 import           Control.Monad
+import           Data.Function
 import           Data.Maybe
 import           Data.Semigroup
 import           Graphics.X11.ExtraTypes.XF86
@@ -116,14 +118,20 @@ myKeys conf@XConfig {..} = M.fromList $
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    <>
+    -- Send contents of a workspace to another workspace
+    [((modMask .|. controlMask, k), windows $ swapWithCurrent i)
+        | (i, k) <- zip workspaces [xK_1 ..]]
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll 
   [ MH.isFullscreen --> MH.doFullFloat
   ] 
-  <+> manageDocks 
 
-myLayoutHook = avoidStruts $ smartBorders layouts
+myLayoutHook =
+  layouts
+    & smartBorders
+    & avoidStruts
  where
   nmaster = 1
   ratio   = 1 / 2
