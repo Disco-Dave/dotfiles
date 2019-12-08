@@ -1,0 +1,16 @@
+cabal-version: 1.12
+
+name:           xmonad-testing
+version:        0.1.0.0
+build-type:     Simple
+
+executable xmonad-testing-exe
+  main-is: xmonad.hs
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , xmonad
+    , xmonad-contrib
+    , X11
+    , containers
+  default-language: Haskell2010
