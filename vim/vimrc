@@ -12,6 +12,7 @@ call plug#begin('~/.local/share/vim/plugged')
 Plug 'duff/vim-bufonly'
 Plug 'felixhummel/setcolors.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'jonathanfilip/vim-dbext', { 'for': 'sql' }
 Plug 'itchyny/lightline.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'kien/rainbow_parentheses.vim'
