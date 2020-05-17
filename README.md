@@ -20,6 +20,7 @@ Repository of my personal dotfiles
 | Shell            | [Zsh](https://wiki.archlinux.org/index.php/Zsh) |
 | Window Manager   | [xmonad](https://wiki.archlinux.org/index.php/Xmonad) |
 | Status bar       | [xmobar](https://wiki.archlinux.org/index.php/Xmonad) |
+| Terminal Emulator | [Alacritty](https://wiki.archlinux.org/index.php/Alacritty) |
 | Launcher         | [dmenu](https://wiki.archlinux.org/index.php/Dmenu) |
 | Internet Browser | [Firefox](https://wiki.archlinux.org/index.php/Firefox) |
 | File Manager     | [ranger](https://wiki.archlinux.org/index.php/Ranger) |
