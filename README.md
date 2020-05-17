@@ -46,7 +46,7 @@ Repository of my personal dotfiles
     * Make a `/boot` partition that is 512MiB for EFI
     * Install [util-linux](https://www.archlinux.org/packages/?name=util-linux) and enable [fstrim](https://wiki.archlinux.org/index.php/Solid_state_drive#Periodic_TRIM) for SSDs
     * Install [NetworkManager](https://wiki.archlinux.org/index.php/NetworkManager)
-    * Install `neovim`, `man-db`, `man-pages`, and `textinfo`
+    * Install `neovim`, `man-db`, `man-pages`, and `texinfo`
     * Install [microcode](https://wiki.archlinux.org/index.php/Microcode) if needed
     * Setup systemd-boot [hook](https://wiki.archlinux.org/index.php/Systemd-boot#Automatic_update) and [loader](https://wiki.archlinux.org/index.php/Systemd-boot#Adding_loaders) for arch linux
     * Setup [reflector](https://wiki.archlinux.org/index.php/Reflector)
