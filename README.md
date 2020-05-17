@@ -7,6 +7,7 @@ Repository of my personal dotfiles
     * [Overview of styles](#overview-of-styles)
 * [Getting started](#getting-started)
     * [Pre-install](#pre-install)
+    * [Post-install](#post-install)
 
 ## Overview
 #### Overview of components
@@ -51,3 +52,18 @@ Repository of my personal dotfiles
     * Setup systemd-boot [hook](https://wiki.archlinux.org/index.php/Systemd-boot#Automatic_update) and [loader](https://wiki.archlinux.org/index.php/Systemd-boot#Adding_loaders) for arch linux
     * Setup [reflector](https://wiki.archlinux.org/index.php/Reflector)
     * Enable multilib
+
+### Post-install
+1. Setup internet connection via `nmtui`
+2. Install sudo and create user
+    * `pacman -S sudo`
+    * `EDITOR=nvim visudo` and uncomment `%wheel ALL=(ALL) ALL`
+    * Add user `useradd -m -G wheel my_user_name_here` and set password `passwd my_user_name_here`
+3. Configure [Xorg](https://wiki.archlinux.org/index.php/Xorg) and display drivers if necessary
+    * `sudo pacman -S xorg xorg-xinit xterm`
+    * Test that it works with `startx`
+4. Configure [pulseaudio](https://wiki.archlinux.org/index.php/PulseAudio#Installation)
+    * `sudo pacman -S pulseaudio pulseaudio-alsa alsa-utils pulsemixer`
+    * Ensure pulseaudio is started `systemctl --user start pulseaudio`
+    * Ensure pulseaudio is umuted via `pulsemixer`
+    * Test sound with `speaker-test -c 2`
