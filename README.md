@@ -49,3 +49,4 @@ Repository of my personal dotfiles
     * Install `neovim`, `man-db`, `man-pages`, and `textinfo`
     * Install [microcode](https://wiki.archlinux.org/index.php/Microcode) if needed
     * Setup systemd-boot [hook](https://wiki.archlinux.org/index.php/Systemd-boot#Automatic_update) and [loader](https://wiki.archlinux.org/index.php/Systemd-boot#Adding_loaders) for arch linux
+    * Setup [reflector](https://wiki.archlinux.org/index.php/Reflector)
