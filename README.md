@@ -67,3 +67,4 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
     * Ensure pulseaudio is started `systemctl --user start pulseaudio`
     * Ensure pulseaudio is umuted via `pulsemixer`
     * Test sound with `speaker-test -c 2`
+5. Enable [automatic login](https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console)
