@@ -1,5 +1,5 @@
 ## Personal dotfiles
-Repository of my personal dotfiles
+Repository of my personal dotfiles and my own personal notes for installing Arch Linux.
 
 ## Table of contents
 * [Overview](#overview)
@@ -59,7 +59,7 @@ Repository of my personal dotfiles
     * `pacman -S sudo`
     * `EDITOR=nvim visudo` and uncomment `%wheel ALL=(ALL) ALL`
     * Add user `useradd -m -G wheel my_user_name_here` and set password `passwd my_user_name_here`
-3. Configure [Xorg](https://wiki.archlinux.org/index.php/Xorg) and display drivers if necessary
+3. Configure [xorg](https://wiki.archlinux.org/index.php/Xorg) and display drivers if necessary
     * `sudo pacman -S xorg xorg-xinit xterm`
     * Test that it works with `startx`
 4. Configure [pulseaudio](https://wiki.archlinux.org/index.php/PulseAudio#Installation)
