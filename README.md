@@ -27,6 +27,8 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
 | File Manager     | [ranger](https://wiki.archlinux.org/index.php/Ranger) |
 | Music Player     | [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) / [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp) |
 | Email            | [neomutt](https://wiki.archlinux.org/index.php/Mutt) |
+| Video            | [mpv](https://wiki.archlinux.org/index.php/Mpv) |
+| PDF Viewer       | [atril](https://www.archlinux.org/packages/community/x86_64/atril/) |
 
 #### Overview of styles
 | Style Type | Selection |
