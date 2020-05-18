@@ -12,8 +12,8 @@ mkdir -p "$HOME/.local/share/zsh"
 mkdir -p "$HOME/.cache/zsh"
 
 # Link files to correct directories
-echo "`pwd`/zshenv" "$HOME/.config/zsh/.zshenv"
-echo "`pwd`/zshrc" "$HOME/.config/zsh/.zshrc"
+ln -sf "`pwd`/zshenv" "$HOME/.config/zsh/.zshenv"
+ln -sf "`pwd`/zshrc" "$HOME/.config/zsh/.zshrc"
 
 # Set zsh as the default shell
 chsh -s /bin/zsh
