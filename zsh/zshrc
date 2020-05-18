@@ -46,7 +46,7 @@ export SAVEHIST=99999999
 #
 # TODO: Add git status
 # TODO: Add vi-mode status
-PS1="%B%F{white}%n%f:%F{blue}%/%f%b
+PS1="%B%F{white}%n@%M%f:%F{blue}%/%f%b
 %(!.#.$) "
 RPS1="[%*]"
 
