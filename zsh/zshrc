@@ -1,0 +1,53 @@
+# Official ZSH documentation: http://zsh.sourceforge.net/Doc/Release/index.html#Top
+# Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
+
+# TODO: Investigate how to disable corrections for commands
+
+# Start ssh-agent automically
+# https://wiki.archlinux.org/index.php/SSH_keys#ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+fi
+
+# Plugins
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Enable substring searches for up and down arrows
+# https://github.com/zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Use vim key bindings
+# https://wiki.archlinux.org/index.php/Zsh#Key_bindings
+bindkey -v
+
+# Enable auto completion
+# https://wiki.archlinux.org/index.php/Zsh#Command_completion
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
+setopt COMPLETE_ALIASES
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
+# Setup history
+export HISTFILE="$XDG_DATA_HOME/zsh/history"
+export HISTSIZE=99999999
+export SAVEHIST=99999999
+
+
+# Setup custom prompt
+# https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+#
+# TODO: Add git status
+# TODO: Add vi-mode status
+PS1="%B%F{white}%n%f:%F{blue}%/%f%b
+%(!.#.$) "
+RPS1="[%*]"
+
+# vim: set nowrap:

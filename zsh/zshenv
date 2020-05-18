@@ -1,0 +1,32 @@
+# Ensure xterm uses 256 colors if used
+export TERM=xterm-256color
+
+# XDG Directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+# Set default editor to neovim
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Set default web browser to firefox if I have a graphic display
+# or lynx if I do not.
+if [ -n "$DISPLAY" ]; then
+    export BROWSER="firefox"
+else 
+    export BROWSER="lynx"
+fi
+
+# Global path
+typeset -U PATH path
+path=(
+    "$HOME/.local/bin" 
+    "$(ruby -e 'print Gem.user_dir')/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.local/share/npm-global/bin"
+    "$HOME/.local/bin"
+    "$path[@]")
+export PATH
+
+# vim: set nowrap:
