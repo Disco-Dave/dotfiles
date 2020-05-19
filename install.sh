@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ ! -f "/bin/git" ]]; then
     sudo pacman -S --noconfirm git
 fi

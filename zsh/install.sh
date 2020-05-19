@@ -17,7 +17,7 @@ ln -sf "`pwd`/zshrc" "$HOME/.config/zsh/.zshrc"
 
 # Set zsh as the default shell
 if [ "$SHELL" != "/bin/zsh" ]; then
-    chsh -s /bin/zsh
+    chsh -s "/bin/zsh"
 
     # Remove bash files
     rm -rf $HOME/.bash_logout
