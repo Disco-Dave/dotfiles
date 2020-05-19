@@ -3,10 +3,10 @@
 set -e
 
 # Install neovim
-sudo pacman -S --needed --noconfirm neovim
+sudo pacman -S --needed --noconfirm neovim nodejs npm python python2 ruby xclip
 
 # Create directories
-ln -sf "$(pwd)/config" "$HOME/.config/nvim"
+ln -sf "$(pwd)" "$HOME/.config/nvim"
 mkdir -p "$HOME/.local/share/nvim/backup"
 mkdir -p "$HOME/.local/share/nvim/swap"
 mkdir -p "$HOME/.local/share/nvim/undo"

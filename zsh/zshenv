@@ -18,6 +18,8 @@ else
     export BROWSER="lynx"
 fi
 
+export npm_config_prefix="$HOME/.local/share/npm-global"
+
 # Global path
 typeset -U PATH path
 path=(
