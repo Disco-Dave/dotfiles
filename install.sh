@@ -12,4 +12,5 @@ if [[ ! -d "$HOME/.config/dotfiles" ]]; then
 
     (cd "$HOME/.config/dotfiles/git"; ./install.sh)
     (cd "$HOME/.config/dotfiles/zsh"; ./install.sh)
+    (cd "$HOME/.config/dotfiles/nvim"; ./install.sh)
 fi

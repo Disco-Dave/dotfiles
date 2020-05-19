@@ -1,6 +1,6 @@
 [user]
     name = David Burkett
-	email = david@davidburkett.xyz
+    email = david@davidburkett.xyz
 [fetch]
     prune = true
 

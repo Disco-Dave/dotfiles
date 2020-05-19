@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install zsh packages
 sudo pacman -S --needed --noconfirm zsh zsh-autosuggestions zsh-completions \
     zsh-history-substring-search zsh-syntax-highlighting ruby openssh
@@ -12,15 +14,15 @@ mkdir -p "$HOME/.local/share/zsh"
 mkdir -p "$HOME/.cache/zsh"
 
 # Link files to correct directories
-ln -sf "`pwd`/zshenv" "$HOME/.config/zsh/.zshenv"
-ln -sf "`pwd`/zshrc" "$HOME/.config/zsh/.zshrc"
+ln -sf "$(pwd)/zshenv" "$HOME/.config/zsh/.zshenv"
+ln -sf "$(pwd)/zshrc" "$HOME/.config/zsh/.zshrc"
 
 # Set zsh as the default shell
 if [ "$SHELL" != "/bin/zsh" ]; then
-    chsh -s "/bin/zsh" $USER
+    chsh -s "/bin/zsh" "$USER"
 
     # Remove bash files
-    rm -rf $HOME/.bash_logout
-    rm -rf $HOME/.bash_profile
-    rm -rf $HOME/.bashrc
+    rm -rf "$HOME/.bash_logout"
+    rm -rf "$HOME/.bash_profile"
+    rm -rf "$HOME/.bashrc"
 fi
