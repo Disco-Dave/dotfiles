@@ -23,6 +23,4 @@ if [ "$SHELL" != "/bin/zsh" ]; then
     rm -rf $HOME/.bash_logout
     rm -rf $HOME/.bash_profile
     rm -rf $HOME/.bashrc
-
-    zsh
 fi
