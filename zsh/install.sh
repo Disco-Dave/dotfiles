@@ -4,7 +4,7 @@
 sudo pacman -S --needed --noconfirm zsh zsh-autosuggestions zsh-completions \
     zsh-history-substring-search zsh-syntax-highlighting ruby openssh
 
-# User XDG Base Directory for ZSH
+# Use XDG Base Directory for ZSH
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
 echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv > /dev/null
 mkdir -p "$HOME/.config/zsh"

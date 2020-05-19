@@ -1,0 +1,7 @@
+[user]
+    name = David Burkett
+	email = david@davidburkett.xyz
+[fetch]
+    prune = true
+
+# vim: set filetype=gitconfig:
