@@ -24,5 +24,6 @@ if [ "$SHELL" != "/bin/zsh" ]; then
     # Remove bash files
     rm -rf "$HOME/.bash_logout"
     rm -rf "$HOME/.bash_profile"
+    rm -rf "$HOME/.bash_history"
     rm -rf "$HOME/.bashrc"
 fi
