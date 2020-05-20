@@ -16,6 +16,8 @@ fi
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+export GIT_PROMPT_EXECUTABLE="haskell"
+source $HOME/.local/share/zsh/plugins/zsh-git-prompt/zshrc.sh
 
 # Enable substring searches for up and down arrows
 # https://github.com/zsh-users/zsh-history-substring-search
@@ -44,9 +46,8 @@ export SAVEHIST=99999999
 # https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 #
-# TODO: Add git status
 # TODO: Add vi-mode status
-PS1="%B%F{white}%n@%M%f:%F{blue}%/%f%b
+PS1="%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
 %(!.#.$) "
 RPS1="[%*]"
 

@@ -11,6 +11,7 @@ if [[ ! -d "$HOME/.config/dotfiles" ]]; then
     git clone https://github.com/Disco-Dave/dotfiles.git "$HOME/.config/dotfiles"
 
     (cd "$HOME/.config/dotfiles/git"; ./install.sh)
+    (cd "$HOME/.config/dotfiles/stack"; ./install.sh)
     (cd "$HOME/.config/dotfiles/zsh"; ./install.sh)
     (cd "$HOME/.config/dotfiles/nvim"; ./install.sh)
 fi
