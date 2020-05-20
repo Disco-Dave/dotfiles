@@ -3,7 +3,7 @@
 set -e
 
 # Install neovim
-sudo pacman -S --needed --noconfirm neovim nodejs npm python python2 ruby xclip
+sudo pacman -S --needed --noconfirm neovim nodejs npm xclip
 
 # Create npmrc
 if [[ ! -f "$HOME/.config/npm/npmrc" ]]; then
