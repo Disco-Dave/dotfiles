@@ -18,6 +18,7 @@ else
     export BROWSER="lynx"
 fi
 
+export STACK_ROOT="$XDG_DATA_HOME"/stack
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # Global path
