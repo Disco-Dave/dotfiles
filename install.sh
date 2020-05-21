@@ -45,8 +45,8 @@ export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 
 # Install haskell stack
 # https://docs.haskellstack.org/en/stable/README/
-if [[ ! -f "/usr/bin/stack" ]]; then
-    export STACK_ROOT="$XDG_DATA_HOME/stack"
+export STACK_ROOT="$XDG_DATA_HOME/stack"
+if [[ ! -f "/usr/local/bin/stack" ]]; then
     curl -sSL https://get.haskellstack.org/ | sh
     stack setup
 fi
