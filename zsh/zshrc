@@ -47,8 +47,8 @@ export SAVEHIST=99999999
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 #
 # TODO: Add vi-mode status
-PS1="%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
-%(!.#.$) "
+PS1='%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
+%(!.#.$) '
 RPS1="[%*]"
 
 # vim: set nowrap:
