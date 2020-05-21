@@ -45,9 +45,11 @@ export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 
 # Install haskell stack
 # https://docs.haskellstack.org/en/stable/README/
-export STACK_ROOT="$XDG_DATA_HOME/stack"
-curl -sSL https://get.haskellstack.org/ | sh
-stack setup
+if [[ ! -f "/usr/bin/stack" ]]; then
+    export STACK_ROOT="$XDG_DATA_HOME/stack"
+    curl -sSL https://get.haskellstack.org/ | sh
+    stack setup
+fi
 
 
 # Link up git config
@@ -86,6 +88,8 @@ mkdir -p "$XDG_DATA_HOME/nvim/swap"
 mkdir -p "$XDG_DATA_HOME/nvim/undo"
 mkdir -p "$XDG_DATA_HOME/nvim/language-servers"
 
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim +PlugInstall +qall
+if [[ ! -f "$XDG_DATA_HOME/nvim/site/autoload/plug.vim" ]]; then
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    nvim +PlugInstall +qall
+fi
