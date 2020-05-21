@@ -25,7 +25,6 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 typeset -U PATH path
 path=(
     "$HOME/.local/bin" 
-    "$(ruby -e 'print Gem.user_dir')/bin"
     "$HOME/.cargo/bin"
     "$HOME/.local/share/npm/bin"
     "$HOME/.local/bin"
