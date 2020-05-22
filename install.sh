@@ -62,9 +62,11 @@ mkdir -p "$XDG_CONFIG_HOME/zsh"
 mkdir -p "$XDG_DATA_HOME/zsh/plugins"
 mkdir -p "$XDG_CACHE_HOME/zsh"
 
-git clone https://github.com/olivierverdier/zsh-git-prompt.git \
-    $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt
-(cd $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt; stack install)
+if [[ ! -d "$XDG_DATA_HOME/zsh/plugins/zsh-git-prompt" ]]; then
+    git clone https://github.com/olivierverdier/zsh-git-prompt.git \
+        $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt
+    (cd $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt; stack install)
+fi
 
 ln -sf "$(pwd)/zsh/zshenv" "$XDG_CONFIG_HOME/zsh/.zshenv"
 ln -sf "$(pwd)/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
