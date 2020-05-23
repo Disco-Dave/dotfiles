@@ -14,7 +14,7 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 
 # Install all required packages via pacman
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm 
+sudo pacman -S --needed --noconfirm \
     base-devel gcc git git gmp haskell-x11 haskell-x11-xft \
     make neovim nodejs npm openssh xclip zlib zsh zsh \
     zsh-autosuggestions zsh-completions \
