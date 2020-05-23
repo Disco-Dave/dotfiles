@@ -14,12 +14,12 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 
 # Install all required packages via pacman
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm \
-    gcc git git gmp make neovim nodejs npm \
-    openssh xclip zlib zsh zsh \
+sudo pacman -S --needed --noconfirm 
+    base-devel gcc git git gmp haskell-x11 haskell-x11-xft \
+    make neovim nodejs npm openssh xclip zlib zsh zsh \
     zsh-autosuggestions zsh-completions \
     zsh-history-substring-search \
-    zsh-syntax-highlighting 
+    zsh-syntax-highlighting
 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
@@ -95,3 +95,22 @@ if [[ ! -f "$XDG_DATA_HOME/nvim/site/autoload/plug.vim" ]]; then
            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     nvim +PlugInstall +qall
 fi
+
+
+# Setup XMonad and XMobar
+export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
+export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
+export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
+
+ln -sf "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
+mkdir -p "$XDG_CONFIG_HOME/xmonad/sources"
+
+git clone https://github.com/xmonad/xmonad "$XDG_CONFIG_HOME/xmonad/sources/xmonad-git"
+git clone https://github.com/xmonad/xmonad-contrib "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git"
+git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git"
+
+(
+    cd "$XDG_CONFIG_HOME/xmonad"
+    stack init
+    stack install
+)
