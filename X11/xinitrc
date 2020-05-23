@@ -1,2 +1,2 @@
-xmodmap -e 'keycode 104 = Return'
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 exec xmonad
