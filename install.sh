@@ -106,9 +106,16 @@ ln -sfn "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
 mkdir -p "$XMONAD_DATA_HOME" "$XMONAD_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME/xmonad/sources"
 
-git clone https://github.com/xmonad/xmonad "$XDG_CONFIG_HOME/xmonad/sources/xmonad-git"
-git clone https://github.com/xmonad/xmonad-contrib "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git"
-git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git"
+if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmonad-git" ]]; then
+    git clone https://github.com/xmonad/xmonad "$XDG_CONFIG_HOME/xmonad/sources/xmonad-git"
+fi
+if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git" ]]; then
+    git clone https://github.com/xmonad/xmonad-contrib "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git"
+fi
+if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git" ]]; then
+    git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git"
+fi
+
 
 (
     cd "$XDG_CONFIG_HOME/xmonad"
