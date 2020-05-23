@@ -68,6 +68,7 @@ if [[ ! -d "$XDG_DATA_HOME/zsh/plugins/zsh-git-prompt" ]]; then
     (cd $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt; stack install)
 fi
 
+ln -sfn "$(pwd)/zsh/zprofile" "$XDG_CONFIG_HOME/zsh/.zprofile"
 ln -sfn "$(pwd)/zsh/zshenv" "$XDG_CONFIG_HOME/zsh/.zshenv"
 ln -sfn "$(pwd)/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
