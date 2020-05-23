@@ -111,6 +111,5 @@ git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar
 
 (
     cd "$XDG_CONFIG_HOME/xmonad"
-    stack init
     stack install
 )
