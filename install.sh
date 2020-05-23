@@ -53,7 +53,7 @@ fi
 
 
 # Link up git config
-ln -sf "$(pwd)/git" "$XDG_CONFIG_HOME/git"
+ln -sfn "$(pwd)/git" "$XDG_CONFIG_HOME/git"
 
 
 # Setup zsh
@@ -68,8 +68,8 @@ if [[ ! -d "$XDG_DATA_HOME/zsh/plugins/zsh-git-prompt" ]]; then
     (cd $XDG_DATA_HOME/zsh/plugins/zsh-git-prompt; stack install)
 fi
 
-ln -sf "$(pwd)/zsh/zshenv" "$XDG_CONFIG_HOME/zsh/.zshenv"
-ln -sf "$(pwd)/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
+ln -sfn "$(pwd)/zsh/zshenv" "$XDG_CONFIG_HOME/zsh/.zshenv"
+ln -sfn "$(pwd)/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
 if [ "$SHELL" != "/bin/zsh" ]; then
     chsh -s "/bin/zsh" "$USER"
@@ -84,7 +84,7 @@ fi
 # Setup neovim
 npm install -g neovim
 
-ln -sf "$(pwd)/nvim" "$XDG_CONFIG_HOME/nvim"
+ln -sfn "$(pwd)/nvim" "$XDG_CONFIG_HOME/nvim"
 mkdir -p "$XDG_DATA_HOME/nvim/backup"
 mkdir -p "$XDG_DATA_HOME/nvim/swap"
 mkdir -p "$XDG_DATA_HOME/nvim/undo"
@@ -102,7 +102,7 @@ export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
 export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
 
-ln -sf "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
+ln -sfn "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
 mkdir -p "$XMONAD_DATA_HOME" "$XMONAD_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME/xmonad/sources"
 
@@ -117,3 +117,5 @@ git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar
 
 rm -rf "$HOME"/.xmonad
 "$HOME"/.local/bin/xmonad --recompile
+
+ln -sfn "$(pwd)"/X11 "$XDG_CONFIG_HOME"/X11

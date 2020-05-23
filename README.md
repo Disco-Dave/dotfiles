@@ -1,3 +1,7 @@
+# WIP
+This repository is a work in progress. My previous dotfiles are hosted in a
+private repository in gitlab.
+
 ## Personal dotfiles
 Repository of my personal dotfiles and my own personal notes for installing Arch Linux.
 
@@ -71,3 +75,6 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
     * Test sound with `speaker-test -c 2`
 5. Enable [automatic login](https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console)
 6. Install dotfiles: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Disco-Dave/dotfiles/master/install.sh)"`
+7. Reboot and hopefully it directly into XMonad.
+8. Set SSH keys as needed.
+9. Set up Firefox.

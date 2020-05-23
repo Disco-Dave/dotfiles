@@ -1,0 +1,2 @@
+xmodmap -e 'keycode 104 = Return'
+exec xmonad
