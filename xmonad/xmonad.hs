@@ -11,4 +11,4 @@ altKey = mod1Mask
 
 
 main :: IO ()
-main = xmonad desktopConfig { terminal = "xterm", modMask = mod1Mask }
+main = xmonad desktopConfig { terminal = "alacritty", modMask = mod1Mask }
