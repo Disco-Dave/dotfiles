@@ -102,9 +102,8 @@ export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
 export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
 
-mkdir -p "$XMONAD_CONFIG_HOME" "$XMONAD_DATA_HOME" "$XMONAD_CACHE_HOME"
-
 ln -sf "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
+mkdir -p "$XMONAD_DATA_HOME" "$XMONAD_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME/xmonad/sources"
 
 git clone https://github.com/xmonad/xmonad "$XDG_CONFIG_HOME/xmonad/sources/xmonad-git"
