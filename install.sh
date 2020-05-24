@@ -15,11 +15,10 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 # Install all required packages via pacman
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
-    alacritty base-devel dmenu firefox gcc git git gmp haskell-x11 \
-    haskell-x11-xft make neovim nodejs npm openssh xclip zlib zsh \
+    alacritty base-devel dmenu feh firefox gcc git git gmp haskell-x11 \
+    haskell-x11-xft make neovim nodejs npm openssh picom xclip zlib zsh \
     zsh-autosuggestions zsh-completions zsh-history-substring-search \
     zsh-syntax-highlighting 
-
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
     cd "$XDG_CONFIG_HOME/dotfiles"
@@ -102,6 +101,7 @@ export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
 export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
 
+ln -sfn "$(pwd)/xmobar" "$XDG_CONFIG_HOME/xmobar"
 ln -sfn "$(pwd)/xmonad" "$XDG_CONFIG_HOME/xmonad"
 mkdir -p "$XMONAD_DATA_HOME" "$XMONAD_CACHE_HOME"
 mkdir -p "$XDG_CONFIG_HOME/xmonad/sources"
