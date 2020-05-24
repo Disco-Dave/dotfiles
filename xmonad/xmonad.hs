@@ -17,8 +17,7 @@ altKey :: KeyMask
 altKey = mod1Mask
 
 myStartupHook = do
-  SpawnOnce.spawnOnce "picom"
-  SpawnOnce.spawnOnce "feh -bg-center $XDG_CONFIG_HOME/dotfiles/assets/wallpaper.jpg"
+  SpawnOnce.spawnOnce "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
   SpawnOnce.spawnOnce "xmobar $XDG_CONFIG_HOME/xmobar/xmobar.config"
   
 

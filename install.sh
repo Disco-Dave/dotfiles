@@ -16,8 +16,8 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
     alacritty base-devel dmenu feh firefox gcc git git gmp haskell-x11 \
-    haskell-x11-xft make neovim nodejs npm openssh picom xclip zlib zsh \
-    zsh-autosuggestions zsh-completions zsh-history-substring-search \
+    haskell-x11-xft make mpv neovim nodejs npm openssh picom xclip zlib \
+    zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
     zsh-syntax-highlighting 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then

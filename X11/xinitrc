@@ -1,2 +1,8 @@
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+xrandr --output Virtual1 --mode 1680x1050
+
+picom &
+feh --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
+rm -rf ~/.fehbg
+
 exec xmonad
