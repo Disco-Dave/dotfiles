@@ -15,10 +15,11 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 # Install all required packages via pacman
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
-    alacritty base-devel dmenu feh firefox gcc git git gmp haskell-x11 \
-    haskell-x11-xft htop make mpv neovim nodejs npm openssh picom ranger \
-    xclip zlib zsh zsh-autosuggestions zsh-completions \
-    zsh-history-substring-search zsh-syntax-highlighting 
+    alacritty base-devel dmenu feh firefox gcc git git gmp gvfs \
+    haskell-x11 haskell-x11-xft htop make mpv neovim nodejs npm \
+    openssh p7zip picom ranger xclip zlib zsh zsh-autosuggestions \
+    zsh-completions zsh-history-substring-search \
+    zsh-syntax-highlighting 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
     cd "$XDG_CONFIG_HOME/dotfiles"
