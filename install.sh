@@ -85,6 +85,9 @@ mkdir -p "$HOME/.ssh"
 if [[ ! -f "$HOME/.ssh/config" ]]; then
     echo "AddKeysToAgent yes" >> "$HOME/.ssh/config"
 fi
+if [[ ! -f "$HOME/.pam_environment" ]]; then
+    echo "SSH_AUTH_SOCK DEFAULT=\"${XDG_RUNTIME_DIR}/ssh-agent.socket\"" >> "$HOME/.pam_environment"
+fi
 mkdir -p "$XDG_CONFIG_HOME/systemd/user"
 ln -sfn "$(pwd)/systemd/user/ssh-agent.service" "$XDG_CONFIG_HOME/systemd/user/ssh-agent.service"
 systemctl --user enable --now ssh-agent.service
