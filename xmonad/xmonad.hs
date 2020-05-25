@@ -10,13 +10,7 @@ import qualified XMonad.Hooks.DynamicLog       as DynamicLogHook
 import qualified XMonad.Hooks.EwmhDesktops     as EwmhHook
 
 
-
--- Set variables for mod masks, since I can never remeber them.
-superKey :: KeyMask
-superKey = mod4Mask
-
-altKey :: KeyMask
-altKey = mod1Mask
+(superKey, altKey) = (mod4Mask, mod1Mask)
 
 myStartupHook = do
   SpawnOnce.spawnOnce "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"

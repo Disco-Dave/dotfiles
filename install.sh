@@ -16,9 +16,9 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
     alacritty base-devel dmenu feh firefox gcc git git gmp haskell-x11 \
-    haskell-x11-xft make mpv neovim nodejs npm openssh picom xclip zlib \
-    zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
-    zsh-syntax-highlighting 
+    haskell-x11-xft htop make mpv neovim nodejs npm openssh picom ranger \
+    xclip zlib zsh zsh-autosuggestions zsh-completions \
+    zsh-history-substring-search zsh-syntax-highlighting 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
     cd "$XDG_CONFIG_HOME/dotfiles"
@@ -78,6 +78,16 @@ if [ "$SHELL" != "/bin/zsh" ]; then
     rm -rf "$HOME/.bash_history"
     rm -rf "$HOME/.bashrc"
 fi
+
+
+# Setup ssh-agent
+mkdir -p "$HOME/.ssh"
+if [[ ! -f "$HOME/.ssh/config" ]]; then
+    echo "AddKeysToAgent yes" >> "$HOME/.ssh/config"
+fi
+mkdir -p "$XDG_CONFIG_HOME/systemd/user"
+ln -sfn "$(pwd)/systemd/user/ssh-agent.service" "$XDG_CONFIG_HOME/systemd/user/ssh-agent.service"
+systemctl --user enable --now ssh-agent.service
 
 
 # Setup neovim
