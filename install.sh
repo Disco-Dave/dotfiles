@@ -22,7 +22,7 @@ sudo pacman -S --needed --noconfirm \
     ranger redshift stalonetray xclip xfce4-power-manager \
     xfce4-screenshooter zlib zsh zsh-autosuggestions \
     zsh-completions zsh-history-substring-search \
-    zsh-syntax-highlighting xfce4-notifyd libnotify
+    zsh-syntax-highlighting xcursor-vanilla-dmz xfce4-notifyd libnotify
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
     cd "$XDG_CONFIG_HOME/dotfiles"
@@ -148,3 +148,4 @@ ln -sfn "$(pwd)/stalonetray" "$XDG_CONFIG_HOME"/stalonetray
 # Theming
 ln -sfn "$(pwd)/gtk-2.0" "$XDG_CONFIG_HOME/gtk-2.0"
 ln -sfn "$(pwd)/gtk-3.0" "$XDG_CONFIG_HOME/gtk-3.0"
+ln -sfn "$(pwd)/icons" "$HOME/.icons"

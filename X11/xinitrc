@@ -4,4 +4,5 @@ xrandr --output Virtual1 --mode 1680x1050
 picom &
 feh --no-fehbg --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
 
+xsetroot -cursor_name left_ptr
 exec xmonad
