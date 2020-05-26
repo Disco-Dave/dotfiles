@@ -16,9 +16,10 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm \
     alacritty base-devel dmenu feh firefox gcc git git gmp gvfs \
-    haskell-x11 haskell-x11-xft htop make mpv neovim nodejs npm \
-    openssh p7zip picom pavucontrol ranger xclip zlib zsh \
-    zsh-autosuggestions zsh-completions \
+    haskell-x11 haskell-x11-xft htop make mpv neovim \
+    network-manager-applet nodejs npm openssh p7zip pasystray \
+    pavucontrol picom python-gobject python-xdg ranger redshift \
+    stalonetray xclip zlib zsh zsh-autosuggestions zsh-completions \
     zsh-history-substring-search zsh-syntax-highlighting 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
@@ -127,7 +128,6 @@ if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git" ]]; then
     git clone https://github.com/xmonad/xmonad-contrib "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git"
 fi
 
-
 (
     cd "$XDG_CONFIG_HOME/xmonad"
     stack install
@@ -140,3 +140,4 @@ rm -rf "$HOME"/.xmonad
 "$HOME"/.local/bin/xmonad --recompile
 
 ln -sfn "$(pwd)"/X11 "$XDG_CONFIG_HOME"/X11
+ln -sfn "$(pwd)/stalonetray" "$XDG_CONFIG_HOME"/stalonetray

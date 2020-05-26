@@ -68,11 +68,13 @@ set undodir=~/.local/share/nvim/undo//
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 
-" Move with Ctrl + hjkl
+" Move split focus with Ctrl + hjkl
 noremap <silent> <c-h> <c-w>h
 noremap <silent> <c-j> <c-w>j
 noremap <silent> <c-k> <c-w>k
 noremap <silent> <c-l> <c-w>l
+
+set nowrap
 
 " Correct filetype for odd extensions
 autocmd BufRead,BufNewFile *.vbproj set filetype=xml
