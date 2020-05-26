@@ -21,6 +21,7 @@ myStartupHook = do
   SpawnOnce.spawnOnce "xfce4-power-manager"
   SpawnOnce.spawnOnce "pasystray"
   SpawnOnce.spawnOnce "redshift-gtk"
+  SpawnOnce.spawnOnce "/usr/lib/xfce4/notifyd/xfce4-notifyd"
 
 myLayoutHook = layoutHook def
   & NoBordersLayout.smartBorders
