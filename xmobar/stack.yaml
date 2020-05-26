@@ -28,10 +28,14 @@ resolver: lts-15.13
 #   subdirs:
 #   - auto-update
 #   - wai
-packages:
+packages: 
 - .
-- sources/xmonad-git
-- sources/xmonad-contrib-git
+
+# The following packages have been ignored due to incompatibility with the
+# resolver compiler, dependency conflicts with other packages
+# or unsatisfied dependencies.
+#- .
+
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
@@ -41,8 +45,12 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
-extra-deps:
-- netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
+# extra-deps: []
+
+# Override default flag values for local packages and extra-deps
+flags:
+  xmobar:
+    all_extensions: true
 
 # Extra package databases containing global packages
 # extra-package-dbs: []
@@ -64,3 +72,7 @@ extra-deps:
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+
+extra-deps:
+- xmobar-0.33@sha256:94044fed8ff6c032720e731b8dc1ab987a55f741058a0d1cf798597fcd641fff,11451
+- netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689

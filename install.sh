@@ -126,13 +126,13 @@ fi
 if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git" ]]; then
     git clone https://github.com/xmonad/xmonad-contrib "$XDG_CONFIG_HOME/xmonad/sources/xmonad-contrib-git"
 fi
-if [[ ! -d "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git" ]]; then
-    git clone https://github.com/jaor/xmobar "$XDG_CONFIG_HOME/xmonad/sources/xmobar-git"
-fi
 
 
 (
     cd "$XDG_CONFIG_HOME/xmonad"
+    stack install
+
+    cd "$XDG_CONFIG_HOME/xmobar"
     stack install
 )
 
