@@ -39,6 +39,8 @@ additionalKeys XConfig{..} =
   , ((X11.noModMask, xK_Print), spawn "xfce4-screenshooter")
   , ((X11.controlMask, xK_Print), spawn "xfce4-screenshooter -r")
   , ((X11.shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
+  
+  , ((superKey, xK_Escape), kill)
   ]
 
 

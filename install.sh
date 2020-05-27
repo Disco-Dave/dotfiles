@@ -13,15 +13,15 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 
 
 # Install all required packages via pacman
-sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm \
-    alacritty arc-gtk-theme arc-icon-theme base-devel blueman bluez bluez-utils \
-    dmenu feh firefox gcc git git gmp gvfs haskell-x11 haskell-x11-xft htop \
-    libnotify make mpv neovim network-manager-applet nodejs npm openssh p7zip \
-    pasystray pavucontrol picom pulseaudio-bluetooth python-gobject python-xdg \
-    ranger redshift stalonetray xclip xcursor-vanilla-dmz xfce4-notifyd \
-    xfce4-power-manager xfce4-screenshooter zlib zsh zsh-autosuggestions \
-    zsh-completions zsh-history-substring-search zsh-syntax-highlighting 
+sudo pacman -Syu --needed --noconfirm \
+    alacritty arc-gtk-theme arc-icon-theme atril base-devel blueman bluez \
+    bluez-utils dmenu feh firefox gcc git git gmp gvfs haskell-x11 \
+    haskell-x11-xft htop libnotify make mpv neovim network-manager-applet \
+    nodejs npm openssh p7zip pasystray pavucontrol picom pulseaudio-bluetooth \
+    python-gobject python-xdg ranger redshift stalonetray xclip \
+    xcursor-vanilla-dmz xfce4-notifyd xfce4-power-manager xfce4-screenshooter \
+    zlib zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
+    zsh-syntax-highlighting 
 
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
