@@ -1,7 +1,7 @@
 {-# LANGUAGE RecordWildCards #-}
 
-import           Data.Function                  ( (&) )
 import           Data.Foldable                  ( for_ )
+import           Data.Function                  ( (&) )
 
 import           XMonad
 
@@ -18,7 +18,9 @@ import qualified XMonad.Hooks.ManageDocks      as ManageDocksHook
 import qualified Graphics.X11                  as X11
 import qualified Graphics.X11.ExtraTypes       as X11
 
+
 (superKey, altKey) = (mod4Mask, mod1Mask)
+
 
 additionalKeys XConfig{..} = 
   [ -- Volume keys
@@ -38,6 +40,7 @@ additionalKeys XConfig{..} =
   , ((X11.shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
   ]
 
+
 myStartupHook = do
   SpawnOnce.spawnOnce "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
   SpawnOnce.spawnOnce "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"
@@ -47,27 +50,28 @@ myStartupHook = do
   SpawnOnce.spawnOnce "redshift-gtk"
   SpawnOnce.spawnOnce "/usr/lib/xfce4/notifyd/xfce4-notifyd"
 
+
 myLayoutHook = layoutHook def
   & NoBordersLayout.smartBorders
   & ManageDocksHook.avoidStruts
 
-makeConfig handles = 
-  let 
-    baseConf = def
-      { terminal    = "alacritty"
-      , modMask     = mod1Mask
-      , startupHook = myStartupHook
-      , layoutHook  = myLayoutHook
-      , logHook     = DynamicLogHook.dynamicLogWithPP $ DynamicLogHook.xmobarPP
-        { DynamicLogHook.ppOutput = \p -> for_ handles $ \h -> Run.hPutStrLn h p
-        }
-      }
-  in 
-    baseConf
+
+makeConfig handles = def
+  { terminal    = "alacritty"
+  , focusedBorderColor = "#0066ff"
+  , borderWidth = 2
+  , modMask     = mod1Mask
+  , startupHook = myStartupHook
+  , layoutHook  = myLayoutHook
+  , logHook     = DynamicLogHook.dynamicLogWithPP $ DynamicLogHook.xmobarPP
+    { DynamicLogHook.ppOutput = \p -> for_ handles $ \h -> Run.hPutStrLn h p
+    }
+  }
     & EwmhHook.ewmh
     & EwmhHook.ewmhFullscreen
     & ManageDocksHook.docks
-    & flip EZConfig.additionalKeys (additionalKeys baseConf)
+    & (\c -> c `EZConfig.additionalKeys` additionalKeys c)
+
 
 main :: IO ()
 main = do
