@@ -29,6 +29,7 @@ additionalKeys XConfig{..} =
   , ((X11.shiftMask, X11.xF86XK_AudioRaiseVolume), spawn "amixer -D pulse sset Master 1%+")
   , ((X11.shiftMask, X11.xF86XK_AudioLowerVolume), spawn "amixer -D pulse sset Master 1%-")
   , ((X11.noModMask, X11.xF86XK_AudioMute), spawn "amixer -D pulse sset Master toggle")
+  , ((X11.noModMask, X11.xF86XK_AudioMicMute), spawn "pactl set-source-mute 1 toggle")
   , ((superKey, xK_v), spawn "pavucontrol")
 
   -- Web browser
@@ -48,6 +49,7 @@ myStartupHook = do
   SpawnOnce.spawnOnce "xfce4-power-manager"
   SpawnOnce.spawnOnce "pasystray"
   SpawnOnce.spawnOnce "redshift-gtk"
+  SpawnOnce.spawnOnce "blueman-applet"
   SpawnOnce.spawnOnce "/usr/lib/xfce4/notifyd/xfce4-notifyd"
 
 

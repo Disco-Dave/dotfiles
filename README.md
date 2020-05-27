@@ -37,10 +37,10 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
 #### Overview of styles
 | Style Type | Selection |
 |------------|-----------|
-| Gtk 2/3 Theme | TBD |
+| Gtk 2/3 Theme | Arc-Dark |
 | Font | TBD |
-| Cursor | TBD |
-| Wallpaper | TBD |
+| Cursor | Vinalla-DMZ |
+| Wallpaper | [nebula](assets/wallpaper.jpg) |
 | Colors | TBD |
 
 
