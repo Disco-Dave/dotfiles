@@ -37,6 +37,7 @@ additionalKeys XConfig{..} =
 
   -- Screen shooter
   , ((X11.noModMask, xK_Print), spawn "xfce4-screenshooter")
+  , ((superKey, xK_Print), spawn "xfce4-screenshooter -w")
   , ((X11.controlMask, xK_Print), spawn "xfce4-screenshooter -r")
   , ((X11.shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
   
@@ -62,8 +63,9 @@ myLayoutHook = layoutHook def
 
 makeConfig handles = def
   { terminal    = "alacritty"
-  , focusedBorderColor = "#0066ff"
-  , borderWidth = 2
+  , focusedBorderColor = "#81A1C1"
+  , normalBorderColor = "#3B4252"
+  , borderWidth = 3
   , modMask     = mod1Mask
   , startupHook = myStartupHook
   , layoutHook  = myLayoutHook
