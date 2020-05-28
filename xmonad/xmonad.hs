@@ -18,6 +18,9 @@ import qualified XMonad.Hooks.ManageDocks      as ManageDocksHook
 import qualified Graphics.X11                  as X11
 import qualified Graphics.X11.ExtraTypes       as X11
 
+-- TODO: Change colors for dmenu
+-- TODO: Change colors for XMobar
+-- TODO: Investigate how sub layouts are used
 
 (superKey, altKey) = (mod4Mask, mod1Mask)
 
@@ -42,18 +45,22 @@ additionalKeys XConfig{..} =
   , ((X11.shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
   
   , ((superKey, xK_Escape), kill)
+  , ((modMask, xK_p), spawn "dmenu_run -fn \"FreeSans-12\"")
   ]
 
 
-myStartupHook = do
-  SpawnOnce.spawnOnce "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
-  SpawnOnce.spawnOnce "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"
-  SpawnOnce.spawnOnce "nm-applet"
-  SpawnOnce.spawnOnce "xfce4-power-manager"
-  SpawnOnce.spawnOnce "pasystray"
-  SpawnOnce.spawnOnce "redshift-gtk"
-  SpawnOnce.spawnOnce "blueman-applet"
-  SpawnOnce.spawnOnce "/usr/lib/xfce4/notifyd/xfce4-notifyd"
+myStartupHook = 
+  let autoStartCommands = 
+        [ "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
+        , "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"
+        , "nm-applet"
+        , "xfce4-power-manager"
+        , "pasystray"
+        , "redshift-gtk"
+        , "blueman-applet"
+        , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
+        ]
+  in for_ autoStartCommands SpawnOnce.spawnOnce
 
 
 myLayoutHook = layoutHook def
@@ -70,7 +77,7 @@ makeConfig handles = def
   , startupHook = myStartupHook
   , layoutHook  = myLayoutHook
   , logHook     = DynamicLogHook.dynamicLogWithPP $ DynamicLogHook.xmobarPP
-    { DynamicLogHook.ppOutput = \p -> for_ handles $ \h -> Run.hPutStrLn h p
+    { DynamicLogHook.ppOutput = for_ handles . flip Run.hPutStrLn
     }
   }
     & EwmhHook.ewmh

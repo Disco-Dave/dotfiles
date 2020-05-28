@@ -2,6 +2,7 @@
 # Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
 
 # TODO: Investigate how to disable corrections for commands
+# TODO: Add vi-mode status
 
 
 # Plugins
@@ -11,14 +12,17 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 export GIT_PROMPT_EXECUTABLE="haskell"
 source $HOME/.local/share/zsh/plugins/zsh-git-prompt/zshrc.sh
 
+
 # Enable substring searches for up and down arrows
 # https://github.com/zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+
 # Use vim key bindings
 # https://wiki.archlinux.org/index.php/Zsh#Key_bindings
 bindkey -v
+
 
 # Enable auto completion
 # https://wiki.archlinux.org/index.php/Zsh#Command_completion
@@ -27,6 +31,7 @@ compinit
 zstyle ':completion:*' menu select
 setopt COMPLETE_ALIASES
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
 
 # Setup history
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
@@ -37,8 +42,6 @@ export SAVEHIST=99999999
 # Setup custom prompt
 # https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-#
-# TODO: Add vi-mode status
 PS1='%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
 %(!.#.$) '
 RPS1="[%*]"

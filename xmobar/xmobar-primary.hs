@@ -2,7 +2,7 @@ import Xmobar
 
 config :: Config
 config = defaultConfig 
-  { font = "xft:Sans Mono-12"
+  { font = "xft:FreeSans-12"
   , additionalFonts = []
   , borderColor = "black"
   , border = FullB
