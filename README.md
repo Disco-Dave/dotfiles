@@ -40,7 +40,7 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
 |------------|-----------|
 | Gtk 2/3 Theme | Arc-Dark |
 | Font | Hack |
-| Cursor | Vinalla-DMZ |
+| Cursor | Vanilla-DMZ |
 | Wallpaper | [nebula](assets/wallpaper.jpg) |
 | Colors | [nord](https://github.com/arcticicestudio/nord) |
 
@@ -74,6 +74,6 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
     * Test sound with `speaker-test -c 2`
 5. Enable [automatic login](https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console)
 6. Install dotfiles: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Disco-Dave/dotfiles/master/install.sh)"`
-7. Reboot and hopefully it directly into XMonad.
+7. Reboot and hopefully it starts directly into XMonad.
 8. Set SSH keys as needed.
 9. Set up Firefox.
