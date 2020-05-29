@@ -4,10 +4,10 @@ config :: Config
 config = defaultConfig 
   { font = "xft:FreeSans-12"
   , additionalFonts = []
-  , borderColor = "black"
   , border = FullB
-  , bgColor = "black"
-  , fgColor = "grey"
+  , borderColor = "#3B4252"
+  , bgColor = "#3B4252"
+  , fgColor = "#ECEFF4"
   , alpha = 255
   , position = Top
   , textOffset = -1

@@ -68,6 +68,30 @@ myLayoutHook = layoutHook def
   & ManageDocksHook.avoidStruts
 
 
+myLogHook handles =
+  let myPpOutput = for_ handles . flip Run.hPutStrLn
+
+      wrap _ _ "" = ""
+      wrap l r m  = l ++ m ++ r
+
+      xmobarColor fg bg = wrap t "</fc>"
+          where t = concat ["<fc=", fg, if null bg then "" else "," ++ bg, ">"]
+
+      shorten n xs | length xs < n = xs
+                   | otherwise     = take (n - length end) xs ++ end
+          where end = "..."
+
+      myXmobarPp = def
+        { DynamicLogHook.ppCurrent = xmobarColor "#EBCB8B" "" . wrap "[" "]"
+        , DynamicLogHook.ppTitle   = xmobarColor "#A3BE8C" "" . shorten 40
+        , DynamicLogHook.ppVisible = wrap "(" ")"
+        , DynamicLogHook.ppUrgent  = xmobarColor "#BF616A" "#EBCB8B"
+        , DynamicLogHook.ppOutput  = for_ handles . flip Run.hPutStrLn
+        }
+  in  
+    DynamicLogHook.dynamicLogWithPP myXmobarPp
+
+
 makeConfig handles = def
   { terminal    = "alacritty"
   , focusedBorderColor = "#81A1C1"
@@ -76,9 +100,7 @@ makeConfig handles = def
   , modMask     = mod1Mask
   , startupHook = myStartupHook
   , layoutHook  = myLayoutHook
-  , logHook     = DynamicLogHook.dynamicLogWithPP $ DynamicLogHook.xmobarPP
-    { DynamicLogHook.ppOutput = for_ handles . flip Run.hPutStrLn
-    }
+  , logHook     = myLogHook handles
   }
     & EwmhHook.ewmh
     & EwmhHook.ewmhFullscreen

@@ -156,3 +156,6 @@ ln -sfn "$(pwd)/alacritty" "$XDG_CONFIG_HOME/alacritty"
 
 # Setup bluetooth
 sudo systemctl enable bluetooth.service
+
+# Setup picom
+ln -sfn "$(pwd)/picom" "$XDG_CONFIG_HOME/picom"
