@@ -1,6 +1,7 @@
-# WIP
-This repository is a work in progress. My previous dotfiles are hosted in a
-private repository in gitlab.
+## TODO
+* Setup neomutt for email
+* Add email inbox counter to xmobar
+* Setup weechat for IRC
 
 ## Personal dotfiles
 Repository of my personal dotfiles and my own personal notes for installing Arch Linux.
@@ -38,12 +39,10 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
 | Style Type | Selection |
 |------------|-----------|
 | Gtk 2/3 Theme | Arc-Dark |
-| Font | TBD |
+| Font | Hack |
 | Cursor | Vinalla-DMZ |
 | Wallpaper | [nebula](assets/wallpaper.jpg) |
-| Colors | TBD |
-
-
+| Colors | [nord](https://github.com/arcticicestudio/nord) |
 
 ## Getting started
 ### Pre-install

@@ -18,8 +18,7 @@ import qualified XMonad.Hooks.ManageDocks      as ManageDocksHook
 import qualified Graphics.X11                  as X11
 import qualified Graphics.X11.ExtraTypes       as X11
 
--- TODO: Change colors for dmenu
--- TODO: Change colors for XMobar
+
 -- TODO: Investigate how sub layouts are used
 
 (superKey, altKey) = (mod4Mask, mod1Mask)
@@ -45,7 +44,7 @@ additionalKeys XConfig{..} =
   , ((X11.shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
   
   , ((superKey, xK_Escape), kill)
-  , ((modMask, xK_p), spawn "dmenu_run -fn \"FreeSans-12\"")
+  , ((modMask, xK_p), spawn "dmenu_run -fn \"FreeSans-12\" -nb \"#3B4252\" -sb \"#81A1C1\" -nf \"#ECEFF4\" -sf \"#3B4252\"")
   ]
 
 
