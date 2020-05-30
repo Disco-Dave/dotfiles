@@ -1,48 +1,62 @@
-## TODO
-* Setup neomutt for email
-* Add email inbox counter to xmobar
-* Setup weechat for IRC
-
 ## Personal dotfiles
 Repository of my personal dotfiles and my own personal notes for installing Arch Linux.
 
 ## Table of contents
+* [Goals](#goals)
 * [Overview](#overview)
     * [Overview of components](#overview-of-components)
     * [Overview of styles](#overview-of-styles)
 * [Getting started](#getting-started)
     * [Pre-install](#pre-install)
     * [Post-install](#post-install)
+* [TODOs](#todos)
+
+## Goals
+* Organized
+    * Create an install script that can be ran once to configure my system to my exact needs. 
+      The install script should also be able to be ran multiple times without negative consequences.
+    * Files should be well formatted and commented. Include links to the arch wiki or other
+      documentation as needed.
+    * Try to keep dotfiles out of the home directory. Instead try to follow [XDG Base Directory](https://wiki.archlinux.org/index.php/XDG_Base_Directory) as much as possible.
+* Simplicity
+    * Keep scripts and configurations as small and simple as possible.
+    * Avoid using command aliases since it clutters the `zshrc` file and prevents me from learning the tool.
+    * Only add necessary plugins to `neovim` or capabilities to `xmonad`.
+    * Use the same configuration files for my laptop and desktop.
+* Efficient
+    * `xmonad` should automatically layout my windows to my exact needs without intervention.
+    * Utilize the terminal and keyboard as much as possible.
+    * Avoid making changes purely for aesthetics when they interfere with efficiency. For example: gaps between windows or transparent terminals.
 
 ## Overview
 #### Overview of components
-| Component Type   | Component                                |
-|------------------|------------------------------------------|
-| Operating System | [Arch Linux](https://www.archlinux.org/) |
-| Boot loader      | [systemd-boot](https://wiki.archlinux.org/index.php/Systemd-boot) |
-| Networking       | [NetworkManager](https://wiki.archlinux.org/index.php/NetworkManager) |
-| Sound            | [Pulseaudio](https://wiki.archlinux.org/index.php/PulseAudio) |
-| Editor           | [Neovim](https://wiki.archlinux.org/index.php/Neovim) |
-| Shell            | [Zsh](https://wiki.archlinux.org/index.php/Zsh) |
-| Window Manager   | [xmonad](https://wiki.archlinux.org/index.php/Xmonad) |
-| Status bar       | [xmobar](https://wiki.archlinux.org/index.php/Xmonad) |
-| Terminal Emulator | [Alacritty](https://wiki.archlinux.org/index.php/Alacritty) |
-| Launcher         | [dmenu](https://wiki.archlinux.org/index.php/Dmenu) |
-| Internet Browser | [Firefox](https://wiki.archlinux.org/index.php/Firefox) |
-| File Manager     | [ranger](https://wiki.archlinux.org/index.php/Ranger) |
-| Music Player     | [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) / [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp) |
-| Email            | [neomutt](https://wiki.archlinux.org/index.php/Mutt) |
-| Video            | [mpv](https://wiki.archlinux.org/index.php/Mpv) |
-| PDF Viewer       | [atril](https://www.archlinux.org/packages/community/x86_64/atril/) |
+| Component Type    | Component                                                                                                                 |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Operating System  | [Arch Linux](https://www.archlinux.org/)                                                                                  |
+| Boot loader       | [systemd-boot](https://wiki.archlinux.org/index.php/Systemd-boot)                                                         |
+| Networking        | [NetworkManager](https://wiki.archlinux.org/index.php/NetworkManager)                                                     |
+| Sound             | [Pulseaudio](https://wiki.archlinux.org/index.php/PulseAudio)                                                             |
+| Editor            | [Neovim](https://wiki.archlinux.org/index.php/Neovim)                                                                     |
+| Shell             | [Zsh](https://wiki.archlinux.org/index.php/Zsh)                                                                           |
+| Window Manager    | [xmonad](https://wiki.archlinux.org/index.php/Xmonad)                                                                     |
+| Status bar        | [xmobar](https://wiki.archlinux.org/index.php/Xmonad)                                                                     |
+| Terminal Emulator | [Alacritty](https://wiki.archlinux.org/index.php/Alacritty)                                                               |
+| Launcher          | [dmenu](https://wiki.archlinux.org/index.php/Dmenu)                                                                       |
+| Internet Browser  | [Firefox](https://wiki.archlinux.org/index.php/Firefox)                                                                   |
+| File Manager      | [ranger](https://wiki.archlinux.org/index.php/Ranger)                                                                     |
+| Music Player      | [mpd](https://wiki.archlinux.org/index.php/Music_Player_Daemon) / [ncmpcpp](https://wiki.archlinux.org/index.php/Ncmpcpp) |
+| Email             | [neomutt](https://wiki.archlinux.org/index.php/Mutt)                                                                      |
+| Video             | [mpv](https://wiki.archlinux.org/index.php/Mpv)                                                                           |
+| PDF Viewer        | [atril](https://www.archlinux.org/packages/community/x86_64/atril/)                                                       |
 
 #### Overview of styles
-| Style Type | Selection |
-|------------|-----------|
-| Gtk 2/3 Theme | Arc-Dark |
-| Font | Hack |
-| Cursor | Vanilla-DMZ |
-| Wallpaper | [nebula](assets/wallpaper.jpg) |
-| Colors | [nord](https://github.com/arcticicestudio/nord) |
+| Style Type    | Selection                                       |
+|---------------|-------------------------------------------------|
+| Gtk 2/3 Theme | Arc-Dark                                        |
+| Font          | Hack / FreeSans                                 |
+| Cursor        | Vanilla-DMZ                                     |
+| Wallpaper     | [nebula](assets/wallpaper.jpg)                  |
+| Colors        | [nord](https://github.com/arcticicestudio/nord) |
 
 ## Getting started
 ### Pre-install
@@ -75,5 +89,24 @@ Repository of my personal dotfiles and my own personal notes for installing Arch
 5. Enable [automatic login](https://wiki.archlinux.org/index.php/Getty#Automatic_login_to_virtual_console)
 6. Install dotfiles: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Disco-Dave/dotfiles/master/install.sh)"`
 7. Reboot and hopefully it starts directly into XMonad.
-8. Set SSH keys as needed.
-9. Set up Firefox.
+8. Setup SSH keys as needed.
+9. Setup Firefox.
+10. Setup [powertop](https://wiki.archlinux.org/index.php/Powertop) if needed.
+
+## TODOs
+* Configure E-Mail
+    * Configure Neomutt
+    * Add an unread email count to xmobar and when clicked opens neomutt
+* Configure ncmpcpp and mpd
+* Configure weechat
+* Find a keybinding for scrolling up and down in alacritty that does not conflict with xmonad or neovim
+* Add the number of open windows on current workspace to xmobar. (Helpful when in the Full layout)
+* Add a vi-mode status indication my zsh prompt so I can tell when it's in insert or normal mode
+* Learn more about layouts in xmonad and research the following:
+    * layout groups
+    * sublayouts
+    * tabbed layouts
+    * accordion layouts
+    * scratch pads
+    * prompts
+* Write a script to switch between a light and dark theme

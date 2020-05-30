@@ -1,7 +1,18 @@
+# Set caps lock key to be escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
+# Start the compositor so we can transparency and shadow effects
 picom &
+
+# Draw the wallpaper
 feh --no-fehbg --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
 
+# XMonad doesn't set the default cursor so we manually set our default
+# cursor to be the left pointer
 xsetroot -cursor_name left_ptr
+
+# Start our window manager XMonad. XMonad will then start other applications
+# for us ie: xmobar, notifcation daemon, redshift, nm-applet, etc.
 exec xmonad
+
+# vim: filetype=sh:

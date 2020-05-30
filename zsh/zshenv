@@ -1,7 +1,8 @@
 # Ensure xterm uses 256 colors if used
 export TERM=xterm-256color
 
-# XDG Directories
+# Set XDG Base Directories variables since these aren't automatically
+# set for us. However $XDG_RUNTIME_DIR is.
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -18,23 +19,24 @@ else
     export BROWSER="lynx"
 fi
 
+# Prevent an assortment of programs from dumping files into the
+# home directory and instead force them to use XDG Base Directories.
+# https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
 export XAUTHORITY="$XDG_DATA_HOME/Xauthority"
 export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
 export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
-
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
 export STACK_ROOT="$XDG_DATA_HOME"/stack
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE=-
 
-# Global path
+# Set our global path variable.
+# https://wiki.archlinux.org/index.php/Zsh#Configuring_$PATH
 typeset -U PATH path
 path=(
     "$HOME/.local/bin" 
@@ -43,5 +45,3 @@ path=(
     "$HOME/.local/bin"
     "$path[@]")
 export PATH
-
-# vim: set nowrap:

@@ -1,9 +1,6 @@
 # Official ZSH documentation: http://zsh.sourceforge.net/Doc/Release/index.html#Top
 # Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
 
-# TODO: Investigate how to disable corrections for commands
-# TODO: Add vi-mode status
-
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -72,6 +69,3 @@ man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     command man "$@"
 }
-
-
-# vim: set nowrap:

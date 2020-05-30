@@ -23,14 +23,20 @@ sudo pacman -Syu --needed --noconfirm \
     zlib zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
     zsh-syntax-highlighting ttf-hack
 
+if [[ ! -f "/usr/bin/yay" ]]; then
+    curl -o yay.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
+    tar xf yay.tar.gz
+    (cd yay; makepkg -si)
+    rm -rf yay yay.tar.gz
+fi
 
 if [[ -d "$XDG_CONFIG_HOME/dotfiles" ]]; then
     cd "$XDG_CONFIG_HOME/dotfiles"
     git pull
 else
-    git clone https://github.com/Disco-Dave/dotfiles.git \
-        "$XDG_CONFIG_HOME/dotfiles"
+    git clone https://github.com/Disco-Dave/dotfiles.git "$XDG_CONFIG_HOME/dotfiles"
     cd "$XDG_CONFIG_HOME/dotfiles"
+    git remote set-url origin git@github.com:Disco-Dave/dotfiles.git
 fi
 
 
