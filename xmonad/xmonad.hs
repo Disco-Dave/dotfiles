@@ -15,6 +15,7 @@ import qualified XMonad.Actions.SwapWorkspaces as SwapWorkspacesAction
 
 import qualified XMonad.Layout.Named           as NamedLayout
 import qualified XMonad.Layout.NoBorders       as NoBordersLayout
+import qualified XMonad.Layout.ToggleLayouts   as ToggleLayouts
 
 import qualified XMonad.Hooks.DynamicLog       as DynamicLogHook
 import qualified XMonad.Hooks.EwmhDesktops     as EwmhHook
@@ -90,6 +91,8 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList $
     , ((superKey, xK_Print), spawn "xfce4-screenshooter -w")
     , ((controlMask, xK_Print), spawn "xfce4-screenshooter -r")
     , ((shiftMask, xK_Print), spawn "xfce4-screenshooter -f")
+
+    , ((modMask, xK_f), sendMessage (ToggleLayouts.Toggle "Full"))
     ]
     <>
       -- mod-[1..9] %! Switch to workspace N
@@ -124,8 +127,12 @@ myStartupHook = for_ autoStartCommands SpawnOnce.spawnOnce
 
 myLayoutHook = hooks layout
  where
-  hooks  = NoBordersLayout.smartBorders >>> ManageDocksHook.avoidStruts
-  layout = tiled ||| Mirror tiled ||| Full
+  hooks = 
+    ToggleLayouts.toggleLayouts Full 
+      >>> NoBordersLayout.smartBorders 
+      >>> ManageDocksHook.avoidStruts
+
+  layout = tiled ||| Mirror tiled
    where
        -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
