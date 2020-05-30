@@ -26,6 +26,7 @@ export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
 export STACK_ROOT="$XDG_DATA_HOME"/stack
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
@@ -37,7 +38,7 @@ export LESSHISTFILE=-
 typeset -U PATH path
 path=(
     "$HOME/.local/bin" 
-    "$HOME/.cargo/bin"
+    "$XDG_DATA_HOME/cargo/bin"
     "$HOME/.local/share/npm/bin"
     "$HOME/.local/bin"
     "$path[@]")
