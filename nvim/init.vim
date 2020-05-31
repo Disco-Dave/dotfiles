@@ -88,6 +88,7 @@ filetype plugin on
 
 " SLIME
 let g:slime_target = "neovim"
+let g:slime_paste_file = "$XDG_RUNTIME_DIR/slime"
 command JobID :echo b:terminal_job_id
 map <leader>i <Plug>SlimeRegionSend
 
