@@ -117,6 +117,7 @@ myStartupHook = for_ autoStartCommands SpawnOnce.spawnOnce
     , "redshift-gtk"
     , "blueman-applet"
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
+    , "lxsession"
     ]
 
 

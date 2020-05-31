@@ -15,8 +15,8 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 # Install all required packages via pacman
 sudo pacman -Syu --needed --noconfirm \
     alacritty arc-gtk-theme arc-icon-theme atril base-devel blueman bluez \
-    bluez-utils dmenu feh firefox gcc git git gmp gvfs haskell-x11 \
-    haskell-x11-xft htop libnotify make mpv neovim network-manager-applet \
+    bluez-utils dmenu feh firefox gcc git git glib2 gmp gvfs haskell-x11 \
+    haskell-x11-xft htop libnotify lxsession make mpv neovim network-manager-applet \
     nodejs npm openssh p7zip pasystray pavucontrol picom pulseaudio-bluetooth \
     python-gobject python-xdg ranger redshift stalonetray xclip \
     xcursor-vanilla-dmz xfce4-notifyd xfce4-power-manager xfce4-screenshooter \
@@ -165,3 +165,6 @@ sudo systemctl enable bluetooth.service
 
 # Setup picom
 ln -sfn "$(pwd)/picom" "$XDG_CONFIG_HOME/picom"
+
+# Setup ranger
+ln -sfn "$(pwd)/ranger" "$XDG_CONFIG_HOME/ranger"
