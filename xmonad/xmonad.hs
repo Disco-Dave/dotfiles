@@ -7,21 +7,22 @@ import           XMonad
 
 import qualified XMonad.StackSet               as StackSet
 
+import           XMonad.Util.Types
 import qualified XMonad.Util.EZConfig          as EZConfig
 import qualified XMonad.Util.Run               as Run
 import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 
-import qualified XMonad.Actions.SwapWorkspaces as SwapWorkspacesAction
+import qualified XMonad.Actions.SwapWorkspaces as Swap
 
-import qualified XMonad.Layout.Named           as NamedLayout
-import qualified XMonad.Layout.NoBorders       as NoBordersLayout
-import qualified XMonad.Layout.Tabbed          as TabbedLayout
-import qualified XMonad.Layout.ToggleLayouts   as ToggleLayouts
+import qualified XMonad.Layout.BoringWindows   as BoringWindows
+import qualified XMonad.Layout.Decoration      as Decoration
+import qualified XMonad.Layout.NoBorders       as NoBorders
+import qualified XMonad.Layout.ToggleLayouts   as Toggle
 
-import qualified XMonad.Hooks.DynamicLog       as DynamicLogHook
-import qualified XMonad.Hooks.EwmhDesktops     as EwmhHook
-import qualified XMonad.Hooks.ManageDocks      as ManageDocksHook
-import qualified XMonad.Hooks.ManageHelpers    as ManageHelpersHook
+import qualified XMonad.Hooks.DynamicLog       as DynamicLog
+import qualified XMonad.Hooks.EwmhDesktops     as Ewmh
+import qualified XMonad.Hooks.ManageDocks      as ManageDocks
+import qualified XMonad.Hooks.ManageHelpers    as ManageHelpers
 
 import qualified Graphics.X11                  as X11
 import qualified Graphics.X11.ExtraTypes       as X11
@@ -44,7 +45,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList $
   -- changing layout commands
   , ((modMask, xK_space), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
   , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
-  , ((modMask, xK_f), sendMessage ToggleLayouts.ToggleLayout) -- %! Toggle the Full layout
+  , ((modMask, xK_f), sendMessage Toggle.ToggleLayout) -- %! Toggle the Full layout
 
   , ((modMask, xK_n), refresh) -- %! Resize viewed windows to the correct size
 
@@ -103,7 +104,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(StackSet.view, 0), (StackSet.shift, shiftMask)]]
   <> -- Swap workspaces mod-ctrl-[1..9]
-    [((modMask .|. controlMask, k), windows $ SwapWorkspacesAction.swapWithCurrent i)
+    [((modMask .|. controlMask, k), windows $ Swap.swapWithCurrent i)
       | (i, k) <- zip (XMonad.workspaces conf) [xK_1 ..]]
 
 
@@ -122,19 +123,13 @@ myStartupHook = for_ autoStartCommands SpawnOnce.spawnOnce
     ]
 
 
-
 myLayoutHook = hooks layout
  where
-  theme :: TabbedLayout.Theme
-  theme = def { TabbedLayout.fontName = "FreeSans-11"
-              , TabbedLayout.activeBorderColor = "#81A1C1"
-              , TabbedLayout.inactiveBorderColor = "#3B4252"
-              }
-
   hooks =
-    ToggleLayouts.toggleLayouts Full
-      >>> NoBordersLayout.smartBorders
-      >>> ManageDocksHook.avoidStruts
+    Toggle.toggleLayouts Full
+      >>> NoBorders.smartBorders
+      >>> ManageDocks.avoidStruts
+      >>> BoringWindows.boringWindows
 
   layout = tiled ||| Mirror tiled
    where
@@ -150,15 +145,23 @@ myLayoutHook = hooks layout
     -- Percent of screen to increment by when resizing panes
     delta   = 3 / 100
 
+    --tabbed = 
+      --SubLayouts.subLayout [0,1] (TabbedLayout.tabbed TabbedLayout.shrinkText theme) tiled
+     --where
+      --theme = def { TabbedLayout.fontName            = "xft:FreeSans:size=11"
+                  --, TabbedLayout.activeBorderColor   = "#81A1C1"
+                  --, TabbedLayout.inactiveBorderColor = "#3B4252"
+                  --}
 
-myLogHook handles = DynamicLogHook.dynamicLogWithPP myXmobarPp
+
+myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
  where
   myXmobarPp = def
-    { DynamicLogHook.ppCurrent = xmobarColor "#EBCB8B" "" . wrap "[" "]"
-    , DynamicLogHook.ppTitle   = xmobarColor "#A3BE8C" "" . shorten 40
-    , DynamicLogHook.ppVisible = wrap "(" ")"
-    , DynamicLogHook.ppUrgent  = xmobarColor "#BF616A" "#EBCB8B"
-    , DynamicLogHook.ppOutput  = for_ handles . flip Run.hPutStrLn
+    { DynamicLog.ppCurrent = xmobarColor "#EBCB8B" "" . wrap "[" "]"
+    , DynamicLog.ppTitle   = xmobarColor "#A3BE8C" "" . shorten 40
+    , DynamicLog.ppVisible = wrap "(" ")"
+    , DynamicLog.ppUrgent  = xmobarColor "#BF616A" "#EBCB8B"
+    , DynamicLog.ppOutput  = for_ handles . flip Run.hPutStrLn
     }
    where
     wrap _ _ "" = ""
@@ -172,12 +175,12 @@ myLogHook handles = DynamicLogHook.dynamicLogWithPP myXmobarPp
       where end = "..."
 
 
-myManageHook = className =? "Pavucontrol" --> ManageHelpersHook.doCenterFloat
+myManageHook = className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
 
 
 makeConfig handles = hooks config'
  where
-  hooks  = EwmhHook.ewmh >>> EwmhHook.ewmhFullscreen >>> ManageDocksHook.docks
+  hooks  = Ewmh.ewmh >>> Ewmh.ewmhFullscreen >>> ManageDocks.docks
   config' = def { terminal           = "alacritty"
                 , focusedBorderColor = "#81A1C1"
                 , normalBorderColor  = "#3B4252"

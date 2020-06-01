@@ -64,3 +64,6 @@ extra-deps:
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+flags:
+  xmonad-contrib:
+    use_xft: true
