@@ -15,6 +15,7 @@ import qualified XMonad.Actions.SwapWorkspaces as SwapWorkspacesAction
 
 import qualified XMonad.Layout.Named           as NamedLayout
 import qualified XMonad.Layout.NoBorders       as NoBordersLayout
+import qualified XMonad.Layout.Tabbed          as TabbedLayout
 import qualified XMonad.Layout.ToggleLayouts   as ToggleLayouts
 
 import qualified XMonad.Hooks.DynamicLog       as DynamicLogHook
@@ -121,8 +122,15 @@ myStartupHook = for_ autoStartCommands SpawnOnce.spawnOnce
     ]
 
 
+
 myLayoutHook = hooks layout
  where
+  theme :: TabbedLayout.Theme
+  theme = def { TabbedLayout.fontName = "FreeSans-11"
+              , TabbedLayout.activeBorderColor = "#81A1C1"
+              , TabbedLayout.inactiveBorderColor = "#3B4252"
+              }
+
   hooks =
     ToggleLayouts.toggleLayouts Full
       >>> NoBordersLayout.smartBorders
@@ -171,16 +179,16 @@ makeConfig handles = hooks config'
  where
   hooks  = EwmhHook.ewmh >>> EwmhHook.ewmhFullscreen >>> ManageDocksHook.docks
   config' = def { terminal           = "alacritty"
-               , focusedBorderColor = "#81A1C1"
-               , normalBorderColor  = "#3B4252"
-               , borderWidth        = 3
-               , keys               = myKeys
-               , layoutHook         = myLayoutHook
-               , logHook            = myLogHook handles
-               , manageHook         = myManageHook
-               , modMask            = altKey
-               , startupHook        = myStartupHook
-               }
+                , focusedBorderColor = "#81A1C1"
+                , normalBorderColor  = "#3B4252"
+                , borderWidth        = 3
+                , keys               = myKeys
+                , layoutHook         = myLayoutHook
+                , logHook            = myLogHook handles
+                , manageHook         = myManageHook
+                , modMask            = altKey
+                , startupHook        = myStartupHook
+                }
 
 
 main :: IO ()
