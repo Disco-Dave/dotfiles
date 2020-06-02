@@ -16,7 +16,10 @@ import qualified XMonad.Actions.SwapWorkspaces as Swap
 
 import qualified XMonad.Layout.BoringWindows   as BoringWindows
 import qualified XMonad.Layout.Decoration      as Decoration
+import qualified XMonad.Layout.Master          as Master
+import qualified XMonad.Layout.Named           as Named
 import qualified XMonad.Layout.NoBorders       as NoBorders
+import qualified XMonad.Layout.Tabbed          as Tabbed
 import qualified XMonad.Layout.ToggleLayouts   as Toggle
 
 import qualified XMonad.Hooks.DynamicLog       as DynamicLog
@@ -131,7 +134,7 @@ myLayoutHook = hooks layout
       >>> ManageDocks.avoidStruts
       >>> BoringWindows.boringWindows
 
-  layout = tiled ||| Mirror tiled
+  layout = tiled ||| Mirror tiled ||| masterAndTabs
    where
        -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -145,13 +148,11 @@ myLayoutHook = hooks layout
     -- Percent of screen to increment by when resizing panes
     delta   = 3 / 100
 
-    --tabbed = 
-      --SubLayouts.subLayout [0,1] (TabbedLayout.tabbed TabbedLayout.shrinkText theme) tiled
-     --where
-      --theme = def { TabbedLayout.fontName            = "xft:FreeSans:size=11"
-                  --, TabbedLayout.activeBorderColor   = "#81A1C1"
-                  --, TabbedLayout.inactiveBorderColor = "#3B4252"
-                  --}
+    masterAndTabs =
+      Tabbed.tabbed Tabbed.shrinkText theme
+        & Master.mastered (1 / 100) (1 / 2)
+        & Named.named "Master Tabbed"
+      where theme = def { Tabbed.fontName = "xft:FreeSans:size=11" }
 
 
 myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
