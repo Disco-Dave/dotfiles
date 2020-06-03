@@ -7,8 +7,6 @@ import           XMonad
 
 import qualified XMonad.StackSet               as StackSet
 
-import           XMonad.Util.Types
-import qualified XMonad.Util.EZConfig          as EZConfig
 import qualified XMonad.Util.Run               as Run
 import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 
@@ -25,7 +23,6 @@ import qualified XMonad.Hooks.EwmhDesktops     as Ewmh
 import qualified XMonad.Hooks.ManageDocks      as ManageDocks
 import qualified XMonad.Hooks.ManageHelpers    as ManageHelpers
 
-import qualified Graphics.X11                  as X11
 import qualified Graphics.X11.ExtraTypes       as X11
 
 import qualified Data.Map                      as Map

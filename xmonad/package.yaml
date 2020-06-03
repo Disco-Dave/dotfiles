@@ -6,6 +6,17 @@ author:              "David Burkett"
 maintainer:          "david@davidburkett.xyz"
 copyright:           "2020 David Burkett"
 
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wpartial-fields
+- -Wredundant-constraints
+- -Wno-name-shadowing
+- -Wno-missing-signatures
+
 dependencies:
 - base >= 4.7 && < 5
 - xmonad
