@@ -44,8 +44,8 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = Map.fromList $
   , ((modMask, xK_space), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
   , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
   , ((modMask, xK_f), sendMessage Toggle.ToggleLayout) -- %! Toggle the Full layout
-
   , ((modMask, xK_n), refresh) -- %! Resize viewed windows to the correct size
+  , ((modMask, xK_s), sendMessage ManageDocks.ToggleStruts)
 
   -- move focus up or down the window stack
   , ((modMask, xK_Tab), windows StackSet.focusDown) -- %! Move focus to the next window
@@ -151,9 +151,14 @@ myLayoutHook = hooks layout
                   , Tabbed.activeColor         = "#81A1C1"
                   , Tabbed.activeBorderColor   = "#81A1C1"
                   , Tabbed.activeTextColor     = "#3B4252"
+                  , Tabbed.activeBorderWidth   = 0
                   , Tabbed.inactiveColor       = "#3B4252"
                   , Tabbed.inactiveBorderColor = "#3B4252"
                   , Tabbed.inactiveTextColor   = "#ECEFF4"
+                  , Tabbed.inactiveBorderWidth = 0
+                  , Tabbed.urgentColor         = "#BF616A"
+                  , Tabbed.urgentBorderColor   = "#BF616A"
+                  , Tabbed.urgentBorderWidth   = 0
                   }
 
 

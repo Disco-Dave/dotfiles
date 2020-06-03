@@ -3,5 +3,7 @@
     email = david@davidburkett.xyz
 [fetch]
     prune = true
+[pull]
+    rebase = false
 
 # vim: set filetype=gitconfig:
