@@ -14,8 +14,6 @@ import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 
 import qualified XMonad.Actions.SwapWorkspaces as Swap
 
-import qualified XMonad.Layout.BoringWindows   as BoringWindows
-import qualified XMonad.Layout.Decoration      as Decoration
 import qualified XMonad.Layout.Master          as Master
 import qualified XMonad.Layout.Named           as Named
 import qualified XMonad.Layout.NoBorders       as NoBorders
@@ -132,7 +130,6 @@ myLayoutHook = hooks layout
     Toggle.toggleLayouts Full
       >>> NoBorders.smartBorders
       >>> ManageDocks.avoidStruts
-      >>> BoringWindows.boringWindows
 
   layout = tiled ||| Mirror tiled ||| masterAndTabs
    where
@@ -152,7 +149,15 @@ myLayoutHook = hooks layout
       Tabbed.tabbed Tabbed.shrinkText theme
         & Master.mastered (1 / 100) (1 / 2)
         & Named.named "Master Tabbed"
-      where theme = def { Tabbed.fontName = "xft:FreeSans:size=11" }
+     where
+      theme = def { Tabbed.fontName            = "xft:FreeSans:size=11"
+                  , Tabbed.activeColor         = "#81A1C1"
+                  , Tabbed.activeBorderColor   = "#81A1C1"
+                  , Tabbed.activeTextColor     = "#3B4252"
+                  , Tabbed.inactiveColor       = "#3B4252"
+                  , Tabbed.inactiveBorderColor = "#3B4252"
+                  , Tabbed.inactiveTextColor   = "#ECEFF4"
+                  }
 
 
 myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
