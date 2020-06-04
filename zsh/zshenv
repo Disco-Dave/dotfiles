@@ -1,5 +1,5 @@
 # Ensure xterm uses 256 colors if used
-export TERM=xterm-256color
+export TERM=alacritty
 
 # Set XDG Base Directories variables since these aren't automatically
 # set for us. However $XDG_RUNTIME_DIR is.
