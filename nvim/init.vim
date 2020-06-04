@@ -97,7 +97,7 @@ let g:CoolTotalMatches = 1
 
 " NERDTree Toggle
 noremap <leader>; :NERDTreeToggle<CR>
-let g:NERDTreeBookmarksFile="$XDG_CONFIG_HOME/NERDTree/bookmarks"
+let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
 
 " Figutive
 if &diff
@@ -122,6 +122,7 @@ vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f :call CocAction('format')<CR>
 nmap <silent> <leader>m <Plug>(coc-codeaction)
 nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
+
 " Rainbow parens
 autocmd Syntax * RainbowParenthesesActivate
 autocmd Syntax * RainbowParenthesesLoadRound
