@@ -51,13 +51,15 @@ fi
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 
 
-# Install haskell stack
+# Install haskell
 # https://docs.haskellstack.org/en/stable/README/
 export STACK_ROOT="$XDG_DATA_HOME/stack"
 if [[ ! -f "/usr/local/bin/stack" ]]; then
     curl -sSL https://get.haskellstack.org/ | sh
     stack setup
 fi
+
+ln -sfn "$(pwd)/ghc/ghci" "$HOME/.ghci"
 
 
 # Link up git config

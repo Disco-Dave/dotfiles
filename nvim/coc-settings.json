@@ -7,8 +7,11 @@
     "diagnostic.messageTarget": "echo",
     "languageserver": {
         "haskell": {
-            "command": "hie-wrapper",
+            "command": "stack",
             "args": [
+                "exec",
+                "hie-wrapper",
+                "--",
                 "--lsp"
             ],
             "rootPatterns": [
@@ -25,7 +28,8 @@
                 "languageServerHaskell": {
                     "hlintOn": true,
                     "maxNumberOfProblems": 10,
-                    "completionSnippetsOn": false
+                    "completionSnippetsOn": false,
+                    "formattingProvider": "ormolu"
                 }
             }
         },

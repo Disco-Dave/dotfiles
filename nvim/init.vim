@@ -112,6 +112,7 @@ nnoremap <leader>nts :split<CR><ESC>:terminal<CR>
 nnoremap <leader>ntv :vsplit<CR><ESC>:terminal<CR>
 
 " CoC Key Bindings
+inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> <leader>I <Plug>(coc-implementation)
 nmap <silent> <leader>h :call CocAction('doHover')<CR>
 nmap <silent> <leader>d <Plug>(coc-definition)
