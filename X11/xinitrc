@@ -1,7 +1,7 @@
 # Set caps lock key to be escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
-# Start the compositor so we can transparency and shadow effects
+# Start the compositor so we can have transparency and shadow effects
 picom &
 
 # Draw the wallpaper
@@ -10,6 +10,17 @@ feh --no-fehbg --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
 # XMonad doesn't set the default cursor so we manually set our default
 # cursor to be the left pointer
 xsetroot -cursor_name left_ptr
+
+# Run commands only necessary for my desktop
+if grep -q compe /etc/hostname; then
+    # Set the correct resolution and orientation for my two monitors
+    xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-3 --off --output DP-4 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-5 --off
+
+    # Load Xresources file
+    # https://wiki.archlinux.org/index.php/X_resources#xinitrc
+    xresources=$HOME/.config/X11/compe_Xresources
+    [[ -f $xresources ]] && xrdb -merge -I$HOME $xmobar
+fi
 
 # Start our window manager XMonad. XMonad will then start other applications
 # for us ie: xmobar, notifcation daemon, redshift, nm-applet, etc.
