@@ -228,7 +228,7 @@ main = do
     Text.readFile "/etc/hostname"
       <&> Text.strip
       <&> (== "compe")
-  alwaysHandles <- pure <$> Run.spawnPipe "xmobar-secondary"
+  alwaysHandles <- pure <$> Run.spawnPipe "xmobar-primary"
   handles <-
     if isDesktop
       then (: alwaysHandles) <$> Run.spawnPipe "xmobar-secondary"
