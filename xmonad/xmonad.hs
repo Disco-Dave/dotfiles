@@ -152,6 +152,9 @@ myLayoutHook = hooks layout
                   Tabbed.urgentBorderWidth = 0
                 }
 
+xmobarAction action desc =
+  "<action=" <> action <> ">" <> desc <> "</action>"
+
 myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
   where
     myXmobarPp =
@@ -162,21 +165,26 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
           DynamicLog.ppUrgent = xmobarColor "#BF616A" "#EBCB8B",
           DynamicLog.ppOutput = for_ handles . flip Run.hPutStrLn,
           DynamicLog.ppExtras = [windowCount],
-          DynamicLog.ppLayout = \layout ->
-            "<action=xdotool key alt+space>" <> layout <> "</action>"
+          DynamicLog.ppLayout = xmobarAction "xdotool key alt+space"
         }
       where
         windowCount = do
           windowset' <- gets windowset
-          let numWindows =
+          let workspace' =
                 windowset'
                   & StackSet.current
                   & StackSet.workspace
+          let numWindows =
+                workspace'
                   & StackSet.stack
-                  & StackSet.integrate'
+                  & StackSet.index
                   & length
+          let layout =
+                workspace'
+                  & StackSet.layout
+                  & description
           pure $
-            if numWindows > 0
+            if numWindows > 0 && layout == "Full"
               then Just $ xmobarColor "#A3BE8C" "" (show numWindows)
               else Nothing
         wrap _ _ "" = ""
@@ -193,8 +201,8 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
 myManageHook = className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
 
 myWorkspaces = do
-  num <- [1 .. 9] :: [Integer]
-  pure ("<action=xdotool key alt+" <> show num <> ">" <> show num <> "</action>")
+  num <- fmap show ([1 .. 9] :: [Integer])
+  pure $ xmobarAction ("xdotool key alt+" <> num) num
 
 makeConfig _ handles = hooks config'
   where
