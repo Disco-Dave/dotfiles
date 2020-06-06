@@ -10,7 +10,7 @@ config =
       bgColor = "#3B4252",
       fgColor = "#ECEFF4",
       alpha = 255,
-      position = OnScreen 0 Top,
+      position = OnScreen 1 Top,
       textOffset = -1,
       iconOffset = -1,
       lowerOnStart = True,
@@ -21,14 +21,12 @@ config =
       allDesktops = True,
       overrideRedirect = True,
       commands =
-        [ Run $ Date "%a %b %_d %Y %I:%M:%S %p" "date" 10,
-          Run UnsafeStdinReader,
-          Run $ Com "mpc" ["current", "-f", "%title% by %artist%"] "mpd" 10,
-          Run $ Com "bash" ["/home/disco/.config/xmobar/padding-icon.sh", "stalonetray"] "tray" 10
+        [ Run UnsafeStdinReader,
+          Run $ Com "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "weather" 36000
         ],
       sepChar = "%",
       alignSep = "}{",
-      template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
+      template = "%UnsafeStdinReader% } %weather% {"
     }
 
 main :: IO ()

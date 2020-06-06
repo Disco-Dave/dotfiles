@@ -13,3 +13,5 @@ dependencies:
 executables:
   xmobar-primary:
     main: xmobar-primary.hs
+  xmobar-secondary:
+    main: xmobar-secondary.hs
