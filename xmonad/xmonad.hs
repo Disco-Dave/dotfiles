@@ -177,7 +177,7 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
           let numWindows =
                 workspace'
                   & StackSet.stack
-                  & StackSet.index
+                  & StackSet.integrate'
                   & length
           let layout =
                 workspace'
