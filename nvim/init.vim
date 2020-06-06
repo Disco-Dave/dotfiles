@@ -111,6 +111,9 @@ nnoremap <leader>ntt :tabe<CR><ESC>:terminal<CR>
 nnoremap <leader>nts :split<CR><ESC>:terminal<CR>
 nnoremap <leader>ntv :vsplit<CR><ESC>:terminal<CR>
 
+" Remove color from sign column
+highlight SignColumn ctermbg=none
+
 " CoC Key Bindings
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> <leader>I <Plug>(coc-implementation)
