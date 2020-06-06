@@ -160,9 +160,25 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
           DynamicLog.ppTitle = xmobarColor "#A3BE8C" "" . shorten 40,
           DynamicLog.ppVisible = wrap "(" ")",
           DynamicLog.ppUrgent = xmobarColor "#BF616A" "#EBCB8B",
-          DynamicLog.ppOutput = for_ handles . flip Run.hPutStrLn
+          DynamicLog.ppOutput = for_ handles . flip Run.hPutStrLn,
+          DynamicLog.ppExtras = [windowCount],
+          DynamicLog.ppLayout = \layout ->
+            "<action=xdotool key alt+space>" <> layout <> "</action>"
         }
       where
+        windowCount = do
+          windowset' <- gets windowset
+          let numWindows =
+                windowset'
+                  & StackSet.current
+                  & StackSet.workspace
+                  & StackSet.stack
+                  & StackSet.integrate'
+                  & length
+          pure $
+            if numWindows > 0
+              then Just $ xmobarColor "#A3BE8C" "" (show numWindows)
+              else Nothing
         wrap _ _ "" = ""
         wrap l r m = l <> m <> r
         xmobarColor fg bg = wrap t "</fc>"
@@ -176,6 +192,10 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
 
 myManageHook = className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
 
+myWorkspaces = do
+  num <- [1 .. 9] :: [Integer]
+  pure ("<action=xdotool key alt+" <> show num <> ">" <> show num <> "</action>")
+
 makeConfig _ handles = hooks config'
   where
     hooks = Ewmh.ewmh >>> Ewmh.ewmhFullscreen >>> ManageDocks.docks
@@ -185,12 +205,13 @@ makeConfig _ handles = hooks config'
           focusedBorderColor = "#81A1C1",
           normalBorderColor = "#3B4252",
           borderWidth = 3,
+          modMask = altKey,
           keys = myKeys,
           layoutHook = myLayoutHook,
           logHook = myLogHook handles,
           manageHook = myManageHook,
-          modMask = altKey,
-          startupHook = myStartupHook
+          startupHook = myStartupHook,
+          workspaces = myWorkspaces
         }
 
 main :: IO ()

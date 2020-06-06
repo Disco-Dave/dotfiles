@@ -21,7 +21,7 @@ sudo pacman -Syu --needed --noconfirm \
     python-gobject python-xdg ranger redshift stalonetray xclip \
     xcursor-vanilla-dmz xfce4-notifyd xfce4-power-manager xfce4-screenshooter \
     zlib zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
-    zsh-syntax-highlighting ttf-hack
+    zsh-syntax-highlighting ttf-hack xdotool
 
 if [[ ! -f "/usr/bin/yay" ]]; then
     curl -o yay.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz

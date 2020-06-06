@@ -20,11 +20,11 @@ config = defaultConfig
   , allDesktops      = True
   , overrideRedirect = True
   , commands         = [ Run $ Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
-                       , Run StdinReader
+                       , Run UnsafeStdinReader
                        ]
   , sepChar          = "%"
   , alignSep         = "}{"
-  , template         = "%StdinReader% } %date% { "
+  , template         = "%UnsafeStdinReader% } %date% { "
   }
 
 main :: IO ()
