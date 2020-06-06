@@ -14,14 +14,13 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
 
 # Install all required packages via pacman
 sudo pacman -Syu --needed --noconfirm \
-    alacritty arc-gtk-theme arc-icon-theme atril base-devel blueman bluez \
-    bluez-utils dmenu feh firefox gcc git git glib2 gmp gvfs haskell-x11 \
-    haskell-x11-xft htop libnotify lxsession make mpv neovim network-manager-applet \
-    nodejs npm openssh p7zip pasystray pavucontrol picom pulseaudio-bluetooth \
-    python-gobject python-xdg ranger redshift stalonetray xclip \
-    xcursor-vanilla-dmz xfce4-notifyd xfce4-power-manager xfce4-screenshooter \
-    zlib zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
-    zsh-syntax-highlighting ttf-hack xdotool mpd mpc ncmpcpp
+    alacritty arc-gtk-theme arc-icon-theme atril base-devel blueman bluez bluez-utils dmenu \
+    feh firefox gcc git glib2 gmp gvfs haskell-x11 haskell-x11-xft htop libnotify lxsession \
+    make mpc mpd mpv ncmpcpp neovim network-manager-applet nodejs npm openssh p7zip \
+    pasystray pavucontrol picom pulseaudio-bluetooth python-gobject python-xdg ranger \
+    redshift stalonetray ttf-hack xclip xcursor-vanilla-dmz xdotool xfce4-notifyd  \
+    xfce4-power-manager xfce4-screenshooter zlib zsh zsh-autosuggestions zsh-completions \
+    zsh-history-substring-search zsh-syntax-highlighting
 
 if [[ ! -f "/usr/bin/yay" ]]; then
     curl -o yay.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
@@ -163,7 +162,7 @@ ln -sfn "$(pwd)/icons" "$HOME/.icons"
 ln -sfn "$(pwd)/alacritty" "$XDG_CONFIG_HOME/alacritty"
 
 # Setup bluetooth
-sudo systemctl enable bluetooth.service
+sudo systemctl enable --now bluetooth.service
 
 # Setup picom
 ln -sfn "$(pwd)/picom" "$XDG_CONFIG_HOME/picom"
