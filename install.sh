@@ -21,7 +21,7 @@ sudo pacman -Syu --needed --noconfirm \
     python-gobject python-xdg ranger redshift stalonetray xclip \
     xcursor-vanilla-dmz xfce4-notifyd xfce4-power-manager xfce4-screenshooter \
     zlib zsh zsh-autosuggestions zsh-completions zsh-history-substring-search \
-    zsh-syntax-highlighting ttf-hack xdotool
+    zsh-syntax-highlighting ttf-hack xdotool mpd mpc ncmpcpp
 
 if [[ ! -f "/usr/bin/yay" ]]; then
     curl -o yay.tar.gz https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz
@@ -170,3 +170,9 @@ ln -sfn "$(pwd)/picom" "$XDG_CONFIG_HOME/picom"
 
 # Setup ranger
 ln -sfn "$(pwd)/ranger" "$XDG_CONFIG_HOME/ranger"
+
+# Setup mpd and ncmpcpp
+mkdir -p "$HOME/music" "$XDG_DATA_HOME/mpd"
+ln -sfn "$(pwd)/mpd" "$XDG_CONFIG_HOME/mpd"
+ln -sfn "$(pwd)/ncmpcpp" "$XDG_CONFIG_HOME/ncmpcpp"
+systemctl --user enable --now mpd.service
