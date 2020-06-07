@@ -22,6 +22,9 @@ if grep -q compe /etc/hostname; then
     [[ -f $xresources ]] && xrdb -merge -I$HOME $xmobar
 fi
 
+# Generate alacritty config
+gen-alacritty &
+
 # Start our window manager XMonad. XMonad will then start other applications
 # for us ie: xmobar, notifcation daemon, redshift, nm-applet, etc.
 exec xmonad

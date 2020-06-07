@@ -160,6 +160,8 @@ ln -sfn "$(pwd)/icons" "$HOME/.icons"
 
 # Setup alacritty
 ln -sfn "$(pwd)/alacritty" "$XDG_CONFIG_HOME/alacritty"
+(cd "$(pwd)/alacritty/gen-alacritty"; stack install)
+$HOME/.local/bin/gen-alacritty
 
 # Setup bluetooth
 sudo systemctl enable --now bluetooth.service

@@ -1,0 +1,62 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 08c8edb5113a86960050c883730ad9a4999b2999b01ab1278f09185ede9732f0
+
+name:           gen-alacritty
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/gen-alacritty#readme>
+homepage:       https://github.com/githubuser/gen-alacritty#readme
+bug-reports:    https://github.com/githubuser/gen-alacritty/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/gen-alacritty
+
+library
+  exposed-modules:
+      Config
+      Config.Colors
+      Config.Font
+  other-modules:
+      Paths_gen_alacritty
+  hs-source-dirs:
+      src
+  default-extensions: AllowAmbiguousTypes DataKinds DeriveGeneric DuplicateRecordFields FlexibleContexts NoMonomorphismRestriction OverloadedStrings RecordWildCards TypeApplications
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -Wno-name-shadowing -Wno-missing-signatures
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , generic-lens
+    , text
+    , yaml
+  default-language: Haskell2010
+
+executable gen-alacritty
+  main-is: Main.hs
+  other-modules:
+      Paths_gen_alacritty
+  hs-source-dirs:
+      app
+  default-extensions: AllowAmbiguousTypes DataKinds DeriveGeneric DuplicateRecordFields FlexibleContexts NoMonomorphismRestriction OverloadedStrings RecordWildCards TypeApplications
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -Wno-name-shadowing -Wno-missing-signatures -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , gen-alacritty
+    , generic-lens
+    , text
+    , yaml
+  default-language: Haskell2010
