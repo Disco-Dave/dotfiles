@@ -160,7 +160,7 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
     myXmobarPp =
       def
         { DynamicLog.ppCurrent = xmobarColor "#EBCB8B" "" . wrap "[" "]",
-          DynamicLog.ppTitle = shorten 40,
+          DynamicLog.ppTitle = xmobarColor "#A3BE8C" "" . shorten 40,
           DynamicLog.ppVisible = wrap "(" ")",
           DynamicLog.ppUrgent = xmobarColor "#BF616A" "#EBCB8B",
           DynamicLog.ppOutput = for_ handles . flip Run.hPutStrLn,
@@ -185,7 +185,7 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
                   & description
           pure $
             if numWindows > 0 && layout == "Full"
-              then Just $ show numWindows
+              then Just $ xmobarColor "#A3BE8C" "" (show numWindows)
               else Nothing
         wrap _ _ "" = ""
         wrap l r m = l <> m <> r
