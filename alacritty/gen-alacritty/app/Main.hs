@@ -54,7 +54,7 @@ defaultConfig =
     }
 
 getConfig :: Bool -> Config
-getConfig True = defaultConfig & field @"font" . field @"size" .~ 10
+getConfig True = defaultConfig & field @"font" . field @"size" .~ 11
 getConfig False = defaultConfig
 
 main :: IO ()
