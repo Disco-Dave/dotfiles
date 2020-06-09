@@ -9,17 +9,25 @@ feh --no-fehbg --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
 
 # XMonad doesn't set the default cursor so we manually set our default
 # cursor to be the left pointer
-xsetroot -cursor_name left_ptr
+xsetroot -xcf /usr/share/icons/Vanilla-DMZ/cursors/left_ptr 32
 
 # Run commands only necessary for my desktop
 if grep -q compe /etc/hostname; then
     # Set the correct resolution and orientation for my two monitors
-    xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-3 --off --output DP-4 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-5 --off
+    xrandr --output DVI-I-0 \
+        --off --output DVI-I-1 \
+        --off --output HDMI-0 --off \
+        --output DP-0 --off \
+        --output DP-1 --off \
+        --output DP-2 --mode 3840x2160 --pos 0x0 --rotate normal --primary \
+        --output DP-3 --off \
+        --output DP-4 --mode 3840x2160 --pos 3840x0 --rotate normal \
+        --output DP-5 --off
 
     # Load Xresources file
     # https://wiki.archlinux.org/index.php/X_resources#xinitrc
-    xresources=$HOME/.config/X11/compe_Xresources
-    [[ -f $xresources ]] && xrdb -merge -I$HOME $xmobar
+    xresources="$HOME/.config/X11/compe_Xresources"
+    [[ -f $xresources ]] && xrdb -merge -I$HOME $xresources
 fi
 
 # Generate alacritty config

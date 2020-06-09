@@ -8,6 +8,7 @@ import qualified Data.Map as Map
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
 import qualified Graphics.X11.ExtraTypes as X11
+import qualified Graphics.X11.ExtraTypes.XF86 as X11
 import System.Exit (exitSuccess)
 import XMonad
 import qualified XMonad.Actions.SwapWorkspaces as Swap
@@ -20,6 +21,7 @@ import qualified XMonad.Layout.Named as Named
 import qualified XMonad.Layout.NoBorders as NoBorders
 import qualified XMonad.Layout.Tabbed as Tabbed
 import qualified XMonad.Layout.ToggleLayouts as Toggle
+import qualified XMonad.Layout.Fullscreen as Fullscreen
 import qualified XMonad.StackSet as StackSet
 import qualified XMonad.Util.Run as Run
 import qualified XMonad.Util.SpawnOnce as SpawnOnce
@@ -77,6 +79,13 @@ myKeys conf@XConfig {XMonad.modMask = modMask} =
       ((noModMask, X11.xF86XK_AudioMute), spawn "amixer -D pulse sset Master toggle"),
       ((noModMask, X11.xF86XK_AudioMicMute), spawn "pactl set-source-mute 1 toggle"),
       ((superKey, xK_v), spawn "pavucontrol"),
+
+      -- MPC keys
+      ((noModMask, X11.xF86XK_AudioNext), spawn "mpc next"),
+      ((noModMask, X11.xF86XK_AudioPrev), spawn "mpc prev"),
+      ((noModMask, X11.xF86XK_AudioStop), spawn "mpc stop"),
+      ((noModMask, X11.xF86XK_AudioPlay), spawn "mpc toggle"),
+
       -- Screen shooter
       ((noModMask, xK_Print), spawn "xfce4-screenshooter"),
       ((superKey, xK_Print), spawn "xfce4-screenshooter -w"),
@@ -101,11 +110,17 @@ myKeys conf@XConfig {XMonad.modMask = modMask} =
            | (i, k) <- zip (XMonad.workspaces conf) [xK_1 ..]
          ]
 
-myStartupHook = for_ autoStartCommands SpawnOnce.spawnOnce
+myStartupHook isDesktop = do
+  screenWorkspace 0 >>= flip whenJust (windows . StackSet.view)
+  for_ autoStartCommands SpawnOnce.spawnOnce
   where
+    stalonetray True =
+      "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc --icon-size 22 --slot-size 30 --geometry \"1x1-3840+0\" --max-geometry \"50x1-3840+0\""
+    stalonetray False =
+      "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"
     autoStartCommands =
       [ "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3",
-        "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc",
+        stalonetray isDesktop,
         "nm-applet",
         "xfce4-power-manager",
         "pasystray",
@@ -119,8 +134,9 @@ myLayoutHook = hooks layout
   where
     hooks =
       Toggle.toggleLayouts Full
-        >>> NoBorders.smartBorders
+        >>> NoBorders.lessBorders NoBorders.Screen
         >>> ManageDocks.avoidStruts
+        >>> Fullscreen.fullscreenFull
     layout = tiled ||| Mirror tiled ||| masterAndTabs
       where
         -- default tiling algorithm partitions the screen into two panes
@@ -198,13 +214,14 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
           where
             end = "..."
 
-myManageHook = className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
+myManageHook = 
+  className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
 
 myWorkspaces = do
   num <- fmap show ([1 .. 9] :: [Integer])
   pure $ xmobarAction ("xdotool key alt+" <> num) num
 
-makeConfig _ handles = hooks config'
+makeConfig isDesktop handles = hooks config'
   where
     hooks = Ewmh.ewmh >>> Ewmh.ewmhFullscreen >>> ManageDocks.docks
     config' =
@@ -217,8 +234,9 @@ makeConfig _ handles = hooks config'
           keys = myKeys,
           layoutHook = myLayoutHook,
           logHook = myLogHook handles,
-          manageHook = myManageHook,
-          startupHook = myStartupHook,
+          manageHook = myManageHook <+> Fullscreen.fullscreenManageHook,
+          startupHook = myStartupHook isDesktop,
+          handleEventHook = Fullscreen.fullscreenEventHook,
           workspaces = myWorkspaces
         }
 
