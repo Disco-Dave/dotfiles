@@ -23,7 +23,7 @@ config =
       commands =
         [ Run $ Date "%a %b %_d %Y %I:%M:%S %p" "date" 10,
           Run UnsafeStdinReader,
-          Run $ Com "mpc" ["current", "-f", "%title% by %artist%"] "mpd" 10,
+          Run $ ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10,
           Run $ Com "bash" ["/home/disco/.config/xmobar/padding-icon.sh", "stalonetray"] "tray" 10
         ],
       sepChar = "%",

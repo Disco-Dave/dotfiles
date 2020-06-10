@@ -22,7 +22,7 @@ config =
       overrideRedirect = True,
       commands =
         [ Run UnsafeStdinReader,
-          Run $ Com "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "weather" 10000
+          Run $ ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 3000
         ],
       sepChar = "%",
       alignSep = "}{",
