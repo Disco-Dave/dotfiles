@@ -15,7 +15,6 @@ import qualified XMonad.Hooks.DynamicLog as DynamicLog
 import qualified XMonad.Hooks.EwmhDesktops as Ewmh
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Hooks.ManageHelpers as ManageHelpers
-import qualified XMonad.Layout.Fullscreen as Fullscreen
 import qualified XMonad.Layout.Master as Master
 import qualified XMonad.Layout.Named as Named
 import qualified XMonad.Layout.NoBorders as NoBorders
@@ -133,7 +132,6 @@ myLayoutHook = hooks layout
       Toggle.toggleLayouts Full
         >>> NoBorders.lessBorders NoBorders.Screen
         >>> ManageDocks.avoidStruts
-        >>> Fullscreen.fullscreenFull
     layout = tiled ||| Mirror tiled ||| masterAndTabs
       where
         -- default tiling algorithm partitions the screen into two panes
@@ -231,9 +229,8 @@ makeConfig isDesktop handles = hooks config'
           keys = myKeys,
           layoutHook = myLayoutHook,
           logHook = myLogHook handles,
-          manageHook = myManageHook <+> Fullscreen.fullscreenManageHook,
+          manageHook = myManageHook,
           startupHook = myStartupHook isDesktop,
-          handleEventHook = Fullscreen.fullscreenEventHook,
           workspaces = myWorkspaces
         }
 

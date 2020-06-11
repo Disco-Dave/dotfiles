@@ -28,8 +28,7 @@
                 "languageServerHaskell": {
                     "hlintOn": true,
                     "maxNumberOfProblems": 10,
-                    "completionSnippetsOn": false,
-                    "formattingProvider": "ormolu"
+                    "completionSnippetsOn": false
                 }
             }
         },
