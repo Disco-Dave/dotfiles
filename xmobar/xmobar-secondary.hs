@@ -22,11 +22,14 @@ config =
       overrideRedirect = True,
       commands =
         [ Run UnsafeStdinReader,
-          Run $ ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 3000
+          Run $ ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 3000,
+          Run $ Memory ["-t", "Mem: <usedratio>%"] 10,
+          Run $ Swap [] 10,
+          Run $ Cpu [] 10
         ],
       sepChar = "%",
       alignSep = "}{",
-      template = "%UnsafeStdinReader% } %weather% {"
+      template = "%UnsafeStdinReader% } %weather% { %cpu% | %memory% * %swap%"
     }
 
 main :: IO ()
