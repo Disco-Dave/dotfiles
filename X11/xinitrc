@@ -4,9 +4,6 @@ xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 # Start the compositor so we can have transparency and shadow effects
 picom &
 
-# Draw the wallpaper
-feh --no-fehbg --bg-center ~/.config/dotfiles/assets/wallpaper.jpg &
-
 # XMonad doesn't set the default cursor so we manually set our default
 # cursor to be the left pointer
 xsetroot -xcf /usr/share/icons/Vanilla-DMZ/cursors/left_ptr 32
@@ -29,6 +26,9 @@ if grep -q compe /etc/hostname; then
     xresources="$HOME/.config/X11/compe_Xresources"
     [[ -f $xresources ]] && xrdb -merge -I$HOME $xresources
 fi
+
+# Draw the wallpaper
+feh --no-fehbg --bg-center --no-xinerama ~/.config/dotfiles/assets/wallpaper.jpg &
 
 # Generate alacritty config
 gen-alacritty &
