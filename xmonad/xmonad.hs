@@ -14,16 +14,20 @@ import qualified Data.Text.IO                  as Text
 import qualified Graphics.X11.ExtraTypes       as X11
 
 import qualified XMonad.Actions.SwapWorkspaces as Swap
+
 import qualified XMonad.Hooks.DynamicLog       as DynamicLog
 import qualified XMonad.Hooks.EwmhDesktops     as Ewmh
 import qualified XMonad.Hooks.ManageDocks      as ManageDocks
 import qualified XMonad.Hooks.ManageHelpers    as ManageHelpers
+
 import qualified XMonad.Layout.Master          as Master
 import qualified XMonad.Layout.Named           as Named
 import qualified XMonad.Layout.NoBorders       as NoBorders
 import qualified XMonad.Layout.Tabbed          as Tabbed
 import qualified XMonad.Layout.ToggleLayouts   as Toggle
+
 import qualified XMonad.StackSet               as StackSet
+
 import qualified XMonad.Util.Run               as Run
 import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 
