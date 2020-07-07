@@ -5,6 +5,7 @@
     "signature.enable": true,
     "suggest.enablePreview": true,
     "diagnostic.messageTarget": "echo",
+    "sql.database": "postgresql",
     "languageserver": {
         "haskell": {
             "command": "stack",
