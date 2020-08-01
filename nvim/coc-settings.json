@@ -1,23 +1,25 @@
 {
-    "coc.preferences.hoverTarget": "preview",
     "suggest.autoTrigger": "trigger",
     "codeLens.enable": true,
     "signature.enable": true,
     "suggest.enablePreview": true,
+    "suggest.floatEnable": false,
     "diagnostic.messageTarget": "echo",
-    "sql.database": "postgresql",
+    "signature.target": "echo",
+    "coc.preferences.hoverTarget": "preview",
     "languageserver": {
         "haskell": {
             "command": "stack",
             "args": [
                 "exec",
-                "hie-wrapper",
+                "haskell-language-server-wrapper",
                 "--",
                 "--lsp"
             ],
             "rootPatterns": [
+                "*.cabal",
                 "stack.yaml",
-                "cabal.config",
+                "cabal.project",
                 "package.yaml"
             ],
             "filetypes": [
@@ -26,10 +28,8 @@
                 "haskell"
             ],
             "initializationOptions": {
-                "languageServerHaskell": {
-                    "hlintOn": true,
-                    "maxNumberOfProblems": 10,
-                    "completionSnippetsOn": false
+                "haskell": {
+                    "hlintOn": true
                 }
             }
         },

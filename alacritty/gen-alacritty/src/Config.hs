@@ -1,5 +1,6 @@
 module Config where
 
+import Config.Window (Window)
 import Config.Colors (Colors)
 import Config.Font (Font)
 import qualified Data.Aeson as Aeson
@@ -9,7 +10,7 @@ data Config
   = Config
       { font :: Font,
         colors :: Colors,
-        dynamicTitle :: Bool
+        window :: Window
       }
   deriving (Show, Generic)
 
@@ -18,11 +19,11 @@ instance Aeson.ToJSON Config where
     Aeson.object
       [ "font" Aeson..= font,
         "colors" Aeson..= colors,
-        "dynamic_title" Aeson..= dynamicTitle
+        "window" Aeson..= window
       ]
   toEncoding Config {..} =
     Aeson.pairs . mconcat $
       [ "font" Aeson..= font,
         "colors" Aeson..= colors,
-        "dynamic_title" Aeson..= dynamicTitle
+        "window" Aeson..= window
       ]

@@ -3,6 +3,7 @@ module Main where
 import Config
 import Config.Colors
 import Config.Font
+import Config.Window
 import Data.Function ((&))
 import Data.Functor ((<&>))
 import Data.Generics.Internal.VL.Lens
@@ -15,7 +16,7 @@ import qualified System.Environment as Env
 defaultConfig :: Config
 defaultConfig =
   Config
-    { dynamicTitle = True,
+    { window = Window True,
       font =
         Font
           { size = 7.5,
