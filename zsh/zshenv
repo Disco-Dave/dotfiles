@@ -26,6 +26,7 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # home directory and instead force them to use XDG Base Directories.
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
