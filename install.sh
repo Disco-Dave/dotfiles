@@ -59,6 +59,7 @@ if [[ ! -f "/usr/local/bin/stack" ]]; then
 fi
 
 ln -sfn "$(pwd)/ghc/ghci" "$HOME/.ghci"
+ln -sfn "$(pwd)/ghc/haskeline" "$HOME/.haskeline"
 
 
 # Link up git config
