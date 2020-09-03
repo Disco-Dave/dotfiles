@@ -4,7 +4,7 @@ Plug 'Raimondi/delimitMate' " Auto-close quotes, parenthesis, brackets, etc.
 Plug 'duff/vim-bufonly' " A script to close all buffers but the one that is open
 Plug 'itchyny/lightline.vim' " Adds a statusline
 Plug 'jpalardy/vim-slime' " Adds REPL support
-Plug 'kien/rainbow_parentheses.vim' " Color codes parenthesis or brackets
+Plug 'junegunn/rainbow_parentheses.vim' " Color codes parenthesis or brackets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " VSCode like LSP client
 Plug 'romainl/vim-cool' " Disables search highlighting when you are done searching and re-enables it when you search again 
 Plug 'sbdchd/neoformat' " Add a :Neoformat command to format code
@@ -128,10 +128,9 @@ nmap <silent> <leader>m <Plug>(coc-codeaction)
 nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
 
 " Rainbow parens
-autocmd Syntax * RainbowParenthesesActivate
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['<', '>']]
+let g:rainbow#blacklist = [0]
+autocmd Syntax * RainbowParentheses
 
 " Lightline settings
 " Taken from :help lightline-nice-examples
