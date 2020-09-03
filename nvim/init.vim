@@ -129,7 +129,7 @@ nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
 
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['<', '>']]
-let g:rainbow#blacklist = [0]
+let g:rainbow#blacklist = [0, 13]
 autocmd Syntax * RainbowParentheses
 
 " Lightline settings
