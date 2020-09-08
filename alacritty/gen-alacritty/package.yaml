@@ -20,15 +20,11 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/githubuser/gen-alacritty#readme>
 
 default-extensions:
-- AllowAmbiguousTypes
-- DataKinds
 - DeriveGeneric
 - DuplicateRecordFields
-- FlexibleContexts
 - NoMonomorphismRestriction
 - OverloadedStrings
 - RecordWildCards
-- TypeApplications
 
 ghc-options:
 - -Wall
@@ -44,9 +40,7 @@ ghc-options:
 dependencies:
 - base >= 4.7 && < 5
 - aeson
-- yaml
 - text
-- generic-lens
 
 library:
   source-dirs: src

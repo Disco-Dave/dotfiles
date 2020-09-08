@@ -4,13 +4,10 @@ import Config
 import Config.Colors
 import Config.Font
 import Config.Window
-import Data.Function ((&))
+import qualified Data.Aeson as Aeson
 import Data.Functor ((<&>))
-import Data.Generics.Internal.VL.Lens
-import Data.Generics.Product
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
-import qualified Data.Yaml as Yaml
 import qualified System.Environment as Env
 
 defaultConfig :: Config
@@ -24,39 +21,45 @@ defaultConfig =
           },
       colors =
         Colors
-          { primaryColors =
+          { primary =
               PrimaryColors
-                { primaryBackground = "0x2E3440",
-                  primaryForeground = "0xD8DEE9"
+                { background = "0x2E3440",
+                  foreground = "0xD8DEE9"
                 },
-            normalColors =
+            normal =
               NormalColors
-                { normalBlack = "0x3B4252",
-                  normalRed = "0xBF616A",
-                  normalGreen = "0xA3BE8C",
-                  normalYellow = "0xEBCB8B",
-                  normalBlue = "0x81A1C1",
-                  normalMagenta = "0xB48EAD",
-                  normalCyan = "0x88C0D0",
-                  normalWhite = "0xE5E9F0"
+                { black = "0x3B4252",
+                  red = "0xBF616A",
+                  green = "0xA3BE8C",
+                  yellow = "0xEBCB8B",
+                  blue = "0x81A1C1",
+                  magenta = "0xB48EAD",
+                  cyan = "0x88C0D0",
+                  white = "0xE5E9F0"
                 },
-            brightColors =
+            bright =
               BrightColors
-                { brightBlack = "0x4C566A",
-                  brightRed = "0xBF616A",
-                  brightGreen = "0xA3BE8C",
-                  brightYellow = "0xEBCB8B",
-                  brightBlue = "0x81A1C1",
-                  brightMagenta = "0xB48EAD",
-                  brightCyan = "0x8FBCBB",
-                  brightWhite = "0xECEFF4"
+                { black = "0x4C566A",
+                  red = "0xBF616A",
+                  green = "0xA3BE8C",
+                  yellow = "0xEBCB8B",
+                  blue = "0x81A1C1",
+                  magenta = "0xB48EAD",
+                  cyan = "0x8FBCBB",
+                  white = "0xECEFF4"
                 }
           }
     }
 
 getConfig :: Bool -> Config
-getConfig True = defaultConfig & field @"font" . field @"size" .~ 11
 getConfig False = defaultConfig
+getConfig True =
+  defaultConfig
+    { font =
+        (font defaultConfig)
+          { size = 11
+          }
+    }
 
 main :: IO ()
 main = do
@@ -66,4 +69,4 @@ main = do
       <&> (== "compe")
   let config = getConfig isDesktop
   home <- Env.getEnv "HOME"
-  Yaml.encodeFile (home <> "/.config/alacritty/alacritty.yml") config
+  Aeson.encodeFile (home <> "/.config/alacritty/alacritty.yml") config

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7bc22803e1994e60588faab556f48a7e42cb8fa610e56b49b11cf1c61b168d63
+-- hash: ff87db720e44575d9ab77d2ebc0a39bb2dbaed88e80e5a8507ec4bbed13bcd09
 
 name:           gen-alacritty
 version:        0.1.0.0
@@ -35,14 +35,12 @@ library
       Paths_gen_alacritty
   hs-source-dirs:
       src
-  default-extensions: AllowAmbiguousTypes DataKinds DeriveGeneric DuplicateRecordFields FlexibleContexts NoMonomorphismRestriction OverloadedStrings RecordWildCards TypeApplications
+  default-extensions: DeriveGeneric DuplicateRecordFields NoMonomorphismRestriction OverloadedStrings RecordWildCards
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -Wno-name-shadowing -Wno-missing-signatures
   build-depends:
       aeson
     , base >=4.7 && <5
-    , generic-lens
     , text
-    , yaml
   default-language: Haskell2010
 
 executable gen-alacritty
@@ -51,13 +49,11 @@ executable gen-alacritty
       Paths_gen_alacritty
   hs-source-dirs:
       app
-  default-extensions: AllowAmbiguousTypes DataKinds DeriveGeneric DuplicateRecordFields FlexibleContexts NoMonomorphismRestriction OverloadedStrings RecordWildCards TypeApplications
+  default-extensions: DeriveGeneric DuplicateRecordFields NoMonomorphismRestriction OverloadedStrings RecordWildCards
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -Wno-name-shadowing -Wno-missing-signatures -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
     , base >=4.7 && <5
     , gen-alacritty
-    , generic-lens
     , text
-    , yaml
   default-language: Haskell2010
