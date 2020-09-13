@@ -1,4 +1,7 @@
-module Config where
+module Config
+  ( Config (..),
+  )
+where
 
 import Config.Colors (Colors)
 import Config.Font (Font)

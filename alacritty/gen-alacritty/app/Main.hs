@@ -1,14 +1,13 @@
-module Main where
+module Main (main) where
 
-import Config
-import Config.Colors
-import Config.Font
-import Config.Window
-import qualified Data.Aeson as Aeson
-import Data.Function ((&))
+import Config (Config (..))
+import Config.Colors (dark, light)
+import Config.Font (Font (..), FontFamily (..))
+import Config.Window (Window (..))
 import Data.Functor ((<&>))
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
+import qualified Data.Yaml as Yaml
 import qualified System.Environment as Env
 
 data Computer
@@ -32,16 +31,14 @@ getSettings = do
         <&> Text.strip
         <&> (== "compe")
     pure $ if isDesktop then Desktop else Laptop
-
   theme <- do
     isLight <- any (== "--light") <$> Env.getArgs
     pure $ if isLight then Light else Dark
-
   pure $ Settings {..}
 
 makeConfig :: Settings -> Config
 makeConfig Settings {..} =
-  let config =
+  let defaultConfig =
         Config
           { window = Window True,
             font =
@@ -51,16 +48,26 @@ makeConfig Settings {..} =
                 },
             colors = dark
           }
-      applyTheme Dark c = c {colors = dark}
-      applyTheme Light c = c {colors = light}
-      applyComputer Desktop c = c {font = (font c) {size = 11}}
-      applyComputer Laptop c = c {font = (font c) {size = 7.5}}
-   in config & applyTheme theme & applyComputer computer
+      applySettings =
+        let adjustColors config =
+              case theme of
+                Dark -> config {colors = dark}
+                Light -> config {colors = light}
+            adjustFont config =
+              case computer of
+                Desktop -> config {font = (font config) {size = 11}}
+                Laptop -> config {font = (font config) {size = 7.5}}
+         in adjustColors . adjustFont
+   in applySettings defaultConfig
 
 writeConfig :: Config -> IO ()
 writeConfig config = do
   home <- Env.getEnv "HOME"
-  Aeson.encodeFile (home <> "/.config/alacritty/alacritty.yml") config
+  let path = home <> "/.config/alacritty/alacritty.yml"
+  Yaml.encodeFile path config
 
 main :: IO ()
-main = getSettings <&> makeConfig >>= writeConfig
+main =
+  getSettings
+    <&> makeConfig
+    >>= writeConfig

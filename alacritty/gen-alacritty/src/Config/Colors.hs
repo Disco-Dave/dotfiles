@@ -1,4 +1,12 @@
-module Config.Colors where
+module Config.Colors
+  ( PrimaryColors (..),
+    NormalColors (..),
+    BrightColors (..),
+    Colors (..),
+    dark,
+    light,
+  )
+where
 
 import qualified Data.Aeson as Aeson
 import Data.Text (Text)
@@ -49,6 +57,7 @@ data Colors = Colors
 
 instance Aeson.ToJSON Colors
 
+-- | Nord (source: https://github.com/eendroroy/alacritty-theme/blob/master/themes/nord.yaml)
 dark :: Colors
 dark =
   Colors
@@ -81,34 +90,35 @@ dark =
           }
     }
 
+-- | Gruvbox Light (source: https://github.com/eendroroy/alacritty-theme/blob/master/themes/gruvbox_light.yaml)
 light :: Colors
 light =
   Colors
     { primary =
         PrimaryColors
-          { background = "0xf1f1f1",
-            foreground = "0x424242"
+          { background = "0xf9f5d7",
+            foreground = "0x3c3836"
           },
       normal =
         NormalColors
-          { black = "0x212121",
-            red = "0xc30771",
-            green = "0x10a778",
-            yellow = "0xa89c14",
-            blue = "0x008ec4",
-            magenta = "0x523c79",
-            cyan = "0x20a5ba",
-            white = "0xe0e0e0"
+          { black = "0xfbf1c7",
+            red = "0xcc241d",
+            green = "0x98971a",
+            yellow = "0xd79921",
+            blue = "0x458588",
+            magenta = "0xb16286",
+            cyan = "0x689d6a",
+            white = "0x7c6f64"
           },
       bright =
         BrightColors
-          { black = "0x212121",
-            red = "0xfb007a",
-            green = "0x5fd7af",
-            yellow = "0xf3e430",
-            blue = "0x20bbfc",
-            magenta = "0x6855de",
-            cyan = "0x4fb8cc",
-            white = "0xf1f1f1"
+          { black = "0x928374",
+            red = "0x9d0006",
+            green = "0x79740e",
+            yellow = "0xb57614",
+            blue = "0x076678",
+            magenta = "0x8f3f71",
+            cyan = "0x427b58",
+            white = "0x3c3836"
           }
     }

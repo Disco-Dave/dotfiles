@@ -1,4 +1,7 @@
-module Config.Window where
+module Config.Window
+  ( Window (..),
+  )
+where
 
 import qualified Data.Aeson as Aeson
 

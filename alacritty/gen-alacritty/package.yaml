@@ -41,6 +41,7 @@ dependencies:
 - base >= 4.7 && < 5
 - aeson
 - text
+- yaml
 
 library:
   source-dirs: src

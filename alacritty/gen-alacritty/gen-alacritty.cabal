@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ff87db720e44575d9ab77d2ebc0a39bb2dbaed88e80e5a8507ec4bbed13bcd09
+-- hash: db1e4932737cac7a1d1418669d73b02f398823f9c49ee25d2fac7d4546218f32
 
 name:           gen-alacritty
 version:        0.1.0.0
@@ -41,6 +41,7 @@ library
       aeson
     , base >=4.7 && <5
     , text
+    , yaml
   default-language: Haskell2010
 
 executable gen-alacritty
@@ -56,4 +57,5 @@ executable gen-alacritty
     , base >=4.7 && <5
     , gen-alacritty
     , text
+    , yaml
   default-language: Haskell2010
