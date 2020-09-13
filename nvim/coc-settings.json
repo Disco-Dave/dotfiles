@@ -41,11 +41,17 @@
             "filetypes": [
                 "purescript"
             ],
+            "trace.server": "off",
             "rootPatterns": [
                 "bower.json",
                 "psc-package.json",
                 "spago.dhall"
-            ]
+            ],
+            "settings": {
+                "purescript": {
+                    "addSpagoSources": true
+                }
+            }
         },
         "elmLS": {
             "command": "elm-language-server",
