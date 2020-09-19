@@ -7,6 +7,10 @@
     "diagnostic.messageTarget": "echo",
     "signature.target": "echo",
     "coc.preferences.hoverTarget": "preview",
+    "prettier.disableLanguages": [
+        "json",
+        "html"
+    ],
     "languageserver": {
         "haskell": {
             "command": "stack",
