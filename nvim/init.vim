@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdtree' " A file browser
 Plug 'sheerun/vim-polyglot' " Adds a bunch of syntax highlight suport for many file types
 Plug 'tpope/vim-fugitive' " Git support
 Plug 'vim-scripts/Tabmerge' " A script to merge tabs
+Plug 'vmchale/dhall-vim' " dhall support
 
 call plug#end()
 

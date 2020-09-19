@@ -25,6 +25,7 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # Prevent an assortment of programs from dumping files into the
 # home directory and instead force them to use XDG Base Directories.
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
+export GHCUP_USE_XDG_DIRS="yes"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
@@ -47,8 +48,8 @@ export LESSHISTFILE=-
 typeset -U PATH path
 path=(
     "$HOME/.local/bin" 
+    "$HOME/.local/share/ghcup/env"
     "$XDG_DATA_HOME/cargo/bin"
     "$HOME/.local/share/npm/bin"
-    "$HOME/.local/bin"
     "$path[@]")
 export PATH
