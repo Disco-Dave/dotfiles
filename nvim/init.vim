@@ -124,9 +124,13 @@ nmap <silent> <leader>t <Plug>(coc-type-definition)
 nmap <silent> <leader>r <Plug>(coc-references)
 nmap <silent> <leader>R <Plug>(coc-rename)
 vmap <silent> <leader>f <Plug>(coc-format-selected)
-nmap <silent> <leader>f :call CocAction('format')<CR>
+nmap <silent> <leader>f <Plug>(coc-format)
+nmap <silent> <leader>F <Plug>(coc-fix-current)
 nmap <silent> <leader>m <Plug>(coc-codeaction)
 nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
+nmap <silent> <leader>a <Plug>(coc-codeaction-line)
+vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
