@@ -1,2 +1,3 @@
 :set prompt "λ "
+:set prompt-cont "~> "
 :set stop :list
