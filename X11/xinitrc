@@ -33,6 +33,9 @@ feh --no-fehbg --bg-center --no-xinerama ~/.config/dotfiles/assets/wallpaper.jpg
 # Generate alacritty config
 gen-alacritty &
 
+# Set custom ELECOM Huge settings
+$HOME/.config/dotfiles/scripts/set_elecom_huge_settings
+
 # Start our window manager XMonad. XMonad will then start other applications
 # for us ie: xmobar, notifcation daemon, redshift, nm-applet, etc.
 exec xmonad
