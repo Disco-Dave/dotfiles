@@ -20,7 +20,14 @@ Plug 'vmchale/dhall-vim' " dhall support
 
 call plug#end()
 
+" Turn syntax highlighting on
+syntax on
+
 " Theme
+if (has("termguicolors"))
+  set termguicolors
+endif
+let g:nord_italic = 1
 let g:nord_underline = 1
 colorscheme nord
 
@@ -56,9 +63,6 @@ set showcmd
 
 " Avoid resizing panes when another closes
 set noequalalways
-
-" Turn syntax highlighting on
-syntax on
 
 " Recommended from https://github.com/neoclide/coc.nvim#example-vim-configuration
 set hidden
@@ -140,13 +144,12 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-"let g:rainbow#blacklist = [0, 13]
 autocmd Syntax * RainbowParentheses
 
 " Lightline settings
 " Taken from :help lightline-nice-examples
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'nord',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
     \ },
