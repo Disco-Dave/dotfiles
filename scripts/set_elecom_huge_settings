@@ -5,5 +5,5 @@ device_id=$(xinput | grep 'HUGE.*pointer' |  sed 's/^.*id=\([0-9]*\)[ \t].*$/\1/
 if [[ "$device_id" -gt "0" ]]; then
     #                                1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
     xinput set-button-map $device_id 1 2 3 4 5 6 7 3 3 9  8  2  13 14 15 16
-    xinput set-prop $device_id 'Coordinate Transformation Matrix' 2.0 0 0 0 2.0 0 0 0 1.5
+    #xinput set-prop $device_id 'Coordinate Transformation Matrix' 2.0 0 0 0 2.0 0 0 0 1.5
 fi

@@ -5,6 +5,7 @@ Plug 'duff/vim-bufonly' " A script to close all buffers but the one that is open
 Plug 'itchyny/lightline.vim' " Adds a statusline
 Plug 'jpalardy/vim-slime' " Adds REPL support
 Plug 'junegunn/rainbow_parentheses.vim' " Color codes parenthesis or brackets
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'css' ] } " html snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " VSCode like LSP client
 Plug 'romainl/vim-cool' " Disables search highlighting when you are done searching and re-enables it when you search again 
 Plug 'sbdchd/neoformat' " Add a :Neoformat command to format code
@@ -13,10 +14,15 @@ Plug 'scrooloose/nerdtree' " A file browser
 Plug 'sheerun/vim-polyglot' " Adds a bunch of syntax highlight suport for many file types
 Plug 'tpope/vim-fugitive' " Git support
 Plug 'vim-scripts/Tabmerge' " A script to merge tabs
+Plug 'arcticicestudio/nord-vim' " nord color scheme
+Plug 'morhetz/gruvbox'
 Plug 'vmchale/dhall-vim' " dhall support
 
 call plug#end()
 
+" Theme
+let g:nord_underline = 1
+colorscheme nord
 
 " Indent settings
 set autoindent
@@ -134,7 +140,7 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-let g:rainbow#blacklist = [0, 13]
+"let g:rainbow#blacklist = [0, 13]
 autocmd Syntax * RainbowParentheses
 
 " Lightline settings
