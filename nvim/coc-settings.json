@@ -9,7 +9,8 @@
     "coc.preferences.hoverTarget": "preview",
     "prettier.disableLanguages": [
         "json",
-        "html"
+        "html",
+        "javascript"
     ],
     "languageserver": {
         "haskell": {

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: db1e4932737cac7a1d1418669d73b02f398823f9c49ee25d2fac7d4546218f32
+-- hash: 01e3331ec230d3b2f6c581b85f69eac61de12668ad856f78182fbf754d44e7bf
 
 name:           gen-alacritty
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      AesonOptions
       Config
       Config.Colors
       Config.Font

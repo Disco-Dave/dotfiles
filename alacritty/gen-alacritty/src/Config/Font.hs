@@ -4,6 +4,7 @@ module Config.Font
   )
 where
 
+import AesonOptions (options)
 import qualified Data.Aeson as Aeson
 import Data.Text (Text)
 import GHC.Generics (Generic)
@@ -13,12 +14,16 @@ newtype FontFamily = FontFamily
   }
   deriving (Show, Generic)
 
-instance Aeson.ToJSON FontFamily
+instance Aeson.ToJSON FontFamily where
+  toJSON = Aeson.genericToJSON options
+  toEncoding = Aeson.genericToEncoding options
 
 data Font = Font
-  { normal :: FontFamily,
-    size :: Double
+  { normal :: !FontFamily,
+    size :: !Double
   }
   deriving (Show, Generic)
 
-instance Aeson.ToJSON Font
+instance Aeson.ToJSON Font where
+  toJSON = Aeson.genericToJSON options
+  toEncoding = Aeson.genericToEncoding options

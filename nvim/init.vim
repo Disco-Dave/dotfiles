@@ -15,7 +15,7 @@ Plug 'sheerun/vim-polyglot' " Adds a bunch of syntax highlight suport for many f
 Plug 'tpope/vim-fugitive' " Git support
 Plug 'vim-scripts/Tabmerge' " A script to merge tabs
 Plug 'arcticicestudio/nord-vim' " nord color scheme
-Plug 'morhetz/gruvbox'
+Plug 'editorconfig/editorconfig-vim' " editorconfig support
 Plug 'vmchale/dhall-vim' " dhall support
 
 call plug#end()
@@ -27,7 +27,9 @@ syntax on
 if (has("termguicolors"))
   set termguicolors
 endif
+
 let g:nord_italic = 1
+let g:nord_bold = 1
 let g:nord_underline = 1
 colorscheme nord
 

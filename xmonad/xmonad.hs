@@ -207,7 +207,11 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
           where
             end = "..."
 
-myManageHook = className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
+myManageHook =
+  mconcat -- use xprop to find this information
+    [ className =? "Pavucontrol" --> ManageHelpers.doCenterFloat,
+      className =? "net-runelite-client-RuneLite" --> ManageHelpers.doCenterFloat
+    ]
 
 myWorkspaces = do
   num <- fmap show ([1 .. 9] :: [Integer])
