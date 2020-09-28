@@ -28,9 +28,11 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+let g:nord_cursor_line_number_background = 1
 let g:nord_italic = 1
 let g:nord_bold = 1
 let g:nord_underline = 1
+set cursorline
 colorscheme nord
 
 " Indent settings
