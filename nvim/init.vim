@@ -27,7 +27,6 @@ syntax on
 if (has("termguicolors"))
   set termguicolors
 endif
-
 let g:nord_cursor_line_number_background = 1
 let g:nord_italic = 1
 let g:nord_bold = 1
@@ -149,6 +148,10 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 autocmd Syntax * RainbowParentheses
+
+" Since lightline shows the mode, we no longer need it shown on the last line
+set noshowmode
+
 
 " Lightline settings
 " Taken from :help lightline-nice-examples
