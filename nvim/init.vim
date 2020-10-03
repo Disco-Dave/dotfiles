@@ -5,7 +5,7 @@ Plug 'duff/vim-bufonly' " A script to close all buffers but the one that is open
 Plug 'itchyny/lightline.vim' " Adds a statusline
 Plug 'jpalardy/vim-slime' " Adds REPL support
 Plug 'junegunn/rainbow_parentheses.vim' " Color codes parenthesis or brackets
-Plug 'mattn/emmet-vim', { 'for': [ 'html', 'css' ] } " html snippets
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'css', 'javascriptreact' ] } " html snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " VSCode like LSP client
 Plug 'romainl/vim-cool' " Disables search highlighting when you are done searching and re-enables it when you search again 
 Plug 'sbdchd/neoformat' " Add a :Neoformat command to format code

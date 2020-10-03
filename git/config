@@ -5,5 +5,17 @@
     prune = true
 [pull]
     rebase = false
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = true
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    tool = nvimmerge
+[mergetool]
+    prompt = true
+[mergetool "nvimmerge"]
+    cmd = "nvim -f -c \"Gdiffsplit!\" \"$MERGED\""
 
 # vim: set filetype=gitconfig:
