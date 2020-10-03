@@ -42,9 +42,6 @@ set tabstop=4
 set shiftwidth=4
 
 " Fold settings
-set foldlevel=5
-set foldmethod=syntax
-set foldnestmax=10
 set nofoldenable
 
 " Search settings
@@ -112,13 +109,6 @@ let g:CoolTotalMatches = 1
 " NERDTree Toggle
 noremap <leader>; :NERDTreeToggle<CR>
 let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-
-" Figutive
-if &diff
-    noremap <leader>1 :diffget LOCAL<CR>
-    noremap <leader>2 :diffget BASE<CR>
-    noremap <leader>3 :diffget REMOTE<CR>
-endif
 
 " Terminal
 nnoremap <leader>ntt :tabe<CR><ESC>:terminal<CR>
