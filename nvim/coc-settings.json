@@ -14,11 +14,8 @@
     ],
     "languageserver": {
         "haskell": {
-            "command": "stack",
+            "command": "haskell-language-server-wrapper",
             "args": [
-                "exec",
-                "haskell-language-server-wrapper",
-                "--",
                 "--lsp"
             ],
             "rootPatterns": [
