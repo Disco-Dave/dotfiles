@@ -1,0 +1,22 @@
+cradle:
+  stack:
+    - path: "././xmonad.hs"
+      component: "xmonad-testing:exe:xmonad-testing"
+
+    - path: "././Paths_xmonad_testing.hs"
+      component: "xmonad-testing:exe:xmonad-testing"
+
+    - path: "sources/xmonad-contrib-git/./"
+      component: "xmonad-contrib:lib"
+
+    - path: "sources/xmonad-git/src"
+      component: "xmonad:lib"
+
+    - path: "sources/xmonad-git/./Main.hs"
+      component: "xmonad:exe:xmonad"
+
+    - path: "sources/xmonad-git/util/GenerateManpage.hs"
+      component: "xmonad:exe:generatemanpage"
+
+    - path: "sources/xmonad-git/tests"
+      component: "xmonad:test:properties"
