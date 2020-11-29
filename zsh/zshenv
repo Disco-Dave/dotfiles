@@ -6,6 +6,7 @@ export TERM=alacritty
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_BIN_HOME="$HOME/.local/bin"
 
 # Set default editor to neovim
 export EDITOR="nvim"
@@ -21,6 +22,9 @@ fi
 
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2
+
+# Enable hardware acceleration for Firefox https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
+export MOZ_X11_EGL=1 
 
 # Prevent an assortment of programs from dumping files into the
 # home directory and instead force them to use XDG Base Directories.
