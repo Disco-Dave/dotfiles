@@ -204,7 +204,6 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
 myManageHook =
   mconcat -- use xprop to find this information
     [ className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
-    , className =? "net-runelite-client-RuneLite" --> ManageHelpers.doCenterFloat
     ]
 
 myWorkspaces = do
