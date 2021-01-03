@@ -64,8 +64,9 @@ set showcmd
 " Avoid resizing panes when another closes
 set noequalalways
 
+set nohidden
+
 " Recommended from https://github.com/neoclide/coc.nvim#example-vim-configuration
-set hidden
 set updatetime=300
 set shortmess+=c
 
