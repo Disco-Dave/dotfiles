@@ -136,6 +136,20 @@ nmap <silent> <leader>a <Plug>(coc-codeaction-line)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
+" CoC extensions
+let g:coc_global_extensions=[
+    \ 'coc-css',
+    \ 'coc-eslint',
+    \ 'coc-fsharp',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-omnisharp',
+    \ 'coc-prettier',
+    \ 'coc-rust-analyzer',
+    \ 'coc-sh',
+    \ 'coc-tsserver'
+\ ]
+
 " Rainbow parens
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 autocmd Syntax * RainbowParentheses
