@@ -12,13 +12,7 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Set default web browser to firefox if I have a graphic display
-# or lynx if I do not.
-if [ -n "$DISPLAY" ]; then
-    export BROWSER="firefox"
-else 
-    export BROWSER="lynx"
-fi
+export BROWSER="firefox"
 
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2

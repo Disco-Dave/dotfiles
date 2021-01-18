@@ -147,6 +147,7 @@ let g:coc_global_extensions=[
     \ 'coc-prettier',
     \ 'coc-rust-analyzer',
     \ 'coc-sh',
+    \ 'coc-metals',
     \ 'coc-tsserver'
 \ ]
 
