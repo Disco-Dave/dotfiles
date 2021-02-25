@@ -19,7 +19,7 @@
         "package.yaml"
       ],
       "filetypes": ["hs", "lhs", "haskell"],
-      "initializationOptions": {
+      "settings": {
         "haskell": {
           "hlintOn": true,
           "formattingProvider": "fourmolu"
@@ -42,7 +42,7 @@
       "command": "elm-language-server",
       "filetypes": ["elm"],
       "rootPatterns": ["elm.json"],
-      "initializationOptions": {
+      "settings": {
         "elmPath": "elm",
         "elmFormatPath": "elm-format",
         "elmTestPath": "elm-test",
