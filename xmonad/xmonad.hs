@@ -122,7 +122,6 @@ myStartupHook isDesktop = do
     , "nm-applet"
     , "xfce4-power-manager"
     , "pasystray"
-    , "redshift-gtk"
     , "blueman-applet"
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
     , "lxsession"

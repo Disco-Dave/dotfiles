@@ -19,8 +19,8 @@ data Theme
   | Light
 
 data Settings = Settings
-  { computer :: Computer,
-    theme :: Theme
+  { computer :: Computer
+  , theme :: Theme
   }
 
 getSettings :: IO Settings
@@ -32,31 +32,31 @@ getSettings = do
         <&> (== "compe")
     pure $ if isDesktop then Desktop else Laptop
   theme <- do
-    isLight <- any (== "--light") <$> Env.getArgs
+    isLight <- elem "--light" <$> Env.getArgs
     pure $ if isLight then Light else Dark
-  pure $ Settings {..}
+  pure $ Settings{..}
 
 makeConfig :: Settings -> Config
-makeConfig Settings {..} =
+makeConfig Settings{..} =
   let defaultConfig =
         Config
-          { window = Window True,
-            font =
+          { window = Window True
+          , font =
               Font
-                { size = 11,
-                  normal = FontFamily "Hack"
-                },
-            colors = dark
+                { size = 11
+                , normal = FontFamily "Hack"
+                }
+          , colors = dark
           }
       applySettings =
         let adjustColors config =
               case theme of
-                Dark -> config {colors = dark}
-                Light -> config {colors = light}
+                Dark -> config{colors = dark}
+                Light -> config{colors = light}
             adjustFont config =
               case computer of
-                Desktop -> config {font = (font config) {size = 11}}
-                Laptop -> config {font = (font config) {size = 7.5}}
+                Desktop -> config{font = (font config){size = 11}}
+                Laptop -> config{font = (font config){size = 7.5}}
          in adjustColors . adjustFont
    in applySettings defaultConfig
 
@@ -67,7 +67,4 @@ writeConfig config = do
   Yaml.encodeFile path config
 
 main :: IO ()
-main =
-  getSettings
-    <&> makeConfig
-    >>= writeConfig
+main = getSettings >>= (writeConfig . makeConfig)

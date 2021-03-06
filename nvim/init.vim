@@ -143,11 +143,12 @@ let g:coc_global_extensions=[
     \ 'coc-fsharp',
     \ 'coc-html',
     \ 'coc-json',
+    \ 'coc-metals',
     \ 'coc-omnisharp',
+    \ 'coc-phpls',
     \ 'coc-prettier',
     \ 'coc-rust-analyzer',
     \ 'coc-sh',
-    \ 'coc-metals',
     \ 'coc-tsserver'
 \ ]
 
