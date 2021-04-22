@@ -132,7 +132,7 @@ nmap <silent> <leader>f <Plug>(coc-format)
 nmap <silent> <leader>F <Plug>(coc-fix-current)
 nmap <silent> <leader>m <Plug>(coc-codeaction)
 nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
-nmap <silent> <leader>a <Plug>(coc-codeaction-line)
+nmap <silent> <leader>a <Plug>(coc-codeaction-cursor)
 vmap <silent> <leader>a <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
