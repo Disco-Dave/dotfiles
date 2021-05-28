@@ -1,0 +1,57 @@
+window:
+  dynamic_title: true
+  padding:
+    x: 5
+    y: 5
+font:
+  size: 7.5
+  normal:
+    family: Hack
+colors:
+  cursor:
+    cursor: "0xd8dee9"
+    text: "0x2e3440"
+  bright:
+    white: "0xECEFF4"
+    red: "0xBF616A"
+    yellow: "0xEBCB8B"
+    black: "0x4C566A"
+    cyan: "0x8FBCBB"
+    magenta: "0xB48EAD"
+    green: "0xA3BE8C"
+    blue: "0x81A1C1"
+  normal:
+    white: "0xE5E9F0"
+    red: "0xBF616A"
+    yellow: "0xEBCB8B"
+    black: "0x3B4252"
+    cyan: "0x88C0D0"
+    magenta: "0xB48EAD"
+    green: "0xA3BE8C"
+    blue: "0x81A1C1"
+  vi_mode_cursor:
+    cursor: "0xd8dee9"
+    text: "0x2e3440"
+  primary:
+    dim_foreground: "0xa5abb6"
+    foreground: "0xD8DEE9"
+    background: "0x2E3440"
+  selection:
+    text: CellForeground
+    background: "0x4c566a"
+  dim:
+    white: "0xaeb3bb"
+    red: "0x94545d"
+    yellow: "0xb29e75"
+    black: "0x373e4d"
+    cyan: "0x6d96a5"
+    magenta: "0x8c738c"
+    green: "0x809575"
+    blue: "0x68809a"
+  search:
+    matches:
+      foreground: CellBackground
+      background: "0x88c0d0"
+    bar:
+      foreground: "0xd8dee9"
+      background: "0x434c5e"

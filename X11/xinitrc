@@ -31,7 +31,7 @@ fi
 feh --no-fehbg --bg-center --no-xinerama ~/.config/dotfiles/assets/wallpaper.jpg &
 
 # Generate alacritty config
-gen-alacritty &
+(cd ~/.config/alacritty && ./merge.sh) &
 
 # Set custom ELECOM Huge settings
 $HOME/.config/dotfiles/scripts/set_elecom_huge_settings

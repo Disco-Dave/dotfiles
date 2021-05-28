@@ -20,3 +20,5 @@
     cmd = "nvim -f -c \"Gdiffsplit!\" \"$MERGED\""
 
 # vim: set filetype=gitconfig:
+[init]
+	defaultBranch = main
