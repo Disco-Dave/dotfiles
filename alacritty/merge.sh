@@ -22,4 +22,6 @@ host_name_config="$(hostname).yml"
 if [ -f "$host_name_config" ]; then
     >&2 echo "Overlaying host specific settings"
     yaml-merge "$host_name_config" base.yml > alacritty.yml
+else
+    cp base.yml alacritty.yml
 fi
