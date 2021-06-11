@@ -26,6 +26,8 @@ export MANPAGER="nvim -c 'set ft=man' -"
 # Prevent an assortment of programs from dumping files into the
 # home directory and instead force them to use XDG Base Directories.
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export CABAL_DIR="$XDG_DATA_HOME"/cabal
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 #export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
