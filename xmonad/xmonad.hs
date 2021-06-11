@@ -35,6 +35,13 @@ spawnDmenu = do
     "dmenu_run -fn \"FreeSans-12\" -nb \"#3B4252\" -sb \"#81A1C1\" -nf \"#ECEFF4\" -sf \"#3B4252\" -m "
       <> show screenId
 
+spawnPassmenu :: X ()
+spawnPassmenu = do
+  (S screenId) <- gets $ StackSet.screen . StackSet.current . windowset
+  spawn $
+    "passmenu -fn \"FreeSans-12\" -nb \"#3B4252\" -sb \"#81A1C1\" -nf \"#ECEFF4\" -sf \"#3B4252\" -m "
+      <> show screenId
+
 myKeys conf@XConfig{XMonad.modMask = modMask} =
   Map.fromList $
     -- launching and killing programs
@@ -42,6 +49,7 @@ myKeys conf@XConfig{XMonad.modMask = modMask} =
     , ((modMask .|. shiftMask, xK_c), kill) -- %! Close the focused window
     , ((superKey, xK_Escape), kill)
     , ((modMask, xK_p), spawnDmenu)
+    , ((modMask .|. shiftMask, xK_p), spawnPassmenu)
     , ((superKey, xK_w), spawn "firefox")
     , -- changing layout commands
       ((modMask, xK_space), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
