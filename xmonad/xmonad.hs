@@ -51,6 +51,7 @@ myKeys conf@XConfig{XMonad.modMask = modMask} =
     , ((modMask, xK_p), spawnDmenu)
     , ((modMask .|. shiftMask, xK_p), spawnPassmenu)
     , ((superKey, xK_w), spawn "firefox")
+    , ((superKey, xK_e), spawn "birdtray -t")
     , -- changing layout commands
       ((modMask, xK_space), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
@@ -120,13 +121,15 @@ myStartupHook isDesktop = do
   screenWorkspace 0 >>= flip whenJust (windows . StackSet.view)
   for_ autoStartCommands SpawnOnce.spawnOnce
  where
-  stalonetray True =
-    "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc --icon-size 22 --slot-size 30 --geometry \"1x1-3840+0\" --max-geometry \"50x1-3840+0\""
-  stalonetray False =
-    "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"
+  machineSpecifcCommands =
+    if not isDesktop
+      then ["stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"]
+      else
+        [ "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc --icon-size 22 --slot-size 30 --geometry \"1x1-3840+0\" --max-geometry \"50x1-3840+0\""
+        , "birdtray -H"
+        ]
   autoStartCommands =
     [ "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
-    , stalonetray isDesktop
     , "nm-applet"
     , "xfce4-power-manager"
     , "pasystray"
@@ -134,6 +137,7 @@ myStartupHook isDesktop = do
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
     , "lxsession"
     ]
+      <> machineSpecifcCommands
 
 myLayoutHook = hooks layout
  where
