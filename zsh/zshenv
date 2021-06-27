@@ -17,9 +17,6 @@ export BROWSER="firefox"
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2
 
-# Enable hardware acceleration for Firefox https://wiki.archlinux.org/index.php/Firefox#Hardware_video_acceleration
-export MOZ_X11_EGL=1 
-
 # Use neovim for manpage
 export MANPAGER="nvim -c 'set ft=man' -"
 
