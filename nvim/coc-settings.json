@@ -35,7 +35,8 @@
       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
       "settings": {
         "purescript": {
-          "addSpagoSources": true
+          "addSpagoSources": true,
+          "addNpmPath": true
         }
       }
     },
