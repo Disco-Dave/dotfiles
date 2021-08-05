@@ -40,6 +40,10 @@
         }
       }
     },
+    "dhall": {
+      "command": "dhall-lsp-server",
+      "filetypes": ["dhall"]
+    },
     "elmLS": {
       "command": "elm-language-server",
       "filetypes": ["elm"],
