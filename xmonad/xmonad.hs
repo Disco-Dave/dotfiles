@@ -15,6 +15,7 @@ import qualified XMonad.Hooks.DynamicLog as DynamicLog
 import qualified XMonad.Hooks.EwmhDesktops as Ewmh
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Hooks.ManageHelpers as ManageHelpers
+import XMonad.Hooks.SetWMName (setWMName)
 import qualified XMonad.Layout.Master as Master
 import qualified XMonad.Layout.Named as Named
 import qualified XMonad.Layout.NoBorders as NoBorders
@@ -118,6 +119,7 @@ myKeys conf@XConfig{XMonad.modMask = modMask} =
          ]
 
 myStartupHook isDesktop = do
+  setWMName "LG3D"
   screenWorkspace 0 >>= flip whenJust (windows . StackSet.view)
   for_ autoStartCommands SpawnOnce.spawnOnce
  where
