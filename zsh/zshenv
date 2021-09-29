@@ -18,7 +18,7 @@ export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # Use neovim for manpage
-export MANPAGER="nvim -c 'set ft=man' -"
+# export MANPAGER="nvim -c 'set ft=man' -"
 
 # Prevent an assortment of programs from dumping files into the
 # home directory and instead force them to use XDG Base Directories.
