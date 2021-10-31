@@ -139,6 +139,7 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 " CoC extensions
 let g:coc_global_extensions=[
     \ 'coc-css',
+    \ 'coc-docker',
     \ 'coc-eslint',
     \ 'coc-fsharp',
     \ 'coc-html',
@@ -149,7 +150,8 @@ let g:coc_global_extensions=[
     \ 'coc-prettier',
     \ 'coc-rust-analyzer',
     \ 'coc-sh',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ 'coc-yaml'
 \ ]
 
 " Rainbow parens

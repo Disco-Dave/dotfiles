@@ -9,6 +9,9 @@
   "prettier.disableLanguages": ["json", "html", "javascript"],
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "rust-analyzer.procMacro.enable": true,
+  //"yaml.schemas": {
+    //"Kubernetes": "*"
+  //},
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",

@@ -1,6 +1,7 @@
 # Official ZSH documentation: http://zsh.sourceforge.net/Doc/Release/index.html#Top
 # Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
 
+fpath=(~/.local/share/zsh/functions/ $fpath)
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
