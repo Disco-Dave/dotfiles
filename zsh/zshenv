@@ -12,46 +12,69 @@ export XDG_BIN_HOME="$HOME/.local/bin"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Set firefox as the default browser
 export BROWSER="firefox"
 
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2
 
-# Use neovim for manpage
-# export MANPAGER="nvim -c 'set ft=man' -"
-
-# Prevent an assortment of programs from dumping files into the
-# home directory and instead force them to use XDG Base Directories.
-# https://wiki.archlinux.org/index.php/XDG_Base_Directory#Support
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+# haskell
 export CABAL_DIR="$XDG_DATA_HOME"/cabal
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-#export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
 export GHCUP_USE_XDG_DIRS="yes"
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export STACK_ROOT="$XDG_DATA_HOME"/stack
-export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
+
+# rust
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+
+# nodeJS
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+# dotnet
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
+
+# x
 export XAUTHORITY="$XDG_DATA_HOME/Xauthority"
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+# xmonad
 export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
 export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
 export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
-export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+# zplug
+export ZPLUG_HOME="$XDG_DATA_HOME/zplug"
+export ZPLUG_CACHE_DIR="$XDG_CACHE_HOME/zplug"
+
+# gpg
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+# pass
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+
+# gtk
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
+# weechat
+export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
+
+# docker
 export DOCKER_BUILDKIT=1
+
+
+# Prevent less from storing history
 export LESSHISTFILE=-
 
 # Set our global path variable.
 # https://wiki.archlinux.org/index.php/Zsh#Configuring_$PATH
 typeset -U PATH path
 path=(
-    "$HOME/.local/bin" 
-    "$HOME/.local/share/ghcup/env"
+    "$XDG_BIN_HOME" 
+    "$XDG_DATA_HOME/ghcup/env"
     "$XDG_DATA_HOME/cabal/bin"
     "$XDG_DATA_HOME/cargo/bin"
-    "$HOME/.local/share/npm/bin"
+    "$XDG_DATA_HOME/npm/bin"
     "$path[@]")
 export PATH
