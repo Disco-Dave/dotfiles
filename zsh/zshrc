@@ -18,6 +18,7 @@ zplug "olivierverdier/zsh-git-prompt", \
 
 zplug load
 
+
 # Custom completions are usually stored in this folder
 fpath=(~/.local/share/zsh/functions/ $fpath)
 
@@ -26,11 +27,6 @@ fpath=(~/.local/share/zsh/functions/ $fpath)
 # https://github.com/zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-
-# Use vim key bindings
-# https://wiki.archlinux.org/index.php/Zsh#Key_bindings
-#bindkey -v
 
 
 # Enable auto completion

@@ -1,12 +1,12 @@
-# Ensure xterm uses 256 colors if used
-export TERM=alacritty
-
 # Set XDG Base Directories variables since these aren't automatically
 # set for us. However $XDG_RUNTIME_DIR is.
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
+
+# Set default terminal to alacritty
+export TERM=alacritty
 
 # Set default editor to neovim
 export EDITOR="nvim"
@@ -17,7 +17,6 @@ export BROWSER="firefox"
 
 # Use haskell for git prompt
 export GIT_PROMPT_EXECUTABLE="haskell"
-
 
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2
@@ -32,7 +31,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
-# nodeJS
+# nodejs
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # dotnet
@@ -66,7 +65,6 @@ export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
 
 # docker
 export DOCKER_BUILDKIT=1
-
 
 # Prevent less from storing history
 export LESSHISTFILE=-
