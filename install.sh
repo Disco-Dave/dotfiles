@@ -4,8 +4,14 @@ set -ex
 
 export _DOTFILES_HOME="${DOTFILES_HOME:-$HOME/.config/dotfiles}"
 
+mkdir -p \
+  "$HOME/.config" \
+  "$HOME/.cache" \
+  "$HOME/.local/share" \
+  "$HOME/.local/bin"
+
 # Install required packages needed to get started
-sudo pacman -S --noconfirm --needed git zsh
+sudo pacman -S --noconfirm --needed git zsh openssh run-parts
 
 # Clone dotfiles repo
 if [ ! -d $_DOTFILES_HOME ]; then
