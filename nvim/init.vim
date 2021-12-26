@@ -18,6 +18,9 @@ Plug 'arcticicestudio/nord-vim' " nord color scheme
 Plug 'editorconfig/editorconfig-vim' " editorconfig support
 Plug 'vmchale/dhall-vim' " dhall support
 
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vimwiki-sync'
+
 call plug#end()
 
 " Turn syntax highlighting on
@@ -37,9 +40,9 @@ colorscheme nord
 " Indent settings
 set autoindent
 set expandtab
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
 
 " Fold settings
 set nofoldenable
@@ -194,3 +197,7 @@ function! LightlineFugitive()
     endif
     return ''
 endfunction
+
+
+" Vimwiki settings
+let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki'}]
