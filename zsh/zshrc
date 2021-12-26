@@ -16,10 +16,6 @@ zplug "olivierverdier/zsh-git-prompt", \
     hook-build:"stack install --local-bin-path src/.bin ", \
     use:"zshrc.sh"
 
-if ! zplug check; then
-    zplug install
-fi
-
 zplug load
 
 # Custom completions are usually stored in this folder
