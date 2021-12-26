@@ -1,14 +1,29 @@
 # Official ZSH documentation: http://zsh.sourceforge.net/Doc/Release/index.html#Top
 # Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
 
-fpath=(~/.local/share/zsh/functions/ $fpath)
+# Plugins via zplug https://github.com/zplug/zplug
+source "$ZPLUG_HOME/init.zsh"
 
-# Plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-export GIT_PROMPT_EXECUTABLE="haskell"
-source $HOME/.local/share/zsh/plugins/zsh-git-prompt/zshrc.sh
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
+
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+
+zplug "jeffreytse/zsh-vi-mode"
+
+zplug "olivierverdier/zsh-git-prompt", \
+    hook-build:"stack install --local-bin-path src/.bin ", \
+    use:"zshrc.sh"
+
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
+
+# Custom completions are usually stored in this folder
+fpath=(~/.local/share/zsh/functions/ $fpath)
 
 
 # Enable substring searches for up and down arrows
@@ -19,7 +34,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Use vim key bindings
 # https://wiki.archlinux.org/index.php/Zsh#Key_bindings
-bindkey -v
+#bindkey -v
 
 
 # Enable auto completion

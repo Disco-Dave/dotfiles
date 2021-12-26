@@ -15,6 +15,10 @@ export VISUAL="nvim"
 # Set firefox as the default browser
 export BROWSER="firefox"
 
+# Use haskell for git prompt
+export GIT_PROMPT_EXECUTABLE="haskell"
+
+
 # Use GTK2 theme with QT
 export QT_QPA_PLATFORMTHEME=gtk2
 
