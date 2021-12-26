@@ -1,0 +1,16 @@
+# https://wiki.archlinux.org/index.php/Xinit#Autostart_X_at_login
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    exec startx "$XDG_CONFIG_HOME/X11/xinitrc"
+fi
+
+if [[ -f /home/disco/.nix-profile/etc/profile.d/nix.sh ]]; then
+    . /home/disco/.nix-profile/etc/profile.d/nix.sh
+fi
+
+if [[ -f /home/disco/.cache/paru/clone/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/completion.zsh.inc ]]; then
+    . /home/disco/.cache/paru/clone/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/completion.zsh.inc
+fi
+
+if [[ -f /home/disco/.cache/paru/clone/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/path.zsh.inc ]]; then
+    . /home/disco/.cache/paru/clone/google-cloud-sdk/pkg/google-cloud-sdk/opt/google-cloud-sdk/path.zsh.inc
+fi

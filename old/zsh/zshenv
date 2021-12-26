@@ -1,0 +1,82 @@
+# Set XDG Base Directories variables since these aren't automatically
+# set for us. However $XDG_RUNTIME_DIR is.
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_BIN_HOME="$HOME/.local/bin"
+
+# Set default terminal to alacritty
+export TERM=alacritty
+
+# Set default editor to neovim
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Set firefox as the default browser
+export BROWSER="firefox"
+
+# Use haskell for git prompt
+export GIT_PROMPT_EXECUTABLE="haskell"
+
+# Use GTK2 theme with QT
+export QT_QPA_PLATFORMTHEME=gtk2
+
+# haskell
+export CABAL_DIR="$XDG_DATA_HOME"/cabal
+export GHCUP_USE_XDG_DIRS="yes"
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+
+# rust
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CARGO_TARGET_DIR="$XDG_CACHE_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+
+# nodejs
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+# dotnet
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/nuget
+
+# x
+export XAUTHORITY="$XDG_DATA_HOME/Xauthority"
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+# xmonad
+export XMONAD_CACHE_HOME="$XDG_CACHE_HOME"/xmonad
+export XMONAD_CONFIG_HOME="$XDG_CONFIG_HOME"/xmonad
+export XMONAD_DATA_HOME="$XDG_DATA_HOME"/xmonad
+
+# zplug
+export ZPLUG_HOME="$XDG_DATA_HOME/zplug"
+export ZPLUG_CACHE_DIR="$XDG_CACHE_HOME/zplug"
+
+# gpg
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+# pass
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+
+# gtk
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
+# weechat
+export WEECHAT_HOME="$XDG_CONFIG_HOME"/weechat
+
+# docker
+export DOCKER_BUILDKIT=1
+
+# Prevent less from storing history
+export LESSHISTFILE=-
+
+# Set our global path variable.
+# https://wiki.archlinux.org/index.php/Zsh#Configuring_$PATH
+typeset -U PATH path
+path=(
+    "$XDG_BIN_HOME" 
+    "$XDG_DATA_HOME/ghcup/env"
+    "$XDG_DATA_HOME/cabal/bin"
+    "$XDG_DATA_HOME/cargo/bin"
+    "$XDG_DATA_HOME/npm/bin"
+    "$path[@]")
+export PATH
