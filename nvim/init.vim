@@ -200,4 +200,4 @@ endfunction
 
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki'}]
+let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki', 'auto_toc': 1, 'auto_diary_index': 1}]
