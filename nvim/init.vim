@@ -17,9 +17,9 @@ Plug 'vim-scripts/Tabmerge' " A script to merge tabs
 Plug 'arcticicestudio/nord-vim' " nord color scheme
 Plug 'editorconfig/editorconfig-vim' " editorconfig support
 Plug 'vmchale/dhall-vim' " dhall support
-
-Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vimwiki-sync'
+Plug 'tpope/vim-surround' " Keybindings for surrounding things with quotes, parenthesis, etc.
+Plug 'vimwiki/vimwiki' " Personal wiki managed inside vim, useful notes.
+Plug 'michal-h21/vimwiki-sync' " Synchronize vimwiki with git
 
 call plug#end()
 
