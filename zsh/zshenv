@@ -5,6 +5,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
 
+# https://bbs.archlinux.org/viewtopic.php?id=81282&p=2
+# Use xfce4-settings to set default browser
+export DESKTOP_SESSION=xfce
+
 # Set default terminal to alacritty
 export TERM=alacritty
 
