@@ -199,7 +199,7 @@ endfunction
 
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki', 'auto_toc': 1, 'auto_diary_index': 1}]
+let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki', 'auto_toc': 1, 'auto_diary_index': 1, 'diary_caption_level': -1}]
 
 function! VimwikiLinkHandler(link)
   " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
