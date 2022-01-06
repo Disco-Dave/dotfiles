@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 export _DOTFILES_HOME="${DOTFILES_HOME:-$HOME/.config/dotfiles}"
 

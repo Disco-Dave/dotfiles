@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
+echo "-- Setup ZSH --"
+
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -ex
+set -e
 
 # Tell zsh to look for dotfiles in "$XDG_CONFIG_HOME/zsh"
 echo "export ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee /etc/zsh/zshenv > /dev/null
@@ -23,7 +25,7 @@ fi
 
 # Switch our shell to zsh
 if [ "$SHELL" != "/bin/zsh" ]; then
-    chsh -s "/bin/zsh" "$USER"
+    sudo chsh -s "/bin/zsh" "$(whoami)"
 
     rm -rf "$HOME/.bash_logout"
     rm -rf "$HOME/.bash_profile"

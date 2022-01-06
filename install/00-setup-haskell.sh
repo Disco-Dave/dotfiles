@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
+echo "-- Setup Haskell --"
+
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -ex
+set -e
 
 # Install dependencies for ghcup, ghc, cabal, stack, and hls
 sudo pacman -S --noconfirm --needed \
