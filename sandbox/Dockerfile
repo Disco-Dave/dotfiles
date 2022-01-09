@@ -10,4 +10,6 @@ USER testuser
 
 COPY --chown=testuser:testuser . /home/testuser/.config/dotfiles/
 
+ENV ENVIRONMENT "sandbox"
+
 ENTRYPOINT ["/home/testuser/.config/dotfiles/sandbox/entrypoint.sh"]
