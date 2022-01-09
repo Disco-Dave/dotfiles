@@ -12,7 +12,6 @@ if [[ ! -f "$XDG_CONFIG_HOME/npm/npmrc" ]]; then
     mkdir -p "$XDG_CONFIG_HOME/npm"
     echo "prefix=$XDG_DATA_HOME/npm" >> "$XDG_CONFIG_HOME/npm/npmrc"
     echo "cache=$XDG_CACHE_HOME/npm" >> "$XDG_CONFIG_HOME/npm/npmrc"
-    echo "tmp=\$XDG_RUNTIME_DIR/npm" >> "$XDG_CONFIG_HOME/npm/npmrc"
+    echo "tmp=/tmp/npm" >> "$XDG_CONFIG_HOME/npm/npmrc"
     echo "init-module=$XDG_CONFIG_HOME/npm/config/npm-init.js" >> "$XDG_CONFIG_HOME/npm/npmrc"
 fi
-

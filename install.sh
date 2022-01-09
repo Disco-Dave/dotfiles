@@ -18,4 +18,6 @@ if [ ! -d $_DOTFILES_HOME ]; then
   git clone git@github.com:Disco-Dave/dotfiles.git $_DOTFILES_HOME
 fi
 
+ln -sf "$_DOTFILES_HOME/git" "$HOME/.config/git"
+
 run-parts --regex '.*' --exit-on-error --verbose -- "$_DOTFILES_HOME/install"

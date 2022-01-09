@@ -1,0 +1,32 @@
+[user]
+    name = David Burkett
+    email = 13578196+Disco-Dave@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[fetch]
+    prune = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    instructionFormat = (%an <%ae>) %s
+
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = true
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+    tool = nvimmerge
+[mergetool]
+    prompt = true
+    keepBackup = false
+[mergetool "nvimmerge"]
+    cmd = "nvim -f -c \"Gdiffsplit!\" \"$MERGED\""
+
+# vim: set filetype=gitconfig:
