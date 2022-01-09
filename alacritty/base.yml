@@ -55,3 +55,7 @@ colors:
     bar:
       foreground: "0xd8dee9"
       background: "0x434c5e"
+key_bindings:
+  - { key: Return,   mods: Control|Shift, chars: "\x1b[13;6u" }
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
