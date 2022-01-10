@@ -8,7 +8,8 @@ mkdir -p \
   "$HOME/.config" \
   "$HOME/.cache" \
   "$HOME/.local/share" \
-  "$HOME/.local/bin"
+  "$HOME/.local/bin"\
+  "$HOME/.local/state"
 
 # Install required packages needed to get started
 sudo pacman -S --noconfirm --needed git zsh openssh run-parts
