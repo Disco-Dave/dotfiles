@@ -199,7 +199,33 @@ endfunction
 
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki', 'auto_toc': 1, 'auto_diary_index': 1, 'diary_caption_level': -1}]
+let g:vimwiki_list = [{
+  \ 'path': '~/.local/share/personal-wiki', 
+  \ 'auto_toc': 1, 
+  \ 'auto_diary_index': 1, 
+  \ 'diary_caption_level': -1,
+  \ 'nested_syntaxes': {
+    \ 'python': 'python',
+    \ 'ruby': 'ruby',
+    \ 'haskell': 'haskell',
+    \ 'javascript': 'javascript',
+    \ 'sh': 'sh',
+    \ 'bash': 'bash',
+    \ 'zsh': 'zsh',
+    \ 'elm': 'elm',
+    \ 'purescript': 'purescript',
+    \ 'html': 'html',
+    \ 'css': 'css',
+    \ 'json': 'json',
+    \ 'yaml': 'yaml',
+    \ 'go': 'go',
+    \ 'csharp': 'csharp',
+    \ 'cabal': 'cabal',
+    \ 'dhall': 'dhall',
+    \ 'vim': 'vim',
+    \ 'fsharp': 'fsharp'
+    \ }
+  \ }]
 
 function! VimwikiLinkHandler(link)
   " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
