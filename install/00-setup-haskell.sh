@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 echo "-- Setup Haskell --"
 
@@ -23,7 +23,7 @@ sudo pacman -S --noconfirm --needed \
   zlib
 
 # Install ghcup, ghc, cabal, stack, and hls
-if ! command -v ghcup &> /dev/null ; then
+if ! command -v ghcup &> /dev/null; then
   export BOOTSTRAP_HASKELL_NONINTERACTIVE="yes"
   export BOOTSTRAP_HASKELL_INSTALL_STACK="yes"
   export BOOTSTRAP_HASKELL_INSTALL_HLS="yes"
