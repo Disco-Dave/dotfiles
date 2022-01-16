@@ -5,6 +5,8 @@ echo "-- Setup ZSH --"
 source "$_DOTFILES_HOME/zsh/zshenv"
 set -e
 
+sudo pacman -S --noconfirm --needed zsh
+
 # Tell zsh to look for dotfiles in "$XDG_CONFIG_HOME/zsh"
 echo "export ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee /etc/zsh/zshenv > /dev/null
 

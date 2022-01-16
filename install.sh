@@ -12,7 +12,7 @@ mkdir -p \
   "$HOME/.local/state"
 
 # Install required packages needed to get started
-sudo pacman -S --noconfirm --needed git zsh openssh run-parts
+sudo pacman -S --noconfirm --needed git openssh run-parts
 
 # Clone dotfiles repo
 if [ ! -d "$_DOTFILES_HOME" ]; then
