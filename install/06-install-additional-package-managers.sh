@@ -7,7 +7,7 @@ set -e
 
 sudo pacman -S --noconfirm --needed fakeroot fwupd
 
-cargo install topgrade
+cargo install topgrade cargo-update
 
 if [[ ! -f "/usr/bin/paru" ]]; then
   work_dir=$(mktemp -d)

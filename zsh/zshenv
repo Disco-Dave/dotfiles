@@ -70,6 +70,8 @@ export DOCKER_BUILDKIT=1
 # Prevent less from storing history
 export LESSHISTFILE=-
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # Set our global path variable.
 # https://wiki.archlinux.org/index.php/Zsh#Configuring_$PATH
 typeset -U PATH path

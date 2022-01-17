@@ -9,4 +9,4 @@ sudo pacman -S --noconfirm --needed rustup openssl pkgconf
 
 rustup toolchain install stable
 
-cargo install cargo-watch cargo-tarpaulin cargo-edit cargo-update
+cargo install cargo-watch cargo-tarpaulin cargo-edit
