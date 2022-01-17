@@ -18,28 +18,28 @@ timedatectl set-ntp true
 
 # Partition the disks
 parted --script /dev/vda mklabel gpt
-parted --script /dev/vda mkpart boot fat32 1MiB 301MiB
+parted --script /dev/vda mkpart boot fat32 1MiB 513MiB
 parted --script /dev/vda set 1 esp on
-parted --script /dev/vda mkpart luks ext4 301MiB 100%
+parted --script /dev/vda mkpart luks 513MiB 100%
 
 # Setup luks/lvm
-cryptsetup luksFormat --type luks1 /dev/vda2
+cryptsetup luksFormat --type luks /dev/vda2
 cryptsetup open /dev/vda2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
-vgcreate main /dev/mappere/cryptlvm
+vgcreate main /dev/mapper/cryptlvm
 lvcreate -l 100%FREE main -n root
 
 # Format the partitions
-mkfs.fat -F 32 -n boot /dev/vda1
+mkfs.fat -F32 -n boot /dev/vda1
 mkfs.ext4 -L root /dev/main/root
 
 # Mount the file systems
 mount /dev/main/root /mnt
-mkdir -p /mnt/efi
-mount /dev/vda1 /mnt/efi
+mkdir -p /mnt/boot
+mount /dev/vda1 /mnt/boot
 
 # Install essential packages
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 grub efibootmgr
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2
 
 # Generate fstab
 genfstab -L /mnt >> /mnt/etc/fstab
@@ -65,19 +65,21 @@ echo "$HOSTNAME" > /mnt/etc/hostname
 } >> /mnt/etc/hosts
 arch-chroot /mnt systemctl enable NetworkManager
 
-# TODO Generate initramfs
+# Generate initramfs
+sed -i 's/^HOOKS=.*/HOOKS=\(base udev autodetect modconf block keyboard keymap encrypt lvm2 filesystems fsck\)/' /mnt/etc/mkinitcpio.conf
+arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
 echo "Set the password for root"
 arch-chroot /mnt passwd
 
-# TODO Configure boot loader
+# Configure boot loader
 arch-chroot /mnt bootctl install
 {
   echo "title     Arch Linux"
   echo "linux     /vmlinuz-linux"
   echo "initrd    /initramfs-linux.img"
-  echo "options   root=\"LABEL=root\" rw"
+  echo "options   cryptdevice=UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/vda2):cryptlvm  root=/dev/main/root rw"
 } >> /mnt/boot/loader/entries/arch.conf
 
 # Create main user
