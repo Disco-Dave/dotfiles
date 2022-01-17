@@ -98,10 +98,6 @@ mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
   echo "ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I \$TERM"
 } >> /mnt/etc/systemd/system/getty@tty1.service.d/override.conf
 
-# TODO Setup display
-# pacman -S --noconfirm --needed xorg-server
-# Set resolution
-
 # Run the dotfiles installer script
 SCRIPT_PATH=$(realpath "$0")
 DOTFILES_PATH=$(dirname "$SCRIPT_PATH" | xargs dirname)
