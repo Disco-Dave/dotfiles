@@ -18,21 +18,28 @@ timedatectl set-ntp true
 
 # Partition the disks
 parted --script /dev/vda mklabel gpt
-parted --script /dev/vda mkpart boot fat32 1MiB 501MiB
+parted --script /dev/vda mkpart boot fat32 1MiB 301MiB
 parted --script /dev/vda set 1 esp on
-parted --script /dev/vda mkpart root ext4 501MiB 100%
+parted --script /dev/vda mkpart luks ext4 301MiB 100%
+
+# Setup luks/lvm
+cryptsetup luksFormat --type luks1 /dev/vda2
+cryptsetup open /dev/vda2 cryptlvm
+pvcreate /dev/mapper/cryptlvm
+vgcreate main /dev/mappere/cryptlvm
+lvcreate -l 100%FREE main -n root
 
 # Format the partitions
 mkfs.fat -F 32 -n boot /dev/vda1
-mkfs.ext4 -L root /dev/vda2
+mkfs.ext4 -L root /dev/main/root
 
 # Mount the file systems
-mount /dev/vda2 /mnt
-mkdir -p /mnt/boot
-mount /dev/vda1 /mnt/boot
+mount /dev/main/root /mnt
+mkdir -p /mnt/efi
+mount /dev/vda1 /mnt/efi
 
 # Install essential packages
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 grub efibootmgr
 
 # Generate fstab
 genfstab -L /mnt >> /mnt/etc/fstab
@@ -58,11 +65,13 @@ echo "$HOSTNAME" > /mnt/etc/hostname
 } >> /mnt/etc/hosts
 arch-chroot /mnt systemctl enable NetworkManager
 
+# TODO Generate initramfs
+
 # Prompt to set root password
 echo "Set the password for root"
 arch-chroot /mnt passwd
 
-# Configure boot loader
+# TODO Configure boot loader
 arch-chroot /mnt bootctl install
 {
   echo "title     Arch Linux"
