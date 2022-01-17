@@ -142,6 +142,7 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 " CoC extensions
 let g:coc_global_extensions=[
     \ 'coc-css',
+    \ 'coc-diagnostic',
     \ 'coc-docker',
     \ 'coc-eslint',
     \ 'coc-fsharp',
