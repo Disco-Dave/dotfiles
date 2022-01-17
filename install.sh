@@ -12,6 +12,8 @@ mkdir -p \
   "$HOME/.local/state"
 
 # Install required packages needed to get started
+#sudo curl https://archlinux.org/mirrorlist/all/ --output /etc/pacman.d/mirrorlist
+sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed git openssh run-parts
 
 # Clone dotfiles repo

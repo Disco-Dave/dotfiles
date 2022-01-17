@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
 
-echo "-- Setup Package Managers --"
+echo "-- Install additional package managers --"
 
 source "$_DOTFILES_HOME/zsh/zshenv"
 set -e
 
-sudo pacman -S --noconfirm --needed reflector fakeroot fwupd
-
-sudo ln -sf "$_DOTFILES_HOME/pacman/reflector.conf" /etc/xdg/reflector/reflector.conf
-sudo ln -sf "$_DOTFILES_HOME/pacman/pacman.conf" /etc/pacman.conf
-
-if [ "$ENVIRONMENT" != "sandbox" ]; then
-  sudo systemctl enable --now reflector.timer
-fi
+sudo pacman -S --noconfirm --needed fakeroot fwupd
 
 cargo install topgrade
 
