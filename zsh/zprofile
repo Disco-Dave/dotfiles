@@ -1,7 +1,7 @@
 # https://wiki.archlinux.org/index.php/Xinit#Autostart_X_at_login
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    exec startx "$XDG_CONFIG_HOME/X11/xinitrc"
-fi
+#if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    #exec startx "$XDG_CONFIG_HOME/X11/xinitrc"
+#fi
 
 if [[ -f /home/disco/.nix-profile/etc/profile.d/nix.sh ]]; then
     . /home/disco/.nix-profile/etc/profile.d/nix.sh

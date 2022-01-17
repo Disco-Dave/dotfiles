@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker run --rm -it $(docker build --file sandbox/Dockerfile -q .) zsh
+docker run --rm -it "$(docker build --file sandbox/Dockerfile -q .)" zsh

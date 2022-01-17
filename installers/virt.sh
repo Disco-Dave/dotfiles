@@ -101,3 +101,14 @@ mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
 # TODO Setup display
 # pacman -S --noconfirm --needed xorg-server
 # Set resolution
+
+# Run the dotfiles installer script
+SCRIPT_PATH=$(realpath "$0")
+DOTFILES_PATH=$(dirname "$SCRIPT_PATH" | xargs dirname)
+mkdir -p "/mnt/home/$USER/.config"
+arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config"
+cp -r "$DOTFILES_PATH" "/mnt/home/$USER/.config/dotfiles"
+arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config/dotfiles"
+arch-chroot /mnt chmod -R u=rwx,g=rwx,o= "/home/$USER/.config/dotfiles"
+arch-chroot /mnt sudo -u $USER "/home/$USER/.config/dotfiles/install.sh"
+arch-chroot /mnt sudo -u $USER zsh
