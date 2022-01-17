@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "-- Setup ssh agent--"
+echo "-- Setup ssh agent --"
 
 source "$_DOTFILES_HOME/zsh/zshenv"
 set -e
