@@ -2,6 +2,7 @@
 
 set -e
 
+
 export _DOTFILES_HOME="${DOTFILES_HOME:-$HOME/.config/dotfiles}"
 
 mkdir -p \
@@ -10,6 +11,10 @@ mkdir -p \
   "$HOME/.local/share" \
   "$HOME/.local/bin" \
   "$HOME/.local/state"
+
+
+sudo timedatectl set-timezone US/Eastern
+sudo timedatectl set-ntp true
 
 # Install required packages needed to get started
 #sudo curl https://archlinux.org/mirrorlist/all/ --output /etc/pacman.d/mirrorlist

@@ -57,6 +57,7 @@ echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
 
 # Configure network
 HOSTNAME="virt"
+hostnamectl hostname "$HOSTNAME"
 echo "$HOSTNAME" > /mnt/etc/hostname
 {
   echo "127.0.0.1     localhost"
