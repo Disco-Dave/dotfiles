@@ -17,7 +17,7 @@ if [ ! -x "$path_to_yaml_merge" ]; then
     )
 fi
 
-host_name_config="$(hostname).yml"
+host_name_config="$(hostnamectl hostname).yml"
 
 if [ -f "$host_name_config" ]; then
     >&2 echo "Overlaying host specific settings"
