@@ -3,7 +3,7 @@
 set -e
 
 TEMP_DIR="$(mktemp -d)"
-trap 'rm $TEMP_DIR' exit
+trap 'rm -r $TEMP_DIR' exit
 
 cd "$XDG_CONFIG_HOME/xmonad"
 
