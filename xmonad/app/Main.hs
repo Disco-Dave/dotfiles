@@ -8,6 +8,7 @@ import qualified Data.Map as Map
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
 import qualified Graphics.X11.ExtraTypes as X11
+import qualified MyXmobar
 import System.Exit (exitSuccess)
 import XMonad
 import qualified XMonad.Actions.SwapWorkspaces as Swap
@@ -244,9 +245,9 @@ makeConfig isDesktop handles = hooks config'
 main :: IO ()
 main = do
   isDesktop <- Text.readFile "/etc/hostname" <&> Text.strip <&> (== "desktop")
-  alwaysHandles <- pure <$> Run.spawnPipe "xmobar-primary"
+  alwaysHandles <- pure <$> MyXmobar.spawnLeft
   handles <-
     if isDesktop
-      then (: alwaysHandles) <$> Run.spawnPipe "xmobar-secondary"
+      then (: alwaysHandles) <$> MyXmobar.spawnRight
       else pure alwaysHandles
   xmonad $ makeConfig isDesktop handles
