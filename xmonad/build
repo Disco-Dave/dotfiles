@@ -2,8 +2,11 @@
 
 set -e
 
+TEMP_DIR="$(mktemp -d)"
+trap 'rm $TEMP_DIR' exit
+
 cd "$XDG_CONFIG_HOME/xmonad"
 
 cabal build
-
-cp "$(cabal list-bin xmonad)" "$1"
+cp "$(cabal list-bin xmonad)" "$TEMP_DIR/xmonad"
+mv "$TEMP_DIR/xmonad" "$1"
