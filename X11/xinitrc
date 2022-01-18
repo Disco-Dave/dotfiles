@@ -5,7 +5,7 @@ xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 picom &
 
 # Run commands only necessary for my desktop
-if grep -q compe /etc/hostname; then
+if grep -q desktop /etc/hostname; then
     # Set the correct resolution and orientation for my two monitors
     xrandr --output DVI-I-0 \
         --off --output DVI-I-1 \
