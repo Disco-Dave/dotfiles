@@ -98,13 +98,11 @@ mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
   echo "ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I \$TERM"
 } >> /mnt/etc/systemd/system/getty@tty1.service.d/override.conf
 
-# Run the dotfiles installer script
+# Copy the dotfiles folder into the new install
 SCRIPT_PATH=$(realpath "$0")
 DOTFILES_PATH=$(dirname "$SCRIPT_PATH" | xargs dirname)
 mkdir -p "/mnt/home/$USER/.config"
 arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config"
-cp -r "$DOTFILES_PATH" "/mnt/home/$USER/.config/dotfiles"
+rsync -arv --exclude old "$DOTFILES_PATH" "/mnt/home/$USER/.config/"
 arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config/dotfiles"
 arch-chroot /mnt chmod -R u=rwx,g=rwx,o= "/home/$USER/.config/dotfiles"
-arch-chroot /mnt sudo -u $USER "/home/$USER/.config/dotfiles/install.sh"
-arch-chroot /mnt sudo -u $USER zsh

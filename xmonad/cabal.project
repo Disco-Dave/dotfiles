@@ -1,0 +1,6 @@
+packages: *
+
+with-compiler: ghc-8.10.7
+
+package xmonad-contrib
+  flags: +use_xft

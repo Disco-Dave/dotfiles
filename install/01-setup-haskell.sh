@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 echo "-- Setup Haskell --"
 
@@ -45,3 +45,5 @@ ln -sfn "$_DOTFILES_HOME/haskell/stack-config.yaml" "$STACK_ROOT/config.yaml"
 
 # Set fourmolu settings
 ln -sfn "$_DOTFILES_HOME/haskell/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
+
+cabal update

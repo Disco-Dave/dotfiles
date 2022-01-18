@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$XDG_CONFIG_HOME/xmonad"
+
+cabal build
+
+cp "$(cabal list-bin xmonad)" "$1"
