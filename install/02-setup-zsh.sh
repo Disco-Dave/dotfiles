@@ -20,7 +20,7 @@ ln -sfn "$_DOTFILES_HOME/zsh/zshenv" "$XDG_CONFIG_HOME/zsh/.zshenv"
 ln -sfn "$_DOTFILES_HOME/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
 # Install zplug
-if [ ! -d "ZPLUG_HOME" ]; then
+if [ ! -d "$ZPLUG_HOME" ]; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
