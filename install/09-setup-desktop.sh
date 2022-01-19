@@ -49,7 +49,8 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     xfce4-power-manager \
     xfce4-screenshooter \
     xorg \
-    xorg-xinit
+    xorg-xinit \
+    xorg-xmessage
 
   # Enable bluetooth
   sudo systemctl enable --now bluetooth.service
