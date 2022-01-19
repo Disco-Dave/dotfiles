@@ -245,9 +245,11 @@ makeConfig isDesktop handles = hooks config'
 main :: IO ()
 main = do
   isDesktop <- Text.readFile "/etc/hostname" <&> Text.strip <&> (== "desktop")
-  alwaysHandles <- pure <$> MyXmobar.spawnLeft
+
   handles <-
-    if isDesktop
-      then (: alwaysHandles) <$> MyXmobar.spawnRight
-      else pure alwaysHandles
+    sequence $
+      if isDesktop
+        then [MyXmobar.spawnLeft, MyXmobar.spawnRight]
+        else [MyXmobar.spawnLeft]
+
   xmonad $ makeConfig isDesktop handles

@@ -3,31 +3,21 @@ module MyXmobar (
   spawnRight,
 ) where
 
-import qualified Paths_xmonad_custom
 import System.IO (Handle)
 import System.Posix (forkProcess)
 import System.Process (createPipe)
 import qualified Xmobar
 
-spawn :: Xmobar.Config -> IO Handle
+spawn :: (Handle -> Xmobar.Config) -> IO Handle
 spawn config = do
   (readHandle, writeHandle) <- createPipe
 
-  _ <-
-    forkProcess . Xmobar.xmobar $
-      config
-        { Xmobar.commands =
-            let oldCommands = Xmobar.commands config
-                handleReader = Xmobar.Run (Xmobar.HandleReader readHandle "handle")
-             in handleReader : oldCommands
-        }
-
+  _ <- forkProcess . Xmobar.xmobar $ config readHandle
   pure writeHandle
 
 spawnLeft :: IO Handle
-spawnLeft = do
-  paddingScriptPath <- Paths_xmonad_custom.getDataFileName "data/padding-icon.sh"
-  spawn
+spawnLeft =
+  spawn $ \readHandle ->
     Xmobar.defaultConfig
       { Xmobar.font = "xft:FreeSans-12"
       , Xmobar.additionalFonts = []
@@ -48,18 +38,18 @@ spawnLeft = do
       , Xmobar.overrideRedirect = True
       , Xmobar.commands =
           [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
-          , Xmobar.Run Xmobar.UnsafeStdinReader
-          , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-          , Xmobar.Run $ Xmobar.Com "bash" [paddingScriptPath, "stalonetray"] "tray" 10
+          , Xmobar.Run $ Xmobar.HandleReader readHandle "reader"
+          --, Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
+          --, Xmobar.Run $ Xmobar.Com "bash" [paddingScriptPath, "stalonetray"] "tray" 10
           ]
       , Xmobar.sepChar = "%"
       , Xmobar.alignSep = "}{"
-      , Xmobar.template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
+      , Xmobar.template = "%reader% } %date% { %mpd% %tray%"
       }
 
 spawnRight :: IO Handle
 spawnRight =
-  spawn
+  spawn $ \readHandle ->
     Xmobar.defaultConfig
       { Xmobar.font = "xft:FreeSans-12"
       , Xmobar.additionalFonts = []
@@ -79,7 +69,7 @@ spawnRight =
       , Xmobar.allDesktops = True
       , Xmobar.overrideRedirect = True
       , Xmobar.commands =
-          [ Xmobar.Run Xmobar.UnsafeStdinReader
+          [ Xmobar.Run $ Xmobar.HandleReader readHandle "reader"
           , Xmobar.Run $ Xmobar.ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 6000
           , Xmobar.Run $ Xmobar.Memory ["-t", "Mem: <usedratio>%"] 10
           , Xmobar.Run $ Xmobar.Swap [] 10

@@ -2,9 +2,6 @@ cabal-version: 3.0
 name: xmonad-custom
 version: 0.1.0.0
 
-data-files:
-  data/padding-icon.sh
-
 executable xmonad
   default-language: Haskell2010
 
@@ -52,4 +49,3 @@ executable xmonad
   hs-source-dirs: app
   other-modules:
     MyXmobar
-    Paths_xmonad_custom

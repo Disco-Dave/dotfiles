@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 echo "-- Setup Desktop --"
 
@@ -83,4 +83,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     cd "$XDG_CONFIG_HOME/alacritty"
     ./merge.sh
   )
+
+  # xrandr
+  ln -sf "$_DOTFILES_HOME/xrandr" "$XDG_CONFIG_HOME/xrandr"
 fi
