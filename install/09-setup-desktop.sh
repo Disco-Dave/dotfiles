@@ -25,6 +25,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     libxinerama \
     libxrandr \
     libxss \
+    mpv \
     network-manager-applet \
     p7zip \
     pass \
