@@ -7,14 +7,18 @@ executable xmonad
 
   build-depends: 
     , X11 >= 1.10.2
+    , async >= 2.2.4
     , base ^>=4.14.3.0
     , containers >= 0.6.5
+    , directory >= 1.3.6
     , process >= 1.6.9
+    , stm >= 2.5.0
     , text >= 1.2.4
     , unix >= 2.7.2
     , xmobar >= 0.41
     , xmonad >= 0.17.0
     , xmonad-contrib >= 0.17.0
+
 
   default-extensions:
     LambdaCase
