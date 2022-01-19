@@ -23,7 +23,6 @@ import qualified XMonad.Layout.NoBorders as NoBorders
 import qualified XMonad.Layout.Tabbed as Tabbed
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import qualified XMonad.StackSet as StackSet
-import qualified XMonad.Util.Run as Run
 import qualified XMonad.Util.SpawnOnce as SpawnOnce
 
 superKey = mod4Mask
@@ -181,7 +180,7 @@ myLayoutHook = hooks layout
 
 xmobarAction action desc = "<action=" <> action <> ">" <> desc <> "</action>"
 
-myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
+myLogHook logOutput = DynamicLog.dynamicLogWithPP myXmobarPp
  where
   myXmobarPp =
     def
@@ -189,7 +188,7 @@ myLogHook handles = DynamicLog.dynamicLogWithPP myXmobarPp
       , DynamicLog.ppTitle = xmobarColor "#A3BE8C" "" . shorten 40
       , DynamicLog.ppVisible = wrap "(" ")"
       , DynamicLog.ppUrgent = xmobarColor "#BF616A" "#EBCB8B"
-      , DynamicLog.ppOutput = for_ handles . flip Run.hPutStrLn
+      , DynamicLog.ppOutput = logOutput
       , DynamicLog.ppExtras = [windowCount]
       , DynamicLog.ppLayout = xmobarAction "xdotool key alt+space"
       }
@@ -246,10 +245,10 @@ main :: IO ()
 main = do
   isDesktop <- Text.readFile "/etc/hostname" <&> Text.strip <&> (== "desktop")
 
-  handles <-
-    sequence $
-      if isDesktop
-        then [MyXmobar.spawnLeft, MyXmobar.spawnRight]
-        else [MyXmobar.spawnLeft]
+  let xmobarSettings =
+        if isDesktop
+          then [MyXmobar.left]
+          else [MyXmobar.left, MyXmobar.right]
 
-  xmonad $ makeConfig isDesktop handles
+  MyXmobar.withXmobar xmobarSettings $
+    xmonad . makeConfig isDesktop
