@@ -35,10 +35,6 @@ fi
 ln -sfn "$_DOTFILES_HOME/haskell/ghci" "$HOME/.ghci"
 ln -sfn "$_DOTFILES_HOME/haskell/haskeline" "$HOME/.haskeline"
 
-# Set cabal-install settings
-#mkdir -p "$CABAL_DIR"
-#ln -sfn "$_DOTFILES_HOME/haskell/cabal-config" "$CABAL_DIR/config"
-
 # Set stack settings
 mkdir -p "$STACK_ROOT"
 ln -sfn "$_DOTFILES_HOME/haskell/stack-config.yaml" "$STACK_ROOT/config.yaml"
