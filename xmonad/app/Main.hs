@@ -24,6 +24,7 @@ import qualified XMonad.Layout.Tabbed as Tabbed
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import qualified XMonad.StackSet as StackSet
 import qualified XMonad.Util.SpawnOnce as SpawnOnce
+import XMonad.Hooks.DynamicLog (xmobarAction)
 
 superKey = mod4Mask
 
@@ -178,7 +179,6 @@ myLayoutHook = hooks layout
           , Tabbed.urgentBorderWidth = 0
           }
 
-xmobarAction action desc = "<action=" <> action <> ">" <> desc <> "</action>"
 
 myLogHook logOutput = DynamicLog.dynamicLogWithPP myXmobarPp
  where
@@ -190,7 +190,7 @@ myLogHook logOutput = DynamicLog.dynamicLogWithPP myXmobarPp
       , DynamicLog.ppUrgent = xmobarColor "#BF616A" "#EBCB8B"
       , DynamicLog.ppOutput = logOutput
       , DynamicLog.ppExtras = [windowCount]
-      , DynamicLog.ppLayout = xmobarAction "xdotool key alt+space"
+      , DynamicLog.ppLayout = xmobarAction "1" "xdotool key alt+space"
       }
    where
     windowCount = do
@@ -221,7 +221,7 @@ myManageHook =
 
 myWorkspaces = do
   num <- fmap show ([1 .. 9] :: [Integer])
-  pure $ xmobarAction ("xdotool key alt+" <> num) num
+  pure $ xmobarAction "1" ("xdotool key alt+" <> num) num
 
 makeConfig isDesktop handles = hooks config'
  where
