@@ -98,7 +98,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
   # mpd
   ln -sf "$_DOTFILES_HOME/mpd" "$XDG_CONFIG_HOME/mpd"
   mkdir -p "$XDG_DATA_HOME/mpd/playlists"
-  systemctl --user enable --now mpd
+  systemctl --user enable mpd
   mpc update
 
   # ncmpcpp
