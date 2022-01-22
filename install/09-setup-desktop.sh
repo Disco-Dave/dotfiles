@@ -25,6 +25,8 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     libxinerama \
     libxrandr \
     libxss \
+    mpc \
+    mpd \
     mpv \
     network-manager-applet \
     p7zip \
@@ -44,6 +46,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     udisks2 \
     xclip \
     xcursor-vanilla-dmz \
+    xdg-user-dirs \
     xdotool \
     xfce4-notifyd \
     xfce4-power-manager \
@@ -51,6 +54,9 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     xorg \
     xorg-xinit \
     xorg-xmessage
+
+  # Generate xdg user directories
+  xdg-user-dirs-update
 
   # Enable bluetooth
   sudo systemctl enable --now bluetooth.service
@@ -88,4 +94,13 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
 
   # xrandr
   ln -sf "$_DOTFILES_HOME/xrandr" "$XDG_CONFIG_HOME/xrandr"
+
+  # mpd
+  ln -sf "$_DOTFILES_HOME/mpd" "$XDG_CONFIG_HOME/mpd"
+  mkdir -p "$XDG_DATA_HOME/mpd/playlists"
+  systemctl --user enable --now mpd
+  mpc update
+
+  # ncmpcpp
+  ln -sf "$_DOTFILES_HOME/ncmpcpp" "$XDG_CONFIG_HOME/ncmpcpp"
 fi

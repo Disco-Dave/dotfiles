@@ -81,5 +81,6 @@ path=(
     "$XDG_DATA_HOME/cabal/bin"
     "$XDG_DATA_HOME/cargo/bin"
     "$XDG_DATA_HOME/npm/bin"
+    "$HOME/.local/scripts"
     "$path[@]")
 export PATH

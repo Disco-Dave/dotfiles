@@ -2,7 +2,6 @@
 
 set -e
 
-
 export _DOTFILES_HOME="${DOTFILES_HOME:-$HOME/.config/dotfiles}"
 
 mkdir -p \
@@ -27,5 +26,6 @@ if [ ! -d "$_DOTFILES_HOME" ]; then
 fi
 
 ln -sf "$_DOTFILES_HOME/git" "$HOME/.config/git"
+ln -sf "$_DOTFILES_HOME/scripts" "$HOME/.local/scripts"
 
 run-parts --regex '.*' --exit-on-error --verbose -- "$_DOTFILES_HOME/install"

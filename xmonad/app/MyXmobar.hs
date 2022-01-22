@@ -38,8 +38,8 @@ left = XmobarSettings $ \queue ->
     , Xmobar.commands =
         [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
         , Xmobar.Run $ Xmobar.QueueReader queue id "reader"
-        --, Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-        --, Xmobar.Run $ Xmobar.Com "bash" [paddingScriptPath, "stalonetray"] "tray" 10
+        , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
+        , Xmobar.Run $ Xmobar.Com "bash" ["$XDG_CONFIG_HOME/xmobar/data/padding-icon.sh", "stalonetray"] "tray" 10
         ]
     , Xmobar.sepChar = "%"
     , Xmobar.alignSep = "}{"
