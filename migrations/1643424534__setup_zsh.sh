@@ -1,11 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Setup ZSH --"
-
-source "$_DOTFILES_HOME/zsh/zshenv"
 set -e
 
-sudo pacman -S --noconfirm --needed zsh
+source "$_DOTFILES_HOME/zsh/zshenv"
 
 # Tell zsh to look for dotfiles in "$XDG_CONFIG_HOME/zsh"
 echo "export ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee /etc/zsh/zshenv > /dev/null
@@ -33,3 +30,4 @@ if [ "$SHELL" != "/bin/zsh" ]; then
   rm -rf "$HOME/.bash_history"
   rm -rf "$HOME/.bashrc"
 fi
+

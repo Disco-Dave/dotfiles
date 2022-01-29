@@ -1,9 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Configure pacman  --"
+set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -e
 
 sudo pacman -S --noconfirm --needed reflector
 
@@ -15,4 +14,4 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
 fi
 
 sed '/^#.*/d' /etc/xdg/reflector/reflector.conf | xargs sudo reflector
-sudo pacman -Sy
+sudo pacman -Syu --noconfirm

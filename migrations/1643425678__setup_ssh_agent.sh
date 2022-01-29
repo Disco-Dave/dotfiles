@@ -1,9 +1,10 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Setup ssh agent --"
+set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -e
+
+sudo pacman -S --noconfirm --needed openssh
 
 if [ "$ENVIRONMENT" != "sandbox" ]; then
   mkdir -p "$HOME/.ssh"

@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-~/.config/dotfiles/install.sh
+~/.config/dotfiles/migrate.sh run
 
 $@

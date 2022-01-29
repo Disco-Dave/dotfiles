@@ -1,9 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Setup Desktop --"
+set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -e
 
 if [ "$ENVIRONMENT" != "sandbox" ]; then
   sudo pacman -S --needed --noconfirm \

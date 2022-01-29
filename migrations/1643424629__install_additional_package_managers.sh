@@ -1,9 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Install additional package managers --"
+set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -e
 
 sudo pacman -S --noconfirm --needed fakeroot fwupd
 

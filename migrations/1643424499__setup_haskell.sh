@@ -1,9 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Setup Haskell --"
+set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
-set -e
 
 # Install dependencies for ghcup, ghc, cabal, stack, and hls
 sudo pacman -S --noconfirm --needed \
@@ -41,3 +40,4 @@ ln -sfn "$_DOTFILES_HOME/haskell/stack-config.yaml" "$STACK_ROOT/config.yaml"
 
 # Set fourmolu settings
 ln -sfn "$_DOTFILES_HOME/haskell/fourmolu.yaml" "$XDG_CONFIG_HOME/fourmolu.yaml"
+

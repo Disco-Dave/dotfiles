@@ -1,10 +1,8 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-echo "-- Setup ranger --"
-
-source "$_DOTFILES_HOME/zsh/zshenv"
 set -e
 
-sudo pacman -S --needed --noconfirm ranger
+source "$_DOTFILES_HOME/zsh/zshenv"
 
+sudo pacman -S --needed --noconfirm ranger
 ln -sfn "$_DOTFILES_HOME/ranger" "$XDG_CONFIG_HOME/ranger"
