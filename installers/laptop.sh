@@ -13,7 +13,7 @@ parted --script /dev/nvme0n1 mkpart luks 513MiB 100%
 
 # Setup luks/lvm
 cryptsetup luksFormat --type luks /dev/nvme0n1p2
-cryptsetup open /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate main /dev/mapper/cryptlvm
 lvcreate -l 32G main -n swap
