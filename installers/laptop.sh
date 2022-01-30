@@ -20,7 +20,7 @@ lvcreate -L 32G main -n swap
 lvcreate -l 100%FREE main -n root
 
 # Format the partitions
-mkfs.fat -F32 -n BOOT /dev/nvme0n1p2
+mkfs.fat -F32 -n BOOT /dev/nvme0n1p1
 mkswap -L SWAP /dev/main/swap
 mkfs.ext4 -L ROOT /dev/main/root
 
