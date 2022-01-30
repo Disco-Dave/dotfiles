@@ -17,6 +17,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     engrampa \
     feh \
     firefox \
+    firefox-tridactyl \
     gvfs \
     htop \
     libx11 \
@@ -30,6 +31,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     network-manager-applet \
     p7zip \
     pass \
+    passff-host \
     pasystray \
     pavucontrol \
     picom \

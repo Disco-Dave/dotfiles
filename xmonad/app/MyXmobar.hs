@@ -75,7 +75,7 @@ right = XmobarSettings $ \queue ->
         ]
     , Xmobar.sepChar = "%"
     , Xmobar.alignSep = "}{"
-    , Xmobar.template = "%UnsafeStdinReader% } %weather% { %cpu% | %memory% * %swap%"
+    , Xmobar.template = "%reader% } %weather% { %cpu% | %memory% * %swap%"
     }
 
 withXmobar :: [XmobarSettings] -> ((String -> IO ()) -> IO a) -> IO a

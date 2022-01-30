@@ -98,7 +98,7 @@ arch-chroot /mnt pacman -S --noconfirm --needed xf86-video-intel
 SCRIPT_PATH=$(realpath "$0")
 DOTFILES_PATH=$(dirname "$SCRIPT_PATH" | xargs dirname)
 mkdir -p "/mnt/home/$USER/.config"
-arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config"
+arch-chroot /mnt chown -R $USER:$USER "/home/$USER/.config"
 rsync -arv "$DOTFILES_PATH" "/mnt/home/$USER/.config/"
-arch-chroot /mnt chown -R $USER:$USER  "/home/$USER/.config/dotfiles"
+arch-chroot /mnt chown -R $USER:$USER "/home/$USER/.config/dotfiles"
 arch-chroot /mnt chmod -R u=rwx,g=rwx,o= "/home/$USER/.config/dotfiles"
