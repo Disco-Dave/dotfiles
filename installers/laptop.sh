@@ -16,7 +16,7 @@ cryptsetup luksFormat --type luks /dev/nvme0n1p2
 cryptsetup open /dev/nvme0n1p2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate main /dev/mapper/cryptlvm
-lvcreate -l 32G main -n swap
+lvcreate -L 32G main -n swap
 lvcreate -l 100%FREE main -n root
 
 # Format the partitions
