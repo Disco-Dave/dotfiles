@@ -12,8 +12,12 @@ parted --script /dev/nvme0n1 set 1 esp on
 parted --script /dev/nvme0n1 mkpart luks 513MiB 100%
 
 # Setup luks/lvm
-cryptsetup luksFormat --type luks /dev/nvme0n1p2
-cryptsetup open /dev/nvme0n1p2 cryptlvm
+until cryptsetup luksFormat --type luks /dev/nvme0n1p2; do
+  echo "Try again"
+done
+until cryptsetup open /dev/nvme0n1p2 cryptlvm; do
+  echo "Try again"
+done
 pvcreate /dev/mapper/cryptlvm
 vgcreate main /dev/mapper/cryptlvm
 lvcreate -L 32G main -n swap
@@ -64,7 +68,9 @@ arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
 echo "Set the password for root"
-arch-chroot /mnt passwd
+until arch-chroot /mnt passwd; do
+  echo "Try again"
+done
 
 # Configure boot loader
 arch-chroot /mnt bootctl install
@@ -81,7 +87,9 @@ arch-chroot /mnt useradd --create-home --groups wheel --shell /bin/bash $USER
 arch-chroot /mnt pacman -S --noconfirm --needed sudo
 sed -i '/# %wheel ALL=(ALL) ALL/s/^# //g' /mnt/etc/sudoers
 echo "Set the password for $USER"
-arch-chroot /mnt passwd $USER
+until arch-chroot /mnt passwd $USER; do
+  echo "Try again"
+done
 
 # Enable automatic login
 mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
