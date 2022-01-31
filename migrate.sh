@@ -5,6 +5,9 @@ set -e
 dotfiles_home="$(dirname "$(realpath "$0")")"
 export _DOTFILES_HOME="$dotfiles_home"
 
+local_hostname="$(hostnamectl hostname)"
+export _HOSTNAME="$local_hostname"
+
 function print_usage() {
   cat << EOF
 Manage or execute migration scripts for my dotfiles

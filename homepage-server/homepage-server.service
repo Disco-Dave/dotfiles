@@ -1,0 +1,8 @@
+[Unit]
+Description=Host our custom homepage for use with Firefox
+
+[Service]
+ExecStart=/home/david/.local/bin/homepage-server --port 11988
+
+[Install]
+WantedBy=default.target
