@@ -1,0 +1,71 @@
+searches:
+  - name: "DuckDuckGo"
+    image: "duckduckgo.png"
+    href: "https://duckduckgo.com/?q="
+
+  - name: "Arch Linux Wiki"
+    image: "archlinux.png"
+    href: "https://wiki.archlinux.org/index.php?search="
+
+  - name: "Hoogle"
+    image: "haskell.png"
+    href: "https://hoogle.haskell.org/?hoogle="
+
+  - name: "MDN Web Docs"
+    image: "mdn.png"
+    href: "https://developer.mozilla.org/en-US/search?q="
+
+  - name: "Wikipedia"
+    image: "wikipedia.png"
+    href: "https://en.wikipedia.org/w/index.php?search="
+
+  - name: "Youtube"
+    image: "youtube.png"
+    href: "https://www.youtube.com/results?search_query="
+
+linkGroups:
+  - name: "News"
+    links:
+      - name: "Hacker News"
+        href: "https://news.ycombinator.com/"
+
+      - name: "Lobsters"
+        href: "https://lobste.rs/"
+
+      - name: "Haskell Planetarium"
+        href: "https://haskell.pl-a.net/"
+
+      - name: "Haskell Weekly"
+        href: "https://haskellweekly.news/"
+
+      - name: "This Week in Rust"
+        href: "Haskell Planetarium"
+
+
+  - name: "API Docs"
+    links:
+      - name: "MDN Web Docs"
+        href: "https://developer.mozilla.org/en-US/docs/Web"
+
+      - name: "Arch Wiki"
+        href: "https://wiki.archlinux.org/index.php"
+
+      - name: "Hoogle"
+        href: "https://hoogle.haskell.org/"
+
+      - name: "Elm Packages"
+        href: "https://package.elm-lang.org/"
+
+  - name: "Discources"
+    links:
+      - name: "Haskell"
+        href: "https://discourse.haskell.org/"
+
+      - name: "Rust"
+        href: "https://users.rust-lang.org/"
+
+      - name: "Purescript"
+        href: "https://discourse.purescript.org/"
+
+      - name: "Elm"
+        href: "https://discourse.elm-lang.org/"
