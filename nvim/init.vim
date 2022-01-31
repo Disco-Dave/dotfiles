@@ -4,7 +4,7 @@ Plug 'Raimondi/delimitMate' " Auto-close quotes, parenthesis, brackets, etc.
 Plug 'duff/vim-bufonly' " A script to close all buffers but the one that is open
 Plug 'itchyny/lightline.vim' " Adds a statusline
 Plug 'jpalardy/vim-slime' " Adds REPL support
-Plug 'junegunn/rainbow_parentheses.vim' " Color codes parenthesis or brackets
+Plug 'luochen1990/rainbow' " Color codes parenthesis or brackets
 Plug 'mattn/emmet-vim', { 'for': [ 'html', 'css', 'javascriptreact' ] } " html snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " VSCode like LSP client
 Plug 'romainl/vim-cool' " Disables search highlighting when you are done searching and re-enables it when you search again 
@@ -17,9 +17,9 @@ Plug 'vim-scripts/Tabmerge' " A script to merge tabs
 Plug 'arcticicestudio/nord-vim' " nord color scheme
 Plug 'editorconfig/editorconfig-vim' " editorconfig support
 Plug 'vmchale/dhall-vim' " dhall support
-
-Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vimwiki-sync'
+Plug 'tpope/vim-surround' " Keybindings for surrounding things with quotes, parenthesis, etc.
+Plug 'vimwiki/vimwiki' " Personal wiki managed inside vim, useful notes.
+Plug 'michal-h21/vimwiki-sync' " Synchronize vimwiki with git
 
 call plug#end()
 
@@ -142,6 +142,7 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 " CoC extensions
 let g:coc_global_extensions=[
     \ 'coc-css',
+    \ 'coc-diagnostic',
     \ 'coc-docker',
     \ 'coc-eslint',
     \ 'coc-fsharp',
@@ -158,8 +159,7 @@ let g:coc_global_extensions=[
 \ ]
 
 " Rainbow parens
-let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-autocmd Syntax * RainbowParentheses
+let g:rainbow_active = 1
 
 " Since lightline shows the mode, we no longer need it shown on the last line
 set noshowmode
@@ -200,4 +200,54 @@ endfunction
 
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '~/.local/share/personal-wiki'}]
+let g:vimwiki_list = [{
+  \ 'path': '~/.local/share/personal-wiki', 
+  \ 'auto_toc': 1, 
+  \ 'auto_diary_index': 1, 
+  \ 'diary_caption_level': -1,
+  \ 'nested_syntaxes': {
+    \ 'bash': 'bash',
+    \ 'cabal': 'cabal',
+    \ 'csharp': 'csharp',
+    \ 'css': 'css',
+    \ 'dhall': 'dhall',
+    \ 'elm': 'elm',
+    \ 'fsharp': 'fsharp',
+    \ 'go': 'go',
+    \ 'haskell': 'haskell',
+    \ 'html': 'html',
+    \ 'javascript': 'javascript',
+    \ 'json': 'json',
+    \ 'purescript': 'purescript',
+    \ 'python': 'python',
+    \ 'ruby': 'ruby',
+    \ 'rust': 'rust',
+    \ 'sh': 'sh',
+    \ 'sql': 'sql',
+    \ 'typescript': 'typescript',
+    \ 'vim': 'vim',
+    \ 'yaml': 'yaml',
+    \ 'zsh': 'zsh'
+    \ }
+  \ }]
+
+function! VimwikiLinkHandler(link)
+  " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+  "   1) [[vfile:~/Code/PythonProject/abc123.py]]
+  "   2) [[vfile:./|Wiki Home]]
+  let link = a:link
+  if link =~# '^vfile:'
+    let link = link[1:]
+  else
+    return 0
+  endif
+  let link_infos = vimwiki#base#resolve_link(link)
+  if link_infos.filename == ''
+    echomsg 'Vimwiki Error: Unable to resolve link!'
+    return 0
+  else
+    exe 'tabnew ' . fnameescape(link_infos.filename)
+    return 1
+  endif
+endfunction
+

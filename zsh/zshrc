@@ -55,7 +55,7 @@ export SAVEHIST=99999999
 # https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 PS1='%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
-%(?..[%?] )%(!.#.$) '
+%F{red}%(?..%? )%f%(!.#.$) '
 RPS1="[%*]"
 
 

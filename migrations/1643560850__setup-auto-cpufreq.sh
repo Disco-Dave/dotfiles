@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -e
 
@@ -10,5 +10,5 @@ if [[ "$(hostnamectl hostname)" == "laptop" ]]; then
   sudo rm -f /etc/auto-cpufreq.conf
   sudo ln -sf "$_DOTFILES_HOME/auto-cpufreq/auto-cpufreq.conf" /etc/auto-cpufreq.conf
 
-  sudo auto-cpufreq --install
+  sudo systemctl enable --now auto-cpufreq
 fi

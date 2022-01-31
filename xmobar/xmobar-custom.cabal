@@ -1,17 +1,13 @@
 cabal-version: 3.0
-name: xmonad-custom
+name: xmobar-custom
 version: 0.1.0.0
 
-executable xmonad
-  default-language: Haskell2010
+common shared
+  default-language: Haskell2010 
 
-  build-depends: 
-    , X11 >= 1.10.2
+  build-depends:
     , base ^>=4.14.3.0
-    , containers >= 0.6.5
-    , text >= 1.2.4
-    , xmonad >= 0.17.0
-    , xmonad-contrib >= 0.17.0
+    , xmobar ^>=0.41
 
   default-extensions:
     LambdaCase
@@ -42,6 +38,12 @@ executable xmonad
     -rtsopts
     -with-rtsopts=-N
 
-  main-is: Main.hs
   hs-source-dirs: app
-  other-modules:
+
+executable xmobar-primary
+  import: shared
+  main-is: Primary.hs
+
+executable xmobar-secondary
+  import: shared
+  main-is: Secondary.hs
