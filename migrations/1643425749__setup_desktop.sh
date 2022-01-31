@@ -105,7 +105,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
 
   # picom
   if [[ ! -e "$XDG_CONFIG_HOME/picom/picom.conf" ]]; then
-    ln -sf "$_DOTFILES_HOME/picom/picom.conf" "$XDG_CONFIG_HOME/picom/picom.conf"
+    ln -sf "$_DOTFILES_HOME/picom/picom.conf" "$XDG_CONFIG_HOME/picom.conf"
   fi
 
   # stalonetray
