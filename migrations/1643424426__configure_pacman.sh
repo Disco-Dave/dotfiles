@@ -14,4 +14,4 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
 fi
 
 sed '/^#.*/d' /etc/xdg/reflector/reflector.conf | xargs sudo reflector
-sudo pacman -Syu --noconfirm
+sudo pacman -Syu --noconfirm archlinux-keyring
