@@ -138,6 +138,7 @@ myStartupHook isDesktop = do
     , "blueman-applet"
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
     , "lxsession"
+    , "redshift-gtk -l 40.19342:-76.7633"
     ]
       <> machineSpecifcCommands
 

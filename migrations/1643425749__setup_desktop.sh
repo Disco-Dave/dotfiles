@@ -7,6 +7,7 @@ source "$_DOTFILES_HOME/zsh/zshenv"
 if [ "$ENVIRONMENT" != "sandbox" ]; then
   sudo pacman -S --needed --noconfirm \
     alacritty \
+    alsa-utils \
     arc-gtk-theme \
     arc-icon-theme \
     atril \
