@@ -1,0 +1,4 @@
+#!/bin/bash
+
+topgrade -y
+~/.config/dotfiles/migrate.sh run
