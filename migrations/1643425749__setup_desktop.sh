@@ -26,6 +26,7 @@ if [ "$ENVIRONMENT" != "sandbox" ]; then
     libxinerama \
     libxrandr \
     libxss \
+    lxsession \
     mpc \
     mpd \
     mpv \
