@@ -6,13 +6,14 @@ executable xmonad
   default-language: Haskell2010
 
   build-depends: 
-    , X11 >= 1.10.2
-    , base ^>=4.14.3.0
-    , containers >= 0.6.5
-    , text >= 1.2.4
-    , xmonad >= 0.17.0
-    , xmonad-contrib >= 0.17.0
-
+    , X11 >= 1.10.2 && < 1.11
+    , base >= 4.14.3 && < 4.15
+    , bytestring >= 0.10.12 && < 0.11
+    , containers >= 0.6.5 && < 0.7
+    , text >= 1.2.4 && < 1.3
+    , xmonad >= 0.17.0 && < 0.18
+    , xmonad-contrib >= 0.17.0 && < 0.18
+  
   default-extensions:
     LambdaCase
     NamedFieldPuns
@@ -45,3 +46,5 @@ executable xmonad
   main-is: Main.hs
   hs-source-dirs: app
   other-modules:
+    Hostname
+    Colors.Nord
