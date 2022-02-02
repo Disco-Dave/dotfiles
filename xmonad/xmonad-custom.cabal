@@ -46,5 +46,6 @@ executable xmonad
   main-is: Main.hs
   hs-source-dirs: app
   other-modules:
-    Hostname
     Colors.Nord
+    Hostname
+    Theme
