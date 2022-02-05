@@ -7,5 +7,5 @@ for FOLDER in "$@"; do
 
     rsync -av "$FOLDER"/ "$NEW_FOLDER"/ --exclude="**/*.flac"
 
-    fd --search-path "$FOLDER" -t f -e flac -x ffmpeg -i "{}" -qscale:a 0 "$NEW_FOLDER/{/}.mp3"
+    fd --search-path "$FOLDER" -t f -e flac -x ffmpeg -i "{}" -qscale:a 0 "$NEW_FOLDER/{/.}.mp3"
 done
