@@ -1,2 +1,13 @@
 cradle:
   cabal:
+    - path: "src"
+      component: "lib:xmonad-local"
+
+    - path: "./MyXMonad.hs"
+      component: "xmonad-local:exe:xmonad"
+
+    - path: "./MyXmobarPrimary.hs"
+      component: "xmonad-local:exe:xmobar-primary"
+
+    - path: "./MyXmobarSecondary.hs"
+      component: "xmonad-local:exe:xmobar-secondary"

@@ -1,4 +1,4 @@
-packages: *
+packages: xmonad-local.cabal
 
 with-compiler: ghc-8.10.7
 
@@ -7,4 +7,3 @@ package xmonad-contrib
 
 package xmobar
   flags: +all_extensions
-
