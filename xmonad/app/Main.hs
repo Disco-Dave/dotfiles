@@ -128,7 +128,6 @@ myStartupHook isDesktop = do
       then ["stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc"]
       else
         [ "stalonetray -c $XDG_CONFIG_HOME/stalonetray/stalonetrayrc --icon-size 22 --slot-size 30 --geometry \"1x1-3840+0\" --max-geometry \"50x1-3840+0\""
-        , "birdtray -H"
         ]
   autoStartCommands =
     [ "mpv $XDG_CONFIG_HOME/dotfiles/assets/startup.mp3"
@@ -139,6 +138,7 @@ myStartupHook isDesktop = do
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
     , "lxsession"
     , "redshift-gtk -l 40.19342:-76.7633"
+    , "birdtray -H"
     ]
       <> machineSpecifcCommands
 
