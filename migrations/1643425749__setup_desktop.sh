@@ -4,7 +4,7 @@ set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
 
-if [ "$ENVIRONMENT" != "sandbox" ]; then
+if [ "$_HOSTNAME" != "sandbox" ]; then
   sudo pacman -S --needed --noconfirm \
     alacritty \
     alsa-utils \

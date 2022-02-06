@@ -1,4 +1,6 @@
-module Theme where
+module Theme (
+  Theme (..),
+) where
 
 data Theme color = Theme
   { windowFocused :: color

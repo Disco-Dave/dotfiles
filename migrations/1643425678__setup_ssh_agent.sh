@@ -6,7 +6,7 @@ source "$_DOTFILES_HOME/zsh/zshenv"
 
 sudo pacman -S --noconfirm --needed openssh
 
-if [ "$ENVIRONMENT" != "sandbox" ]; then
+if [ "$_HOSTNAME" != "sandbox" ]; then
   mkdir -p "$HOME/.ssh"
 
   if [[ ! -f "$HOME/.ssh/config" ]]; then

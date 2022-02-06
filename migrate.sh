@@ -5,7 +5,7 @@ set -e
 dotfiles_home="$(dirname "$(realpath "$0")")"
 export _DOTFILES_HOME="$dotfiles_home"
 
-local_hostname="$(hostnamectl hostname)"
+local_hostname="$(cat /etc/hostname)"
 export _HOSTNAME="$local_hostname"
 
 function print_usage() {

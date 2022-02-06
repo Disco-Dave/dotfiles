@@ -9,7 +9,7 @@ sudo pacman -S --noconfirm --needed reflector
 sudo ln -sf "$_DOTFILES_HOME/pacman/reflector.conf" /etc/xdg/reflector/reflector.conf
 sudo ln -sf "$_DOTFILES_HOME/pacman/pacman.conf" /etc/pacman.conf
 
-if [ "$ENVIRONMENT" != "sandbox" ]; then
+if [ "$_HOSTNAME" != "sandbox" ]; then
   sudo systemctl enable reflector.timer
 fi
 

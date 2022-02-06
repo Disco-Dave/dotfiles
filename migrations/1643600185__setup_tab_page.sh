@@ -4,7 +4,7 @@ set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
 
-if [[ "$_HOSTNAME" != "virt" ]]; then
+if [[ "$_HOSTNAME" != "sandbox" ]]; then
   sudo pacman -S --needed --noconfirm miniserve
 
   mkdir -p ~/.local/share/sources

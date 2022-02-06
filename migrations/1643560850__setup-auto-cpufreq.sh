@@ -4,7 +4,7 @@ set -e
 
 source "$_DOTFILES_HOME/zsh/zshenv"
 
-if [[ "$(hostnamectl hostname)" == "laptop" ]]; then
+if [[ "$_HOSTNAME" == "laptop" ]]; then
   paru -S --needed --noconfirm auto-cpufreq
 
   sudo rm -f /etc/auto-cpufreq.conf

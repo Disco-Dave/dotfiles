@@ -31,3 +31,4 @@ if [ "$SHELL" != "/bin/zsh" ]; then
   rm -rf "$HOME/.bashrc"
 fi
 
+zplug install || true

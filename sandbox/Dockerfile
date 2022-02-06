@@ -1,15 +1,15 @@
 FROM archlinux:latest
 
-RUN pacman -Syu --noconfirm sudo
+RUN pacman -Syu --noconfirm sudo base-devel
+RUN echo "sandbox" > /etc/hostname
+RUN useradd --create-home --shell /bin/bash --groups wheel tester \
+  && sed -i '/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/s/^#//g' /etc/sudoers
 
-RUN useradd --create-home --shell /bin/bash --groups wheel testuser \
-  && sed -i '/%wheel ALL=(ALL) NOPASSWD: ALL/s/^#//g' /etc/sudoers
+WORKDIR /home/tester
+USER tester
 
-WORKDIR /home/testuser
-USER testuser
+COPY --chown=tester:tester . /home/tester/.config/dotfiles/
 
-COPY --chown=testuser:testuser . /home/testuser/.config/dotfiles/
+RUN /home/tester/.config/dotfiles/migrate.sh run
 
-ENV ENVIRONMENT "sandbox"
-
-ENTRYPOINT ["/home/testuser/.config/dotfiles/sandbox/entrypoint.sh"]
+ENTRYPOINT ["/bin/zsh"]

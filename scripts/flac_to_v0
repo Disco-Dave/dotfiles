@@ -2,10 +2,10 @@
 
 set -e
 
-# TODO: Look into https://wiki.archlinux.org/index.php/Convert_FLAC_to_MP3#Parallel_with_recursion
+for FOLDER in "$@"; do
+    NEW_FOLDER="$HOME/music/$(basename "$FOLDER")"
 
-for folder in "$@"; do
-    new_folder="$HOME"/music/"$(basename "$folder")"
-    rsync -av "$folder"/ "$new_folder"/ --exclude="*.flac"
-    parallel ffmpeg -i {} -qscale:a 0 "'$new_folder'"/{/.}.mp3 ::: "$folder"/*.flac   
+    rsync -av "$FOLDER"/ "$NEW_FOLDER"/ --exclude="**/*.flac"
+
+    fd --search-path "$FOLDER" -t f -e flac -x ffmpeg -i "{}" -qscale:a 0 "$NEW_FOLDER/{/.}.mp3"
 done
