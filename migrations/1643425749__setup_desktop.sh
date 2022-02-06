@@ -86,15 +86,6 @@ if [ "$_HOSTNAME" != "sandbox" ]; then
     ln -sf "$_DOTFILES_HOME/X11" "$XDG_CONFIG_HOME/X11"
   fi
 
-  # xmobar
-  if [[ ! -e "$XDG_CONFIG_HOME/xmobar" ]]; then
-    ln -sf "$_DOTFILES_HOME/xmobar" "$XDG_CONFIG_HOME/xmobar"
-  fi
-  (
-    cd "$XDG_CONFIG_HOME/xmobar"
-    cabal install --overwrite-policy=always
-  )
-
   # xmonad
   if [[ ! -e "$XDG_CONFIG_HOME/xmonad" ]]; then
     ln -sf "$_DOTFILES_HOME/xmonad" "$XDG_CONFIG_HOME/xmonad"

@@ -7,6 +7,6 @@ trap 'rm -r $TEMP_DIR' exit
 
 cd "$XDG_CONFIG_HOME/xmonad"
 
-cabal build
-cp "$(cabal list-bin xmonad)" "$TEMP_DIR/xmonad"
+cabal build exe:xmonad
+cp "$(cabal list-bin exe:xmonad)" "$TEMP_DIR/xmonad"
 mv "$TEMP_DIR/xmonad" "$1"

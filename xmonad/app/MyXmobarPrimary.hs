@@ -26,7 +26,7 @@ config =
         [ Run $ Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
         , Run UnsafeStdinReader
         , Run $ ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-        , Run $ Com "bash" ["/home/david/.config/xmobar/padding-icon.sh", "stalonetray"] "tray" 10
+        , Run $ Com "bash" ["/home/david/.config/xmonad/padding-icon.sh", "stalonetray"] "tray" 10
         ]
     , sepChar = "%"
     , alignSep = "}{"
@@ -35,3 +35,4 @@ config =
 
 main :: IO ()
 main = xmobar config
+

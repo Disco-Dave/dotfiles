@@ -1,4 +1,4 @@
-module Theme (
+module XMonad.Local.Theme (
   Theme (..),
 ) where
 
@@ -12,3 +12,4 @@ data Theme color = Theme
   , xmobarWindowName :: color
   }
   deriving (Show, Eq)
+

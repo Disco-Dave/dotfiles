@@ -1,4 +1,4 @@
-module Hostname (
+module XMonad.Local.Hostname (
   Hostname (..),
   fromText,
   getHostname,
@@ -31,3 +31,4 @@ getHostname = do
   bytes <- ByteString.readFile "/etc/hostname"
   let rawHostname = Encoding.decodeUtf8With lenientDecode bytes
   pure $ fromText rawHostname
+

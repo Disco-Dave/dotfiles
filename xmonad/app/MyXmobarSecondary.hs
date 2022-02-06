@@ -36,3 +36,4 @@ config =
 
 main :: IO ()
 main = xmobar config
+

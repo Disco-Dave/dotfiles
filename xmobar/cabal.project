@@ -1,6 +1,0 @@
-packages: *
-
-with-compiler: ghc-8.10.7
-
-package xmobar
-  flags: +all_extensions

@@ -1,4 +1,4 @@
-module Colors.Nord (
+module XMonad.Local.Colors.Nord (
   polarNight0,
   polarNight1,
   polarNight2,
@@ -66,3 +66,4 @@ auroraGreen = "#A3BE8C"
 
 auroraPurple :: IsString color => color
 auroraPurple = "#B48EAD"
+
