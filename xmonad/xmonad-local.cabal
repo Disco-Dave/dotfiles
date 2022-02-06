@@ -1,10 +1,10 @@
 cabal-version: 3.0
+
 name: xmonad-local
 version: 0.1.0.0
 
 common shared
   default-language: Haskell2010
-
   build-depends: 
     , X11 >= 1.10.2 && < 1.11
     , base >= 4.14.3 && < 4.15
@@ -14,7 +14,6 @@ common shared
     , xmobar ^>=0.41
     , xmonad >= 0.17.0 && < 0.18
     , xmonad-contrib >= 0.17.0 && < 0.18
-  
   default-extensions:
     LambdaCase
     NamedFieldPuns
@@ -24,7 +23,6 @@ common shared
     StrictData
     TypeApplications
     ViewPatterns
-
   ghc-options:
     -Weverything 
     -Wno-implicit-prelude 
@@ -43,51 +41,30 @@ common shared
 
 library
   import: shared
-
   hs-source-dirs: src
   exposed-modules:
     XMonad.Local.Colors.Nord
     XMonad.Local.Hostname
     XMonad.Local.Theme
 
-executable xmonad
+common shared-exe
   import: shared
-
   hs-source-dirs: app
+  ghc-options:
+    -threaded
+    -rtsopts
+    -with-rtsopts=-N
+  build-depends:
+    , xmonad-local
+
+executable xmonad
+  import: shared-exe
   main-is: MyXMonad.hs
 
-  ghc-options:
-    -threaded
-    -rtsopts
-    -with-rtsopts=-N
-
-  build-depends:
-    , xmonad-local
-
 executable xmobar-primary
-  import: shared
-
-  hs-source-dirs: app
+  import: shared-exe
   main-is: MyXmobarPrimary.hs
 
-  ghc-options:
-    -threaded
-    -rtsopts
-    -with-rtsopts=-N
-
-  build-depends:
-    , xmonad-local
-
 executable xmobar-secondary
-  import: shared
-
-  hs-source-dirs: app
+  import: shared-exe
   main-is: MyXmobarSecondary.hs
-
-  ghc-options:
-    -threaded
-    -rtsopts
-    -with-rtsopts=-N
-
-  build-depends:
-    , xmonad-local
