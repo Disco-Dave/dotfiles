@@ -66,4 +66,3 @@ auroraGreen = "#A3BE8C"
 
 auroraPurple :: IsString color => color
 auroraPurple = "#B48EAD"
-
