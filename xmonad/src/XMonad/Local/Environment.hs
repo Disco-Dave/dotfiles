@@ -3,22 +3,22 @@ module XMonad.Local.Environment (
   getEnvironment,
 ) where
 
+import XMonad.Local.FilePaths (FilePaths)
+import qualified XMonad.Local.FilePaths as FilePaths
 import XMonad.Local.Hostname (Hostname)
 import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Theme (Theme)
 import qualified XMonad.Local.Theme as Theme
 
 data Environment = Environment
-  { envHostname :: Hostname
-  , envTheme :: Theme
+  { envTheme :: Theme
+  , envHostname :: Hostname
+  , envFilePaths :: FilePaths
   }
   deriving (Show, Eq)
 
 getEnvironment :: IO Environment
-getEnvironment = do
-  hostname <- Hostname.getHostname
-  pure $
-    Environment
-      { envHostname = hostname
-      , envTheme = Theme.nord
-      }
+getEnvironment =
+  Environment Theme.nord
+    <$> Hostname.getHostname
+    <*> FilePaths.getFilePaths

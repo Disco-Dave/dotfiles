@@ -2,7 +2,9 @@ module Main (main) where
 
 import qualified Control.Concurrent.Async as Async
 import qualified Data.Text as Text
+import qualified System.FilePath as FilePath
 import XMonad.Local.Environment (Environment (..), getEnvironment)
+import qualified XMonad.Local.FilePaths as FilePaths
 import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Theme (Theme (Theme))
 import qualified XMonad.Local.Theme as Theme
@@ -31,22 +33,28 @@ defaultConfig Theme{themeFont, themeXmobar} =
     , Xmobar.alignSep = "}{"
     }
 
-primary :: Theme -> Xmobar.Config
-primary theme =
-  (defaultConfig theme)
-    { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
-    , Xmobar.commands =
-        [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
-        , Xmobar.Run Xmobar.UnsafeStdinReader
-        , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-        , Xmobar.Run $ Xmobar.Com "bash" ["/home/david/.config/xmonad/padding-icon.sh", "stalonetray"] "tray" 10
-        ]
-    , Xmobar.template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
-    }
+primary :: Environment -> Xmobar.Config
+primary env =
+  let paddingIconScript =
+        FilePath.joinPath
+          [ FilePaths.xdgConfig $ envFilePaths env
+          , "xmonad"
+          , "padding-icon.sh"
+          ]
+   in (defaultConfig (envTheme env))
+        { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
+        , Xmobar.commands =
+            [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
+            , Xmobar.Run Xmobar.UnsafeStdinReader
+            , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
+            , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "stalonetray"] "tray" 10
+            ]
+        , Xmobar.template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
+        }
 
-secondary :: Theme -> Xmobar.Config
-secondary theme =
-  (defaultConfig theme)
+secondary :: Environment -> Xmobar.Config
+secondary env =
+  (defaultConfig (envTheme env))
     { Xmobar.position = Xmobar.OnScreen 1 Xmobar.Top
     , Xmobar.commands =
         [ Xmobar.Run Xmobar.UnsafeStdinReader
@@ -63,12 +71,9 @@ main = do
   env <- getEnvironment
 
   let spawn config =
-        let theme = envTheme env
-         in Xmobar.xmobar (config theme)
+        Xmobar.xmobar (config env)
 
-  let configs =
-        case envHostname env of
-          Hostname.Desktop -> [primary, secondary]
-          _ -> [primary]
-
-  Async.mapConcurrently_ spawn configs
+  Async.mapConcurrently_ spawn $
+    case envHostname env of
+      Hostname.Desktop -> [primary, secondary]
+      _ -> [primary]
