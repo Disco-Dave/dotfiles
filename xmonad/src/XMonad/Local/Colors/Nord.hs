@@ -17,52 +17,52 @@ module XMonad.Local.Colors.Nord (
   auroraPurple,
 ) where
 
-import Data.String (IsString)
+import Data.Text (Text)
 
-polarNight0 :: IsString color => color
+polarNight0 :: Text
 polarNight0 = "#2E3440"
 
-polarNight1 :: IsString color => color
+polarNight1 :: Text
 polarNight1 = "#3B4252"
 
-polarNight2 :: IsString color => color
+polarNight2 :: Text
 polarNight2 = "#434C5E"
 
-polarNight3 :: IsString color => color
+polarNight3 :: Text
 polarNight3 = "#4C566A"
 
-snowStorm0 :: IsString color => color
+snowStorm0 :: Text
 snowStorm0 = "#D8DEE9"
 
-snowStorm1 :: IsString color => color
+snowStorm1 :: Text
 snowStorm1 = "#E5E9F0"
 
-snowStorm2 :: IsString color => color
+snowStorm2 :: Text
 snowStorm2 = "#ECEFF4"
 
-frost0 :: IsString color => color
+frost0 :: Text
 frost0 = "#8FBCBB"
 
-frost1 :: IsString color => color
+frost1 :: Text
 frost1 = "#88C0D0"
 
-frost2 :: IsString color => color
+frost2 :: Text
 frost2 = "#81A1C1"
 
-frost3 :: IsString color => color
+frost3 :: Text
 frost3 = "#5E81AC"
 
-auroraRed :: IsString color => color
+auroraRed :: Text
 auroraRed = "#BF616A"
 
-auroraOrange :: IsString color => color
+auroraOrange :: Text
 auroraOrange = "#D08770"
 
-auroraYellow :: IsString color => color
+auroraYellow :: Text
 auroraYellow = "#EBCB8B"
 
-auroraGreen :: IsString color => color
+auroraGreen :: Text
 auroraGreen = "#A3BE8C"
 
-auroraPurple :: IsString color => color
+auroraPurple :: Text
 auroraPurple = "#B48EAD"

@@ -3,11 +3,8 @@ cradle:
     - path: "src"
       component: "lib:xmonad-local"
 
-    - path: "app/MyXMonad.hs"
+    - path: "app/XmonadMain.hs"
       component: "xmonad-local:exe:xmonad"
 
-    - path: "app/MyXmobarPrimary.hs"
-      component: "xmonad-local:exe:xmobar-primary"
-
-    - path: "app/MyXmobarSecondary.hs"
-      component: "xmonad-local:exe:xmobar-secondary"
+    - path: "app/XmobarMain.hs"
+      component: "xmonad-local:exe:xmobar"

@@ -6,12 +6,14 @@ version: 0.1.0.0
 common shared
   default-language: Haskell2010
   build-depends: 
-    , X11 >= 1.10.2 && < 1.11
+    , async >= 2.2.4 && < 2.3
     , base >= 4.14.3 && < 4.15
     , bytestring >= 0.10.12 && < 0.11
     , containers >= 0.6.5 && < 0.7
     , text >= 1.2.4 && < 1.3
-    , xmobar ^>=0.41
+    , transformers >= 0.5.6 && < 0.6
+    , X11 >= 1.10.2 && < 1.11
+    , xmobar >= 0.41 && < 0.42
     , xmonad >= 0.17.0 && < 0.18
     , xmonad-contrib >= 0.17.0 && < 0.18
   default-extensions:
@@ -44,6 +46,7 @@ library
   hs-source-dirs: src
   exposed-modules:
     XMonad.Local.Colors.Nord
+    XMonad.Local.Environment
     XMonad.Local.Hostname
     XMonad.Local.Theme
 
@@ -59,12 +62,8 @@ common shared-exe
 
 executable xmonad
   import: shared-exe
-  main-is: MyXMonad.hs
+  main-is: XmonadMain.hs
 
-executable xmobar-primary
+executable xmobar
   import: shared-exe
-  main-is: MyXmobarPrimary.hs
-
-executable xmobar-secondary
-  import: shared-exe
-  main-is: MyXmobarSecondary.hs
+  main-is: XmobarMain.hs

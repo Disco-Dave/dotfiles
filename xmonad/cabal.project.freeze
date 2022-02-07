@@ -79,9 +79,9 @@ constraints: any.Cabal ==3.2.1.0,
              any.hourglass ==0.2.12,
              any.hsc2hs ==0.68.8,
              hsc2hs -in-ghc-tree,
-             any.http-client ==0.7.10,
+             any.http-client ==0.7.11,
              http-client +network-uri,
-             any.http-client-tls ==0.3.5.3,
+             any.http-client-tls ==0.3.6,
              any.http-conduit ==2.3.8,
              http-conduit +aeson,
              any.http-types ==0.12.3,
@@ -200,4 +200,4 @@ constraints: any.Cabal ==3.2.1.0,
              xmonad-contrib -pedantic +use_xft,
              any.zlib ==0.6.2.3,
              zlib -bundled-c-zlib -non-blocking-ffi -pkg-config
-index-state: hackage.haskell.org 2022-02-01T01:08:59Z
+index-state: hackage.haskell.org 2022-02-05T04:07:31Z
