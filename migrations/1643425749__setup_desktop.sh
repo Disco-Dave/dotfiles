@@ -10,6 +10,8 @@ if [ "$_HOSTNAME" != "sandbox" ]; then
     alsa-utils \
     arc-gtk-theme \
     arc-icon-theme \
+    aspell \
+    aspell-en \
     atril \
     blueman \
     bluez \
@@ -21,6 +23,8 @@ if [ "$_HOSTNAME" != "sandbox" ]; then
     firefox-tridactyl \
     gvfs \
     htop \
+    hunspell \
+    hunspell-en_us \
     libx11 \
     libxft \
     libxinerama \

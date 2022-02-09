@@ -1,10 +1,4 @@
 module XMonad.Local.Theme (
-  Font (..),
-  fontToXftText,
-  updateFontSize,
-  setFontSize,
-  Color (..),
-  colorToString,
   WindowColors (..),
   XmobarColors (..),
   DmenuColors (..),
@@ -12,37 +6,9 @@ module XMonad.Local.Theme (
   nord,
 ) where
 
-import Data.Text (Text)
-import qualified Data.Text as Text
-import Numeric.Natural (Natural)
-import qualified XMonad.Local.Colors.Nord as Nord
-
-data Font = Font
-  { fontFamily :: Text
-  , fontSize :: Natural
-  }
-  deriving (Show, Eq)
-
-fontToXftText :: Font -> Text
-fontToXftText Font{..} =
-  "xft:" <> fontFamily <> ":size=" <> Text.pack (show fontSize)
-
-updateFontSize :: (Natural -> Natural) -> Font -> Font
-updateFontSize updateSize font@Font{fontSize} =
-  font{fontSize = updateSize fontSize}
-
-setFontSize :: Natural -> Font -> Font
-setFontSize fontSize =
-  updateFontSize (const fontSize)
-
-newtype Color = Color
-  { colorToText :: Text
-  }
-  deriving (Show, Eq)
-
-colorToString :: Color -> String
-colorToString =
-  Text.unpack . colorToText
+import XMonad.Local.Theme.Color (Color)
+import XMonad.Local.Theme.Font (Font (..))
+import qualified XMonad.Local.Theme.Palettes.Nord as Nord
 
 data WindowColors = WindowColors
   { windowBorder :: Color
@@ -85,22 +51,22 @@ nord =
           }
     , themeWindow =
         WindowColors
-          { windowBorder = Color Nord.polarNight1
-          , windowBorderFocussed = Color Nord.frost2
+          { windowBorder = Nord.polarNight1
+          , windowBorderFocussed = Nord.frost2
           }
     , themeXmobar =
         XmobarColors
-          { xmobarBorder = Color Nord.polarNight1
-          , xmobarBackground = Color Nord.polarNight1
-          , xmobarForeground = Color Nord.snowStorm2
-          , xmobarSelectedLayout = Color Nord.auroraYellow
-          , xmobarTitle = Color Nord.auroraGreen
+          { xmobarBorder = Nord.polarNight1
+          , xmobarBackground = Nord.polarNight1
+          , xmobarForeground = Nord.snowStorm2
+          , xmobarSelectedLayout = Nord.auroraYellow
+          , xmobarTitle = Nord.auroraGreen
           }
     , themeDmenu =
         DmenuColors
-          { dmenuNormalBackground = Color Nord.polarNight1
-          , dmenuNormalForeground = Color Nord.snowStorm2
-          , dmenuSelectedBackground = Color Nord.frost2
-          , dmenuSelectedForeground = Color Nord.polarNight1
+          { dmenuNormalBackground = Nord.polarNight1
+          , dmenuNormalForeground = Nord.snowStorm2
+          , dmenuSelectedBackground = Nord.frost2
+          , dmenuSelectedForeground = Nord.polarNight1
           }
     }

@@ -1,24 +1,25 @@
 module Main (main) where
 
 import qualified Control.Concurrent.Async as Async
-import qualified Data.Text as Text
 import qualified System.FilePath as FilePath
 import XMonad.Local.Environment (Environment (..), getEnvironment)
 import qualified XMonad.Local.FilePaths as FilePaths
 import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Theme (Theme (Theme))
 import qualified XMonad.Local.Theme as Theme
+import qualified XMonad.Local.Theme.Color as Color
+import qualified XMonad.Local.Theme.Font as Font
 import qualified Xmobar
 
 defaultConfig :: Theme -> Xmobar.Config
 defaultConfig Theme{themeFont, themeXmobar} =
   Xmobar.defaultConfig
-    { Xmobar.font = Text.unpack $ Theme.fontToXftText themeFont
+    { Xmobar.font = Font.toXftString themeFont
     , Xmobar.additionalFonts = []
     , Xmobar.border = Xmobar.FullB
-    , Xmobar.borderColor = Theme.colorToString $ Theme.xmobarBorder themeXmobar
-    , Xmobar.bgColor = Theme.colorToString $ Theme.xmobarBackground themeXmobar
-    , Xmobar.fgColor = Theme.colorToString $ Theme.xmobarForeground themeXmobar
+    , Xmobar.borderColor = Color.toString $ Theme.xmobarBorder themeXmobar
+    , Xmobar.bgColor = Color.toString $ Theme.xmobarBackground themeXmobar
+    , Xmobar.fgColor = Color.toString $ Theme.xmobarForeground themeXmobar
     , Xmobar.alpha = 255
     , Xmobar.textOffset = -1
     , Xmobar.iconOffset = -1
