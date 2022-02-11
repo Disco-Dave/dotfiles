@@ -6,7 +6,7 @@ import Control.Monad.List (lift)
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
 import Data.Foldable (traverse_)
-import System.FilePath ((</>))
+import qualified System.FilePath as FilePath
 import XMonad (X)
 import qualified XMonad
 import XMonad.Hooks.SetWMName (setWMName)
@@ -32,8 +32,20 @@ startupHook = do
   configHome <- Reader.asks (FilePaths.xdgConfig . envFilePaths)
   hostname <- Reader.asks (Hostname.toString . envHostname)
 
-  let startupSound = configHome </> "dotfiles/assets/startup.mp3"
-      stalonetrayConfig = configHome </> "dotfiles/stalonetray" </> hostname
+  let startupSound =
+        FilePath.joinPath
+          [ configHome
+          , "dotfiles"
+          , "assets"
+          , "startup.mp3"
+          ]
+      stalonetrayConfig =
+        FilePath.joinPath
+          [ configHome
+          , "dotfiles"
+          , "stalonetray"
+          , hostname
+          ]
 
   lift . traverse_ spawnOnce $
     [ "mpv " <> startupSound
