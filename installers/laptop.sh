@@ -35,7 +35,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/main/swap
 
 # Install essential packages
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 intel-ucode
 
 # Generate fstab
 genfstab -L /mnt >> /mnt/etc/fstab
@@ -77,6 +77,7 @@ arch-chroot /mnt bootctl install
 {
   echo "title     Arch Linux"
   echo "linux     /vmlinuz-linux"
+  echo "initrd    /intel-ucode.img"
   echo "initrd    /initramfs-linux.img"
   echo "options   cryptdevice=UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/nvme0n1p2):cryptlvm  root=/dev/main/root rw"
 } >> /mnt/boot/loader/entries/arch.conf

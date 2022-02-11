@@ -2,6 +2,8 @@ module XMonad.Local.Hostname (
   Hostname (..),
   fromText,
   getHostname,
+  toText,
+  toString,
 ) where
 
 import qualified Data.ByteString as ByteString
@@ -25,6 +27,17 @@ fromText (Text.strip . Text.toCaseFold -> rawHostName)
   | otherwise = Other rawHostName
  where
   is hostname = Text.toCaseFold hostname == rawHostName
+
+toText :: Hostname -> Text
+toText = \case
+  Laptop -> "laptop"
+  Desktop -> "desktop"
+  Virt -> "virt"
+  Other hostname -> hostname
+
+toString :: Hostname -> String
+toString =
+  Text.unpack . toText
 
 getHostname :: IO Hostname
 getHostname = do

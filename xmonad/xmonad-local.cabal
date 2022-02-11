@@ -53,6 +53,7 @@ library
     XMonad.Local.FilePaths
     XMonad.Local.Hostname
     XMonad.Local.Keys
+    XMonad.Local.StartupHook
     XMonad.Local.Theme
     XMonad.Local.Theme.Color
     XMonad.Local.Theme.Font
