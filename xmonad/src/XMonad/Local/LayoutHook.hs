@@ -41,16 +41,16 @@ rename newName =
 
 tall =
   let numOfDefMasters = 1
+      delta = 3 / 100
       ratio = 1 / 2
-      delta = 3 / 300
-   in XMonad.Tall numOfDefMasters ratio delta
+   in XMonad.Tall numOfDefMasters delta ratio 
 
 wide =
   rename "Wide" $ XMonad.Mirror tall
 
 tallTabbed theme =
   Tabbed.tabbed Tabbed.shrinkText theme
-    & Master.mastered (1 / 100) (1 / 2)
+    & Master.mastered (3 / 100) (1 / 2)
     & rename "Tall Tabbed"
 
 layoutHook = do
