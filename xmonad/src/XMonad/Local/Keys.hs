@@ -65,7 +65,7 @@ dmenuFlags = do
 spawnDmenu :: String -> ReaderT Environment X ()
 spawnDmenu command = do
   flags <- dmenuFlags
-  XMonad.spawn $ command <> flags
+  XMonad.spawn $ command <> " " <> flags
 
 type KeyMap =
   XMonad.XConfig XMonad.Layout -> Map (X11.KeyMask, X11.KeySym) (ReaderT Environment X ())
