@@ -26,6 +26,9 @@ data XmobarColors = XmobarColors
   , xmobarForeground :: Color
   , xmobarSelectedLayout :: Color
   , xmobarTitle :: Color
+  , xmobarCurrentWs :: Color
+  , xmobarUrgentWs :: Color
+  , xmobarWindowTitle :: Color
   }
   deriving (Show, Eq)
 
@@ -69,6 +72,9 @@ nord =
           , xmobarForeground = Nord.snowStorm2
           , xmobarSelectedLayout = Nord.auroraYellow
           , xmobarTitle = Nord.auroraGreen
+          , xmobarCurrentWs = Nord.auroraYellow
+          , xmobarWindowTitle = Nord.auroraGreen
+          , xmobarUrgentWs = Nord.auroraRed
           }
     , themeDmenu =
         DmenuColors

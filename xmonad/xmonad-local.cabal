@@ -55,12 +55,15 @@ library
     XMonad.Local.Hostname
     XMonad.Local.Keys
     XMonad.Local.LayoutHook
+    XMonad.Local.ManageHook
     XMonad.Local.StartupHook
+    XMonad.Local.StatusBar
     XMonad.Local.Theme
     XMonad.Local.Theme.Color
     XMonad.Local.Theme.Font
     XMonad.Local.Theme.Palettes.Nord
     XMonad.Local.Utils
+    XMonad.Local.Workspaces
 
 common shared-exe
   import: shared
