@@ -20,6 +20,7 @@ common shared
     , xmonad >= 0.17.0 && < 0.18
     , xmonad-contrib >= 0.17.0 && < 0.18
   default-extensions:
+    FlexibleContexts
     LambdaCase
     NamedFieldPuns
     NumericUnderscores
@@ -53,6 +54,7 @@ library
     XMonad.Local.FilePaths
     XMonad.Local.Hostname
     XMonad.Local.Keys
+    XMonad.Local.LayoutHook
     XMonad.Local.StartupHook
     XMonad.Local.Theme
     XMonad.Local.Theme.Color

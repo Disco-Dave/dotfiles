@@ -13,6 +13,10 @@ import qualified XMonad.Local.Theme.Palettes.Nord as Nord
 data WindowColors = WindowColors
   { windowBorder :: Color
   , windowBorderFocussed :: Color
+  , windowBorderUrgent :: Color
+  , windowText :: Color
+  , windowTextFocussed :: Color
+  , windowTextUrgent :: Color
   }
   deriving (Show, Eq)
 
@@ -53,6 +57,10 @@ nord =
         WindowColors
           { windowBorder = Nord.polarNight1
           , windowBorderFocussed = Nord.frost2
+          , windowBorderUrgent = Nord.auroraRed
+          , windowText = Nord.snowStorm2
+          , windowTextFocussed = Nord.polarNight1
+          , windowTextUrgent = Nord.snowStorm2
           }
     , themeXmobar =
         XmobarColors
