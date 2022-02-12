@@ -29,7 +29,7 @@ fullScreenWindowCount = do
       then Just $ show numberOfWindows
       else Nothing
 
-pp :: ReaderT Environment X PP
+pp :: ReaderT Environment IO PP
 pp = do
   theme <- Reader.asks envTheme
 
@@ -50,8 +50,8 @@ pp = do
 addStatusBar ::
   XMonad.LayoutClass l XMonad.Window =>
   XMonad.XConfig l ->
-  ReaderT Environment X (XMonad.XConfig l)
+  ReaderT Environment IO (XMonad.XConfig l)
 addStatusBar xconfig = do
   env <- Reader.ask
-  sbConfig <- liftIO $ StatusBar.statusBarPipe "xmobar" (Reader.runReaderT pp env)
+  sbConfig <- liftIO $ StatusBar.statusBarPipe "xmobar" (liftIO $ Reader.runReaderT pp env)
   pure $ StatusBar.withSB sbConfig xconfig

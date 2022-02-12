@@ -2,10 +2,10 @@ module XMonad.Local.LayoutHook (
   layoutHook,
 ) where
 
-import Control.Monad.Reader (ReaderT)
+import Control.Monad.Reader (Reader)
 import qualified Control.Monad.Reader as Reader
 import Data.Function ((&))
-import XMonad (X, (|||))
+import XMonad ((|||))
 import qualified XMonad
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Layout.Decoration as Decoration
@@ -54,7 +54,7 @@ tallTabbed theme =
     & rename "Tall Tabbed"
 
 layoutHook = do
-  theme <- Reader.asks @_ @(ReaderT Environment X) envTheme
+  theme <- Reader.asks @_ @(Reader Environment) envTheme
   pure $
     let hooks =
           (ManageDocks.avoidStruts @_ @XMonad.Window)

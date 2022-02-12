@@ -2,12 +2,11 @@ module XMonad.Local.Workspaces (
   workspaces,
 ) where
 
-import Control.Monad.Reader (ReaderT)
-import XMonad (X)
+import Control.Monad.Reader (Reader)
 import XMonad.Hooks.StatusBar.PP as PP
 import XMonad.Local.Environment (Environment)
 
-workspaces :: ReaderT Environment X [String]
+workspaces :: Reader Environment [String]
 workspaces =
   let toWorkspaceId index =
         PP.xmobarAction ("xdotool key alt+" <> index) "1" index
