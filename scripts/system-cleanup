@@ -1,0 +1,5 @@
+#!/bin/bash
+
+paru -Sc --noconfirm
+
+docker system prune --all --volumes --force
