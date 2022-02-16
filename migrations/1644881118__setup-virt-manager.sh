@@ -9,6 +9,7 @@ if [[ "$_HOSTNAME" != "virt" && "$_HOSTNAME" != "sandbox" ]]; then
     bridge-utils \
     dmidecode \
     dnsmasq \
+    edk2-ovmf \
     iptables-nft \
     libvirt \
     openbsd-netcat \
@@ -19,4 +20,6 @@ if [[ "$_HOSTNAME" != "virt" && "$_HOSTNAME" != "sandbox" ]]; then
 
   sudo systemctl enable --now libvirtd
   sudo systemctl enable --now virtlogd
+
+  sudo virsh net-autostart default 
 fi

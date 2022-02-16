@@ -13,6 +13,21 @@ set -ex
 # 4. Select filesystem and enter both the source and target paths
 # 5. Once in the shell run `mount -t 9p -o trans=virtio <target> <some local dir>
 
+# Prompts:
+# - Confirm luks with YES
+# - Password for root luks
+# - Password for root luks
+# - Password for root luks
+# - Confirm luks with YES
+# - Password for extra luks
+# - Password for extra luks
+# - Password for extra luks
+# - Password for root user
+# - Password for root user
+# - Password for david user
+# - Password for david user
+
+
 # Update the system clock
 timedatectl set-ntp true
 
@@ -22,21 +37,33 @@ parted --script /dev/vda mkpart boot fat32 1MiB 513MiB
 parted --script /dev/vda set 1 esp on
 parted --script /dev/vda mkpart luks 513MiB 100%
 
+parted --script /dev/vdb mklabel gpt
+parted --script /dev/vdb mkpart luks 1MiB 100%
+
 # Setup luks/lvm
 cryptsetup luksFormat --type luks /dev/vda2
-cryptsetup open /dev/vda2 cryptlvm
-pvcreate /dev/mapper/cryptlvm
-vgcreate main /dev/mapper/cryptlvm
+cryptsetup open /dev/vda2 mainlvm
+pvcreate /dev/mapper/mainlvm
+vgcreate main /dev/mapper/mainlvm
 lvcreate -l 100%FREE main -n root
+
+cryptsetup luksFormat --type luks /dev/vdb1
+cryptsetup open /dev/vdb1 extralvm
+pvcreate /dev/mapper/extralvm
+vgcreate extra /dev/mapper/extralvm
+lvcreate -l 100%FREE extra -n main
 
 # Format the partitions
 mkfs.fat -F32 -n boot /dev/vda1
 mkfs.ext4 -L root /dev/main/root
+mkfs.ext4 -L extra /dev/extra/main
 
 # Mount the file systems
 mount /dev/main/root /mnt
 mkdir -p /mnt/boot
+mkdir -p /mnt/mnt/extra
 mount /dev/vda1 /mnt/boot
+mount /dev/extra/main /mnt/mnt/extra
 
 # Install essential packages
 pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2
@@ -67,7 +94,12 @@ echo "$HOSTNAME" > /mnt/etc/hostname
 arch-chroot /mnt systemctl enable NetworkManager
 
 # Generate initramfs
-sed -i 's/^HOOKS=.*/HOOKS=\(base udev autodetect modconf block keyboard keymap encrypt lvm2 filesystems fsck\)/' /mnt/etc/mkinitcpio.conf
+{
+  echo "main    UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/vda2)   none"
+  echo "extra   UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/vdb1)   none"
+} >> /mnt/etc/crypttab.initramfs
+
+sed -i 's/^HOOKS=.*/HOOKS=\(base systemd autodetect keyboard modconf block sd-encrypt lvm2 filesystems fsck\)/' /mnt/etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
