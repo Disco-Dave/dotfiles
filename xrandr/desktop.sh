@@ -13,7 +13,7 @@ xrandr --output DVI-I-0 \
 
 # Load Xresources file
 # https://wiki.archlinux.org/index.php/X_resources#xinitrc
-xresources="$HOME/.config/X11/compe_Xresources"
+xresources="$HOME/.config/X11/desktop_Xresources"
 [[ -f $xresources ]] && xrdb -merge -I$HOME $xresources
 
 xsetroot -xcf /usr/share/icons/Vanilla-DMZ/cursors/left_ptr 32
