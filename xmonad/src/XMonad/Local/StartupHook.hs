@@ -51,7 +51,7 @@ startupHook = do
     [ "mpv " <> startupSound
     , "stalonetray -c " <> stalonetrayConfig
     , "nm-applet"
-    , "xfce4-power-manager"
+    , "/usr/bin/xfce4-power-manager"
     , "pasystray"
     , "blueman-applet"
     , "lxsession"
