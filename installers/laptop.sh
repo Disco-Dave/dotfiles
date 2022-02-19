@@ -79,8 +79,11 @@ arch-chroot /mnt bootctl install
   echo "linux     /vmlinuz-linux"
   echo "initrd    /intel-ucode.img"
   echo "initrd    /initramfs-linux.img"
-  echo "options   cryptdevice=UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/nvme0n1p2):cryptlvm  root=/dev/main/root rw"
+  echo "options   cryptdevice=UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/nvme0n1p2):cryptlvm:allow-discards  root=/dev/main/root rw"
 } >> /mnt/boot/loader/entries/arch.conf
+
+# Enable periodic trim for sdds
+arch-chroot /mnt systemctl enable fstrim.timer
 
 # Create main user
 USER="david"

@@ -119,7 +119,7 @@ arch-chroot /mnt bootctl install
 USER="david"
 arch-chroot /mnt useradd --create-home --groups wheel --shell /bin/bash $USER
 arch-chroot /mnt pacman -S --noconfirm --needed sudo
-sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /mnt/etc/sudoers
+sed -i '/%wheel ALL=(ALL:ALL) ALL/s/^#//g' /mnt/etc/sudoers
 echo "Set the password for $USER"
 arch-chroot /mnt passwd $USER
 
