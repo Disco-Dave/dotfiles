@@ -1,6 +1,6 @@
 ##############################################################
 ## This is an example configuration file. Copy it to        ##
-## $XDG_CONFIG_HOME/ncmpcpp/config or $HOME/.ncmpcpp/config ##
+## $XDG_CONFIG_HOME/ncmpcpp/config or ~/.ncmpcpp/config ##
 ## and set up your preferences.                             ##
 ##############################################################
 #
@@ -12,14 +12,14 @@
 ## ncmpcpp.
 ##
 #
-ncmpcpp_directory = "$XDG_DATA_HOME/ncmpcpp"
+ncmpcpp_directory = "~/.local/share/ncmpcpp"
 #
 ##
 ## Directory for storing downloaded lyrics. It defaults to ~/.lyrics since other
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-lyrics_directory = "$XDG_DATA_HOME/ncmpcpp/lyrics"
+lyrics_directory = "~/.local/share/ncmpcpp/lyrics"
 #
 ##### connection settings #####
 #
@@ -31,7 +31,7 @@ mpd_port = 6600
 #
 ## Needed for tag editor and file operations to work.
 ##
-mpd_music_dir = "$HOME/Music"
+mpd_music_dir = "~/Music"
 #
 #mpd_crossfade_time = 5
 #
