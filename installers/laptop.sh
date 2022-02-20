@@ -5,6 +5,26 @@ set -ex
 # Update the system clock
 timedatectl set-ntp true
 
+# Prompt for passwords
+echo -n "Enter device encryption password: "
+read -r encryption_password
+
+echo -n "Enter root password: "
+read -r root_password
+
+echo -n "Enter password for $USER: "
+read -r user_password
+
+# Securely wipe disks
+echo -n "Type YES to securely wipe disks: "
+read -r wipe_answer
+
+if [[ "$wipe_answer" == "YES" ]]; then
+  yes YES | cryptsetup open --type plain -d /dev/urandom /dev/nvme0n1
+  dd bs=1M if=/dev/zero of=/dev/mapper/to_be_wiped status=progress || true
+  cryptsetup close to_be_wiped
+fi
+
 # Partition the disks
 parted --script /dev/nvme0n1 mklabel gpt
 parted --script /dev/nvme0n1 mkpart boot fat32 1MiB 513MiB
@@ -12,11 +32,8 @@ parted --script /dev/nvme0n1 set 1 esp on
 parted --script /dev/nvme0n1 mkpart luks 513MiB 100%
 
 # Setup luks/lvm
-echo -n "Enter device encryption password: "
-read -r encryption_password
-
 yes "$encryption_password" | cryptsetup luksFormat --type luks /dev/nvme0n1p2
-yes "$encryption_password" | cryptsetup open /dev/nvme0n1p2 cryptlvm
+yes "$encryption_password" | cryptsetup --perf-no_read_workqueue --perf-no_write_workqueue --persistent open /dev/nvme0n1p2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate main /dev/mapper/cryptlvm
 lvcreate -L 32G main -n swap
@@ -66,8 +83,6 @@ sed -i 's/^HOOKS=.*/HOOKS=\(base udev autodetect modconf block keyboard keymap e
 arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
-echo -n "Enter root password: "
-read -r root_password
 yes "$root_password" | arch-chroot /mnt passwd
 
 # Configure boot loader
@@ -88,8 +103,6 @@ USER="david"
 arch-chroot /mnt useradd --create-home --groups wheel --shell /bin/bash $USER
 arch-chroot /mnt pacman -S --noconfirm --needed sudo
 sed -i '/%wheel ALL=(ALL:ALL) ALL/s/^# //g' /mnt/etc/sudoers
-echo -n "Enter password for $USER: "
-read -r user_password
 yes "$user_password" | arch-chroot /mnt passwd $USER
 
 # Enable automatic login
