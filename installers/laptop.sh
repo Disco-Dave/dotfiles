@@ -15,6 +15,9 @@ read -r root_password
 echo -n "Enter password for $USER: "
 read -r user_password
 
+echo -n "Enter password for ssh key: "
+read -r ssh_password
+
 # Securely wipe disks
 echo -n "Type YES to securely wipe disks: "
 read -r wipe_answer
@@ -51,7 +54,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 swapon /dev/main/swap
 
 # Install essential packages
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 intel-ucode
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 intel-ucode sudo openssh
 
 # Generate fstab
 genfstab -L /mnt >> /mnt/etc/fstab
@@ -115,6 +118,9 @@ mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
 
 # Install required graphics driver
 arch-chroot /mnt pacman -S --noconfirm --needed xf86-video-intel
+
+# Generate ssh key
+arch-chroot /mnt sudo -u "$USER" ssh-keygen -f "/home/$USER/.ssh/id_rsa" -N "$ssh_password"
 
 # Copy the dotfiles folder into the new install
 SCRIPT_PATH=$(realpath "$0")

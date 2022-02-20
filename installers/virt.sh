@@ -26,6 +26,9 @@ read -r root_password
 echo -n "Enter password for $USER: "
 read -r user_password
 
+echo -n "Enter password for ssh key: "
+read -r ssh_password
+
 # Securely wipe disks
 echo -n "Type YES to securely wipe disks: "
 read -r wipe_answer
@@ -72,7 +75,7 @@ mount /dev/vda1 /mnt/boot
 mount /dev/mapper/docs /mnt/mnt/docs
 
 # Install essential packages
-pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2
+pacstrap /mnt base base-devel linux linux-firmware neovim networkmanager lvm2 sudo openssh
 
 # Generate fstab
 genfstab -L /mnt >> /mnt/etc/fstab
@@ -146,6 +149,8 @@ arch-chroot /mnt chmod u=rwx,g=,o= "/mnt/docs/$USER"
 arch-chroot /mnt ln -s "/mnt/docs/$USER" "/home/$USER/Documents"
 arch-chroot /mnt chown -h $USER:$USER "/home/$USER/Documents"
 
+# Generate ssh key
+arch-chroot /mnt sudo -u "$USER" ssh-keygen -f "/home/$USER/.ssh/id_rsa" -N "$ssh_password"
 
 # Copy the dotfiles folder into the new install
 SCRIPT_PATH=$(realpath "$0")
