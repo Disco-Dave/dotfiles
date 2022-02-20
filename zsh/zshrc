@@ -16,6 +16,13 @@ zplug "olivierverdier/zsh-git-prompt", \
     hook-build:"stack install --local-bin-path src/.bin ", \
     use:"zshrc.sh"
 
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
+
+# source plugins and add commands to the PATH
 zplug load
 
 
@@ -48,7 +55,7 @@ export SAVEHIST=99999999
 # https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
 # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 PS1='%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
-%(!.#.$) '
+%F{red}%(?..%? )%f%(!.#.$) '
 RPS1="[%*]"
 
 

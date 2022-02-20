@@ -1,6 +1,6 @@
 {
   "suggest.autoTrigger": "trigger",
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "signature.enable": true,
   "suggest.enablePreview": true,
   "suggest.floatEnable": false,

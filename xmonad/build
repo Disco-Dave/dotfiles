@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-stack exec ghc -- \
-  --make xmonad.hs \
-  -i \
-  -ilib \
-  -fforce-recomp \
-  -main-is main \
-  -v0 \
-  -o "$1"
+set -e
+
+TEMP_DIR="$(mktemp -d /tmp/xmonad-build-XXXXXXXXXX)"
+trap 'rm -r $TEMP_DIR' exit
+
+cd "$XDG_CONFIG_HOME/xmonad"
+
+cabal build exe:xmonad
+cp "$(cabal list-bin exe:xmonad)" "$TEMP_DIR/xmonad"
+mv "$TEMP_DIR/xmonad" "$1"

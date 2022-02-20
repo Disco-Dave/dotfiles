@@ -1,5 +1,1 @@
-sources/
-.stack-work/
-xmonad-testing.cabal
-**/*.hi
-**/*.o
+dist-newstyle

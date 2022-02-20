@@ -79,9 +79,9 @@ set backupcopy=yes
 " Use backup, undo, and swap folders
 set backup
 set undofile
-set undodir=~/.local/share/nvim/undo//
-set backupdir=~/.local/share/nvim/backup//
-set directory=~/.local/share/nvim/swap//
+set undodir=~/.cache/nvim/undo//
+set backupdir=~/.cache/nvim/backup//
+set directory=~/.cache/nvim/swap//
 
 " Move split focus with Ctrl + hjkl
 noremap <silent> <c-h> <c-w>h
