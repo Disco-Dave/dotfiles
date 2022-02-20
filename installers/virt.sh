@@ -41,14 +41,17 @@ parted --script /dev/vdb mklabel gpt
 parted --script /dev/vdb mkpart luks 1MiB 100%
 
 # Setup luks/lvm
-cryptsetup luksFormat --type luks /dev/vda2
-cryptsetup open /dev/vda2 mainlvm
+echo -n "Enter device encryption password: "
+read -r encryption_password
+
+yes "$encryption_password" | cryptsetup luksFormat --type luks /dev/vda2
+yes "$encryption_password" | cryptsetup open /dev/vda2 mainlvm
 pvcreate /dev/mapper/mainlvm
 vgcreate main /dev/mapper/mainlvm
 lvcreate -l 100%FREE main -n root
 
-cryptsetup luksFormat --type luks /dev/vdb1
-cryptsetup open /dev/vdb1 extralvm
+yes "$encryption_password" | cryptsetup luksFormat --type luks /dev/vdb1
+yes "$encryption_password" | cryptsetup open /dev/vdb1 extralvm
 pvcreate /dev/mapper/extralvm
 vgcreate extra /dev/mapper/extralvm
 lvcreate -l 100%FREE extra -n main
@@ -103,8 +106,9 @@ sed -i 's/^HOOKS=.*/HOOKS=\(base systemd autodetect keyboard modconf block sd-en
 arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
-echo "Set the password for root"
-arch-chroot /mnt passwd
+echo -n "Enter root password: "
+read -r root_password
+yes "$root_password" | arch-chroot /mnt passwd
 
 # Configure boot loader
 arch-chroot /mnt bootctl install
@@ -119,9 +123,10 @@ arch-chroot /mnt bootctl install
 USER="david"
 arch-chroot /mnt useradd --create-home --groups wheel --shell /bin/bash $USER
 arch-chroot /mnt pacman -S --noconfirm --needed sudo
-sed -i '/%wheel ALL=(ALL:ALL) ALL/s/^#//g' /mnt/etc/sudoers
-echo "Set the password for $USER"
-arch-chroot /mnt passwd $USER
+sed -i '/%wheel ALL=(ALL:ALL) ALL/s/^# //g' /mnt/etc/sudoers
+echo -n "Enter password for $USER: "
+read -r user_password
+yes "$user_password" | arch-chroot /mnt passwd $USER
 
 # Enable automatic login
 mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d

@@ -12,12 +12,11 @@ parted --script /dev/nvme0n1 set 1 esp on
 parted --script /dev/nvme0n1 mkpart luks 513MiB 100%
 
 # Setup luks/lvm
-until cryptsetup luksFormat --type luks /dev/nvme0n1p2; do
-  echo "Try again"
-done
-until cryptsetup open /dev/nvme0n1p2 cryptlvm; do
-  echo "Try again"
-done
+echo -n "Enter device encryption password: "
+read -r encryption_password
+
+yes "$encryption_password" | cryptsetup luksFormat --type luks /dev/nvme0n1p2
+yes "$encryption_password" | cryptsetup open /dev/nvme0n1p2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate main /dev/mapper/cryptlvm
 lvcreate -L 32G main -n swap
@@ -67,10 +66,9 @@ sed -i 's/^HOOKS=.*/HOOKS=\(base udev autodetect modconf block keyboard keymap e
 arch-chroot /mnt mkinitcpio -P
 
 # Prompt to set root password
-echo "Set the password for root"
-until arch-chroot /mnt passwd; do
-  echo "Try again"
-done
+echo -n "Enter root password: "
+read -r root_password
+yes "$root_password" | arch-chroot /mnt passwd
 
 # Configure boot loader
 arch-chroot /mnt bootctl install
@@ -89,11 +87,10 @@ arch-chroot /mnt systemctl enable fstrim.timer
 USER="david"
 arch-chroot /mnt useradd --create-home --groups wheel --shell /bin/bash $USER
 arch-chroot /mnt pacman -S --noconfirm --needed sudo
-sed -i '/# %wheel ALL=(ALL) ALL/s/^# //g' /mnt/etc/sudoers
-echo "Set the password for $USER"
-until arch-chroot /mnt passwd $USER; do
-  echo "Try again"
-done
+sed -i '/%wheel ALL=(ALL:ALL) ALL/s/^# //g' /mnt/etc/sudoers
+echo -n "Enter password for $USER: "
+read -r user_password
+yes "$user_password" | arch-chroot /mnt passwd $USER
 
 # Enable automatic login
 mkdir -p /mnt/etc/systemd/system/getty@tty1.service.d
