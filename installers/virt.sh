@@ -116,7 +116,7 @@ arch-chroot /mnt bootctl install
   echo "title     Arch Linux"
   echo "linux     /vmlinuz-linux"
   echo "initrd    /initramfs-linux.img"
-  echo "options   cryptdevice=UUID=$(arch-chroot /mnt blkid -s UUID -o value /dev/vda2):cryptlvm  root=/dev/main/root rw"
+  echo "options   root=/dev/main/root rw"
 } >> /mnt/boot/loader/entries/arch.conf
 
 # Create main user
