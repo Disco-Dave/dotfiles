@@ -1,1 +1,0 @@
-ACTION=="bind", ATTRS{idVendor}=="056e", ATTRS{idProduct}=="010d", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/david/.local/share/Xauthority", RUN+="/usr/local/bin/set_elecom_huge_settings"

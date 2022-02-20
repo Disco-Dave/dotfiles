@@ -16,9 +16,6 @@ feh --no-fehbg --bg-center --no-xinerama ~/.config/dotfiles/assets/wallpaper.jpg
 # Generate alacritty config
 (cd ~/.config/alacritty && ./merge.sh) &
 
-# Set custom ELECOM Huge settings
-~/.config/dotfiles/scripts/set_elecom_huge_settings &
-
 # Load nvidia settings
 [[ -f /usr/bin/nvidia-settings ]] && nvidia-settings --load-config-only --config=~/.config/nvidia-settings-rc
 
