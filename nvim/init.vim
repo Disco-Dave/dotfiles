@@ -11,7 +11,7 @@ Plug 'romainl/vim-cool' " Disables search highlighting when you are done searchi
 Plug 'sbdchd/neoformat' " Add a :Neoformat command to format code
 Plug 'scrooloose/nerdcommenter' " An auto comment or un-commenting command
 Plug 'scrooloose/nerdtree' " A file browser
-Plug 'sheerun/vim-polyglot', {'commit': '2c5af8f'} " Adds a bunch of syntax highlight suport for many file types
+Plug 'sheerun/vim-polyglot' " Adds a bunch of syntax highlight suport for many file types
 Plug 'tpope/vim-fugitive' " Git support
 Plug 'vim-scripts/Tabmerge' " A script to merge tabs
 Plug 'arcticicestudio/nord-vim' " nord color scheme
