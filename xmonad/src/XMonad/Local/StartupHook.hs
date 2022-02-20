@@ -45,7 +45,7 @@ startupHook = do
           ]
       trayer =
         let trayerTint = Color.toString0x xmobarBackground
-            baseCommand = "trayer --monitor primary --widthtype request --edge top --align right --alpha 0 --transparent true --iconspacing 10 --tint" <> trayerTint
+            baseCommand = "trayer --monitor primary --widthtype request --edge top --align right --alpha 0 --transparent true --iconspacing 10 --tint " <> trayerTint
          in case hostname of
               "Desktop" -> baseCommand <> " --height 30"
               _ -> baseCommand <> " --height 22"
