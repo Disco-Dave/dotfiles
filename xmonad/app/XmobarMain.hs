@@ -1,10 +1,9 @@
 module Main (main) where
 
-import qualified Control.Concurrent.Async as Async
+import System.Environment (getArgs)
 import qualified System.FilePath as FilePath
 import XMonad.Local.Environment (Environment (..), getEnvironment)
 import qualified XMonad.Local.FilePaths as FilePaths
-import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Theme (Theme (Theme))
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
@@ -70,11 +69,9 @@ secondary env =
 main :: IO ()
 main = do
   env <- getEnvironment
+  
+  args <- getArgs
 
-  let spawn config =
-        Xmobar.xmobar (config env)
-
-  Async.mapConcurrently_ spawn $
-    case envHostname env of
-      Hostname.Desktop -> [primary, secondary]
-      _ -> [primary]
+  case args of
+    ("--secondary" : _) -> Xmobar.xmobar (secondary env)
+    _ -> Xmobar.xmobar (primary env)

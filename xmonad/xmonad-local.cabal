@@ -82,5 +82,4 @@ executable xmobar
   import: shared-exe
   main-is: XmobarMain.hs
   build-depends:
-    , async >= 2.2.4 && < 2.3
     , xmobar >= 0.41 && < 0.42

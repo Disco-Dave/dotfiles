@@ -143,7 +143,7 @@ screens XMonad.XConfig{modMask} =
                 lift . XMonad.windows $ f workspace
        in [
             ( (modMask, key) -- Focus screen
-            , modifyWindowSet StackSet.greedyView
+            , modifyWindowSet StackSet.view
             )
           ,
             ( (modMask .|. X11.shiftMask, key) -- Move window to screen

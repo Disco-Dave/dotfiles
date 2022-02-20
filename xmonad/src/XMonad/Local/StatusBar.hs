@@ -11,6 +11,7 @@ import qualified XMonad.Hooks.StatusBar as StatusBar
 import XMonad.Hooks.StatusBar.PP (PP)
 import qualified XMonad.Hooks.StatusBar.PP as PP
 import XMonad.Local.Environment (Environment (..))
+import qualified XMonad.Local.Hostname as Hostname
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import qualified XMonad.StackSet as StackSet
@@ -29,8 +30,8 @@ fullScreenWindowCount = do
       then Just $ show numberOfWindows
       else Nothing
 
-pp :: ReaderT Environment IO PP
-pp = do
+makePp :: ReaderT Environment IO PP
+makePp = do
   theme <- Reader.asks envTheme
 
   let color xmobarColor =
@@ -53,5 +54,16 @@ addStatusBar ::
   ReaderT Environment IO (XMonad.XConfig l)
 addStatusBar xconfig = do
   env <- Reader.ask
-  sbConfig <- liftIO $ StatusBar.statusBarPipe "xmobar" (liftIO $ Reader.runReaderT pp env)
+
+  let pp = liftIO $ Reader.runReaderT makePp env
+
+  sbConfig <- liftIO $ do
+    primary <- StatusBar.statusBarPipe "xmobar" pp
+    case envHostname env of
+      Hostname.Desktop -> do
+        secondary <- StatusBar.statusBarPipe "xmobar --secondary" pp
+        pure $ primary <> secondary
+      _ ->
+        pure primary
+
   pure $ StatusBar.withSB sbConfig xconfig

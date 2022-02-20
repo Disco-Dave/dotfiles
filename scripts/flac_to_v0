@@ -3,7 +3,7 @@
 set -e
 
 for FOLDER in "$@"; do
-    NEW_FOLDER="$HOME/music/$(basename "$FOLDER")"
+    NEW_FOLDER="$HOME/Music/$(basename "$FOLDER")"
 
     rsync -av "$FOLDER"/ "$NEW_FOLDER"/ --exclude="**/*.flac"
 
