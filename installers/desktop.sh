@@ -33,7 +33,7 @@ if [[ "$wipe_answer" == "YES" ]]; then
   dd bs=1M if=/dev/zero of=/dev/mapper/to_be_wiped status=progress || true
   cryptsetup close to_be_wiped
 
-  yes YES | cryptsetup open --type plain -d /dev/urandom /dev/sdd to_be_wiped 
+  yes YES | cryptsetup open --type plain -d /dev/urandom /dev/sdb to_be_wiped 
   dd bs=1M if=/dev/zero of=/dev/mapper/to_be_wiped status=progress || true
   cryptsetup close to_be_wiped
 
@@ -89,6 +89,7 @@ mkfs.ext4 -L HOME /dev/mapper/home
 
 # Mount the file systems
 mount /dev/main/root /mnt
+swapon /dev/main/swap
 mkdir -p /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
 mkdir -p /mnt/mnt/docs
@@ -150,7 +151,7 @@ arch-chroot /mnt bootctl install
   echo "linux     /vmlinuz-linux"
   echo "initrd    /amd-ucode.img"
   echo "initrd    /initramfs-linux.img"
-  echo "options   root=/dev/main/root rw"
+  echo "options   rd.luks.options=discard root=/dev/main/root rw"
 } >> /mnt/boot/loader/entries/arch.conf
 
 # Create main user
