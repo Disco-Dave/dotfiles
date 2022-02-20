@@ -48,7 +48,6 @@ if [ "$_HOSTNAME" != "sandbox" ]; then
     pulseaudio-bluetooth \
     pulsemixer \
     redshift \
-    stalonetray \
     thunar \
     ttf-hack \
     udisks2 \
@@ -103,11 +102,6 @@ if [ "$_HOSTNAME" != "sandbox" ]; then
   # picom
   if [[ ! -e "$XDG_CONFIG_HOME/picom/picom.conf" ]]; then
     ln -sf "$_DOTFILES_HOME/picom/picom.conf" "$XDG_CONFIG_HOME/picom.conf"
-  fi
-
-  # stalonetray
-  if [[ ! -e "$XDG_CONFIG_HOME/stalonetray" ]]; then
-    ln -sf "$_DOTFILES_HOME/stalonetray" "$XDG_CONFIG_HOME/stalonetray"
   fi
 
   # alacritty

@@ -2,6 +2,7 @@ module XMonad.Local.Theme.Color (
   HexDigit (..),
   Color (..),
   toString,
+  toString0x,
   toText,
 ) where
 
@@ -59,6 +60,13 @@ toString color =
       (g1, g2) = colorGreen color
       (b1, b2) = colorBlue color
    in '#' : fmap digitToChar [r1, r2, g1, g2, b1, b2]
+
+toString0x :: Color -> String
+toString0x color =
+  let (r1, r2) = colorRed color
+      (g1, g2) = colorGreen color
+      (b1, b2) = colorBlue color
+   in '0' : 'x' : fmap digitToChar [r1, r2, g1, g2, b1, b2]
 
 toText :: Color -> Text
 toText =

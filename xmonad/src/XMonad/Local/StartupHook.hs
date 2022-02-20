@@ -13,6 +13,8 @@ import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Local.Environment (Environment (..))
 import XMonad.Local.FilePaths as FilePaths
 import qualified XMonad.Local.Hostname as Hostname
+import qualified XMonad.Local.Theme as Theme
+import qualified XMonad.Local.Theme.Color as Color
 import qualified XMonad.StackSet as StackSet
 import XMonad.Util.SpawnOnce (spawnOnce)
 
@@ -32,6 +34,8 @@ startupHook = do
   configHome <- Reader.asks (FilePaths.xdgConfig . envFilePaths)
   hostname <- Reader.asks (Hostname.toString . envHostname)
 
+  Theme.XmobarColors{xmobarBackground} <- Reader.asks (Theme.themeXmobar . envTheme)
+
   let startupSound =
         FilePath.joinPath
           [ configHome
@@ -39,17 +43,16 @@ startupHook = do
           , "assets"
           , "startup.mp3"
           ]
-      stalonetrayConfig =
-        FilePath.joinPath
-          [ configHome
-          , "dotfiles"
-          , "stalonetray"
-          , hostname
-          ]
+      trayer =
+        let trayerTint = Color.toString0x xmobarBackground
+            baseCommand = "trayer --monitor primary --widthtype request --edge top --align right --alpha 0 --transparent true --iconspacing 10 --tint" <> trayerTint
+         in case hostname of
+              "Desktop" -> baseCommand <> " --height 30"
+              _ -> baseCommand <> " --height 22"
 
   lift . traverse_ spawnOnce $
     [ "mpv " <> startupSound
-    , "stalonetray -c " <> stalonetrayConfig
+    , trayer
     , "nm-applet"
     , "/usr/bin/xfce4-power-manager"
     , "pasystray"

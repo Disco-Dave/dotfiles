@@ -48,7 +48,7 @@ primary env =
             [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
             , Xmobar.Run Xmobar.UnsafeStdinReader
             , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-            , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "stalonetray"] "tray" 10
+            , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "trayer"] "tray" 10
             ]
         , Xmobar.template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
         }
