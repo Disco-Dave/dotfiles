@@ -2,7 +2,6 @@ module XMonad.Local.StatusBar (
   addStatusBar,
 ) where
 
-import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
 import Control.Monad.Trans (lift)
@@ -42,7 +41,7 @@ makePp = do
       , PP.ppVisible = color Theme.xmobarForeground . PP.wrap "(" ")"
       , PP.ppUrgent = color Theme.xmobarUrgentWs
       , PP.ppTitle = color Theme.xmobarWindowTitle
-      , PP.ppTitleSanitize = PP.shorten 40
+      , PP.ppTitleSanitize = PP.xmobarRaw . PP.shorten 40
       , PP.ppExtras = [fullScreenWindowCount]
       }
 
@@ -54,14 +53,11 @@ addStatusBar xconfig = do
   env <- Reader.ask
 
   let pp = Reader.runReaderT makePp env
+      primary = StatusBar.statusBarPropTo "_XMONAD_LOG_1" "xmobar" pp
+      secondary = StatusBar.statusBarPropTo "_XMONAD_LOG_2" "xmobar --secondary" pp
 
-  sbConfig <- liftIO $ do
-    primary <- StatusBar.statusBarPipe "xmobar" pp
-    case envHostname env of
-      Hostname.Desktop -> do
-        secondary <- StatusBar.statusBarPipe "xmobar --secondary" pp
-        pure $ primary <> secondary
-      _ ->
-        pure primary
+  let sbConfig = mconcat $ case envHostname env of
+        Hostname.Desktop -> [primary, secondary]
+        _ -> [primary]
 
   pure $ StatusBar.withSB sbConfig xconfig

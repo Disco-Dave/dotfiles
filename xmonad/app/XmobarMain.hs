@@ -44,12 +44,12 @@ primary env =
    in (defaultConfig (envTheme env))
         { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
         , Xmobar.commands =
-            [ Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
-            , Xmobar.Run Xmobar.UnsafeStdinReader
+            [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
+            , Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
             , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
             , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "panel"] "tray" 10
             ]
-        , Xmobar.template = "%UnsafeStdinReader% } %date% { %mpd% %tray%"
+        , Xmobar.template = "%_XMONAD_LOG_1% } %date% { %mpd% %tray%"
         }
 
 secondary :: Environment -> Xmobar.Config
@@ -57,19 +57,19 @@ secondary env =
   (defaultConfig (envTheme env))
     { Xmobar.position = Xmobar.OnScreen 1 Xmobar.Top
     , Xmobar.commands =
-        [ Xmobar.Run Xmobar.UnsafeStdinReader
+        [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_2"
         , Xmobar.Run $ Xmobar.ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 6000
         , Xmobar.Run $ Xmobar.Memory ["-t", "Mem: <usedratio>%"] 10
         , Xmobar.Run $ Xmobar.Swap [] 10
         , Xmobar.Run $ Xmobar.Cpu [] 10
         ]
-    , Xmobar.template = "%UnsafeStdinReader% } %weather% { %cpu% | %memory% * %swap%"
+    , Xmobar.template = "%_XMONAD_LOG_2% } %weather% { %cpu% | %memory% * %swap%"
     }
 
 main :: IO ()
 main = do
   env <- getEnvironment
-  
+
   args <- getArgs
 
   case args of
