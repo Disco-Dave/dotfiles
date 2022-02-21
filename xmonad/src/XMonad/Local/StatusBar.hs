@@ -32,7 +32,7 @@ makePp = do
   theme <- Reader.asks envTheme
 
   let color xmobarColor =
-        let hexColor = Color.toString . xmobarColor $ Theme.themeXmobar theme
+        let hexColor = Color.toHashString . xmobarColor $ Theme.themeXmobar theme
          in PP.xmobarColor hexColor ""
 
   lift . clickablePP $

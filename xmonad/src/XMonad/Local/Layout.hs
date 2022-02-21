@@ -31,7 +31,7 @@ data LayoutName
   | TallTabbed
   | Full
   | Other String
-  deriving (Show, Eq)
+  deriving (Show, Eq, Ord)
 
 layoutToString :: LayoutName -> String
 layoutToString = \case
@@ -59,7 +59,7 @@ getLayoutName = do
 
 decorationTheme :: Theme -> Decoration.Theme
 decorationTheme theme =
-  let windowColor color = Color.toString . color $ Theme.themeWindow theme
+  let windowColor color = Color.toHashString . color $ Theme.themeWindow theme
    in Decoration.def
         { Decoration.fontName = Font.toXftString $ Theme.themeFont theme
         , Decoration.activeBorderColor = windowColor Theme.windowBorderFocussed

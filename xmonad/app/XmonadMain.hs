@@ -29,7 +29,7 @@ main = do
     let color windowColor =
           let theme = envTheme env
               windowTheme = Theme.themeWindow theme
-           in Color.toString $ windowColor windowTheme
+           in Color.toHashString $ windowColor windowTheme
      in XMonad.def
           { XMonad.terminal = "alacritty"
           , XMonad.borderWidth = 3

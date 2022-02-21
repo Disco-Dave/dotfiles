@@ -13,6 +13,7 @@ import Data.Foldable (foldl')
 import Data.Map (Map)
 import qualified Data.Map.Merge.Strict as Merge
 import qualified Data.Map.Strict as Map
+import Data.Maybe (fromMaybe)
 import qualified Data.Text as Text
 import qualified Graphics.X11 as X11
 import qualified Graphics.X11.ExtraTypes as X11
@@ -23,6 +24,8 @@ import qualified XMonad.Actions.SwapWorkspaces as Swap
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (..))
+import XMonad.Local.Layout (LayoutName)
+import qualified XMonad.Local.Layout as Layout
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import qualified XMonad.Local.Theme.Font as Font
@@ -49,7 +52,7 @@ dmenuFlags = do
         name <> " " <> "\"" <> value <> "\""
 
   let color selectColor =
-        Color.toString $ selectColor dmenuTheme
+        Color.toHashString $ selectColor dmenuTheme
 
   pure . unwords $
     [ flag "-fn" $
@@ -109,7 +112,10 @@ mediaKeyMap _ =
     , ((X11.noModMask, X11.xF86XK_AudioMicMute), XMonad.spawn "pactl set-source-mute 1 toggle")
     , ((X11.noModMask, X11.xF86XK_AudioNext), XMonad.spawn "mpc next")
     , ((X11.noModMask, X11.xF86XK_AudioPrev), XMonad.spawn "mpc prev")
+    , ((X11.noModMask .|. X11.shiftMask, X11.xF86XK_AudioNext), XMonad.spawn "mpc seek +5%")
+    , ((X11.noModMask .|. X11.shiftMask, X11.xF86XK_AudioPrev), XMonad.spawn "mpc seek -5%")
     , ((X11.noModMask, X11.xF86XK_AudioStop), XMonad.spawn "mpc stop")
+    , ((X11.noModMask .|. X11.shiftMask, X11.xF86XK_AudioPlay), XMonad.spawn "mpc stop")
     , ((X11.noModMask, X11.xF86XK_AudioPlay), XMonad.spawn "mpc toggle")
     ]
 
@@ -182,8 +188,8 @@ quitAndRestartKeyMap XMonad.XConfig{modMask} =
     , ((modMask, X11.xK_q), XMonad.spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
     ]
 
-keys :: KeyMap
-keys conf =
+defaultKeys :: KeyMap
+defaultKeys conf =
   let allKeyMaps =
         [ dmenuKeyMap
         , applicationShortcuts
@@ -202,3 +208,16 @@ keys conf =
           oldMap
           (keyMap conf)
    in foldl' merge Map.empty allKeyMaps
+
+layoutOverrides :: LayoutName -> KeyMap
+layoutOverrides layoutName XMonad.XConfig{modMask} =
+  Map.fromList $ case layoutName of
+    _ -> []
+
+keys :: KeyMap
+keys conf =
+  let overlay binding originalCommand = do
+        layoutName <- lift Layout.getLayoutName
+        let overrides = layoutOverrides layoutName conf
+        fromMaybe originalCommand (Map.lookup binding overrides)
+   in Map.mapWithKey overlay $ defaultKeys conf
