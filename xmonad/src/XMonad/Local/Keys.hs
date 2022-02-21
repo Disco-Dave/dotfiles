@@ -27,6 +27,7 @@ import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import qualified XMonad.Local.Theme.Font as Font
 import qualified XMonad.Local.Utils as Utils
+import XMonad.Local.Workspaces (workspaceKeys)
 import qualified XMonad.StackSet as StackSet
 
 superKey :: X11.KeyMask
@@ -81,15 +82,15 @@ applicationShortcuts XMonad.XConfig{modMask, terminal} =
     , ((superKey, X11.xK_f), XMonad.spawn "thunar")
     ]
 
-dmenus :: KeyMap
-dmenus XMonad.XConfig{modMask} =
+dmenuKeyMap :: KeyMap
+dmenuKeyMap XMonad.XConfig{modMask} =
   Map.fromList
     [ ((modMask, X11.xK_p), spawnDmenu "dmenu_run")
     , ((modMask .|. X11.shiftMask, X11.xK_p), spawnDmenu "passmenu")
     ]
 
-screenshots :: KeyMap
-screenshots _ =
+screenshotKeyMap :: KeyMap
+screenshotKeyMap _ =
   Map.fromList
     [ ((X11.noModMask, X11.xK_Print), XMonad.spawn "xfce4-screenshooter")
     , ((superKey, X11.xK_Print), XMonad.spawn "xfce4-screenshooter -w")
@@ -97,8 +98,8 @@ screenshots _ =
     , ((X11.shiftMask, X11.xK_Print), XMonad.spawn "xfce4-screenshooter -f")
     ]
 
-media :: KeyMap
-media _ =
+mediaKeyMap :: KeyMap
+mediaKeyMap _ =
   Map.fromList
     [ ((X11.noModMask, X11.xF86XK_AudioRaiseVolume), XMonad.spawn "amixer -D pulse sset Master 5%+")
     , ((X11.noModMask, X11.xF86XK_AudioLowerVolume), XMonad.spawn "amixer -D pulse sset Master 5%-")
@@ -112,10 +113,10 @@ media _ =
     , ((X11.noModMask, X11.xF86XK_AudioPlay), XMonad.spawn "mpc toggle")
     ]
 
-workspaces :: KeyMap
-workspaces XMonad.XConfig{modMask, workspaces = workspaceNames} =
+workspaceKeyMap :: KeyMap
+workspaceKeyMap XMonad.XConfig{modMask, workspaces = workspaceNames} =
   Map.fromList $
-    zip workspaceNames [X11.xK_1 ..] >>= \(workspaceId, key) ->
+    zip workspaceNames workspaceKeys >>= \(workspaceId, key) ->
       let modifyWindowSet f = lift $ XMonad.windows (f workspaceId)
        in [
             ( (modMask, key) -- Focus workspace
@@ -131,8 +132,8 @@ workspaces XMonad.XConfig{modMask, workspaces = workspaceNames} =
             )
           ]
 
-screens :: KeyMap
-screens XMonad.XConfig{modMask} =
+screenKeyMap :: KeyMap
+screenKeyMap XMonad.XConfig{modMask} =
   Map.fromList $
     zip [0 ..] [X11.xK_w, X11.xK_e, X11.xK_r] >>= \(screenId, key) ->
       let modifyWindowSet f = do
@@ -151,8 +152,8 @@ screens XMonad.XConfig{modMask} =
             )
           ]
 
-layout :: KeyMap
-layout conf@XMonad.XConfig{modMask} =
+layoutKeyMap :: KeyMap
+layoutKeyMap conf@XMonad.XConfig{modMask} =
   Map.fromList
     [ ((modMask, X11.xK_space), lift $ XMonad.sendMessage XMonad.NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. X11.shiftMask, X11.xK_space), lift . XMonad.setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
@@ -174,8 +175,8 @@ layout conf@XMonad.XConfig{modMask} =
     , ((modMask, X11.xK_period), lift $ XMonad.sendMessage (XMonad.IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
     ]
 
-quitAndRestart :: KeyMap
-quitAndRestart XMonad.XConfig{modMask} =
+quitAndRestartKeyMap :: KeyMap
+quitAndRestartKeyMap XMonad.XConfig{modMask} =
   Map.fromList
     [ ((modMask .|. X11.shiftMask, X11.xK_q), liftIO exitSuccess) -- %! Quit xmonad
     , ((modMask, X11.xK_q), XMonad.spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
@@ -184,14 +185,14 @@ quitAndRestart XMonad.XConfig{modMask} =
 keys :: KeyMap
 keys conf =
   let allKeyMaps =
-        [ dmenus
+        [ dmenuKeyMap
         , applicationShortcuts
-        , screenshots
-        , media
-        , workspaces
-        , screens
-        , layout
-        , quitAndRestart
+        , screenshotKeyMap
+        , mediaKeyMap
+        , workspaceKeyMap
+        , screenKeyMap
+        , layoutKeyMap
+        , quitAndRestartKeyMap
         ]
       merge oldMap keyMap =
         Merge.merge

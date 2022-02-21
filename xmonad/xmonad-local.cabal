@@ -52,7 +52,7 @@ library
     XMonad.Local.FilePaths
     XMonad.Local.Hostname
     XMonad.Local.Keys
-    XMonad.Local.LayoutHook
+    XMonad.Local.Layout
     XMonad.Local.ManageHook
     XMonad.Local.StartupHook
     XMonad.Local.StatusBar

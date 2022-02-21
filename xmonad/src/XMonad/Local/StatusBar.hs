@@ -5,6 +5,7 @@ module XMonad.Local.StatusBar (
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
+import Control.Monad.Trans (lift)
 import XMonad (X)
 import qualified XMonad
 import qualified XMonad.Hooks.StatusBar as StatusBar
@@ -12,25 +13,22 @@ import XMonad.Hooks.StatusBar.PP (PP)
 import qualified XMonad.Hooks.StatusBar.PP as PP
 import XMonad.Local.Environment (Environment (..))
 import qualified XMonad.Local.Hostname as Hostname
+import XMonad.Local.Layout (LayoutName (..), getLayoutName)
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
-import qualified XMonad.StackSet as StackSet
+import XMonad.Local.Utils (numberOfWindowsOnWorkspace)
+import XMonad.Util.ClickableWorkspaces (clickablePP)
 
 fullScreenWindowCount :: X (Maybe String)
 fullScreenWindowCount = do
-  workspace <- do
-    windowset <- XMonad.gets XMonad.windowset
-    pure . StackSet.workspace $ StackSet.current windowset
-
-  let currentLayout = XMonad.description $ StackSet.layout workspace
-      numberOfWindows = length . StackSet.integrate' $ StackSet.stack workspace
-
+  currentLayout <- getLayoutName
+  numberOfWindows <- numberOfWindowsOnWorkspace
   pure $
-    if currentLayout == "Full" && numberOfWindows > 0
+    if currentLayout == Full && numberOfWindows > 0
       then Just $ show numberOfWindows
       else Nothing
 
-makePp :: ReaderT Environment IO PP
+makePp :: ReaderT Environment X PP
 makePp = do
   theme <- Reader.asks envTheme
 
@@ -38,7 +36,7 @@ makePp = do
         let hexColor = Color.toString . xmobarColor $ Theme.themeXmobar theme
          in PP.xmobarColor hexColor ""
 
-  pure
+  lift . clickablePP $
     PP.def
       { PP.ppCurrent = color Theme.xmobarCurrentWs . PP.wrap "[" "]"
       , PP.ppVisible = color Theme.xmobarForeground . PP.wrap "(" ")"
@@ -55,7 +53,7 @@ addStatusBar ::
 addStatusBar xconfig = do
   env <- Reader.ask
 
-  let pp = liftIO $ Reader.runReaderT makePp env
+  let pp = Reader.runReaderT makePp env
 
   sbConfig <- liftIO $ do
     primary <- StatusBar.statusBarPipe "xmobar" pp

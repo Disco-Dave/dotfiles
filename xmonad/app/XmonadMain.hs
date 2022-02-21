@@ -9,13 +9,13 @@ import qualified XMonad.Hooks.EwmhDesktops as Ewmh
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import XMonad.Local.Environment (Environment (envTheme), getEnvironment)
 import qualified XMonad.Local.Keys as Keys
-import qualified XMonad.Local.LayoutHook as LayoutHook
+import qualified XMonad.Local.Layout as LayoutHook
 import qualified XMonad.Local.ManageHook as ManageHook
 import qualified XMonad.Local.StartupHook as StartupHook
 import qualified XMonad.Local.StatusBar as StatusBar
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
-import qualified XMonad.Local.Workspaces as Workspaces
+import XMonad.Local.Workspaces (workspaceNames)
 
 main :: IO ()
 main = do
@@ -51,6 +51,6 @@ main = do
           , XMonad.keys = Map.map runReaderT . Keys.keys
           , XMonad.manageHook = runReader ManageHook.manageHook
           , XMonad.startupHook = runReaderT StartupHook.startupHook
-          , XMonad.workspaces = runReader Workspaces.workspaces
+          , XMonad.workspaces = workspaceNames
           , XMonad.layoutHook = runReader LayoutHook.layoutHook
           }
