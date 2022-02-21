@@ -50,6 +50,7 @@ library
   exposed-modules:
     XMonad.Local.Environment
     XMonad.Local.FilePaths
+    XMonad.Local.Hooks
     XMonad.Local.Hostname
     XMonad.Local.Keys
     XMonad.Local.Layout
