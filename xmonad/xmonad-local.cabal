@@ -26,6 +26,7 @@ common shared
     RankNTypes   
     RecordWildCards
     StrictData
+    TupleSections
     TypeApplications
     ViewPatterns
   ghc-options:

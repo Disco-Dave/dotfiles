@@ -8,15 +8,14 @@ module XMonad.Local.Layout (
 
 import Control.Monad.Reader (Reader)
 import qualified Control.Monad.Reader as Reader
-import Data.Function ((&))
 import XMonad (X, (|||))
 import qualified XMonad
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
+import XMonad.Layout.BinarySpacePartition (emptyBSP)
 import qualified XMonad.Layout.Decoration as Decoration
-import qualified XMonad.Layout.Master as Master
 import qualified XMonad.Layout.NoBorders as NoBorders
+import XMonad.Layout.Reflect (reflectHoriz)
 import qualified XMonad.Layout.Renamed as Renamed
-import qualified XMonad.Layout.Tabbed as Tabbed
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (envTheme))
 import XMonad.Local.Theme (Theme)
@@ -28,26 +27,26 @@ import qualified XMonad.StackSet as StackSet
 data LayoutName
   = Tall
   | Wide
-  | TallTabbed
   | Full
-  | Other String
-  deriving (Show, Eq, Ord)
+  | Bsp
+  | Other
+  deriving (Show, Eq, Ord, Enum, Bounded)
 
 layoutToString :: LayoutName -> String
 layoutToString = \case
   Tall -> "Tall"
   Wide -> "Wide"
-  TallTabbed -> "Tall Tabbed"
   Full -> "Full"
-  Other unkownLayoutName -> unkownLayoutName
+  Bsp -> "BSP"
+  Other -> "Other"
 
 layoutFromString :: String -> LayoutName
 layoutFromString = \case
   "Tall" -> Tall
   "Wide" -> Wide
-  "Tall Tabbed" -> TallTabbed
   "Full" -> Full
-  unkownLayoutName -> Other unkownLayoutName
+  "BSP" -> Bsp
+  _ -> Other
 
 getLayoutName :: X LayoutName
 getLayoutName = do
@@ -57,8 +56,8 @@ getLayoutName = do
       layoutString = XMonad.description $ StackSet.layout workspace
    in pure $ layoutFromString layoutString
 
-decorationTheme :: Theme -> Decoration.Theme
-decorationTheme theme =
+_decorationTheme :: Theme -> Decoration.Theme
+_decorationTheme theme =
   let windowColor color = Color.toHashString . color $ Theme.themeWindow theme
    in Decoration.def
         { Decoration.fontName = Font.toXftString $ Theme.themeFont theme
@@ -85,20 +84,18 @@ tall =
 wide =
   rename Wide $ XMonad.Mirror tall
 
-tallTabbed theme =
-  Tabbed.tabbed Tabbed.shrinkText theme
-    & Master.mastered (3 / 100) (1 / 2)
-    & rename TallTabbed
-
 full =
   rename Full XMonad.Full
 
+bsd =
+  rename Bsp emptyBSP
+
 layoutHook = do
-  theme <- Reader.asks @_ @(Reader Environment) envTheme
+  _theme <- Reader.asks @_ @(Reader Environment) envTheme
   pure $
     let hooks =
           (ManageDocks.avoidStruts @_ @XMonad.Window)
             . NoBorders.lessBorders NoBorders.Screen
             . Toggle.toggleLayouts full
-        choices = tall ||| wide ||| tallTabbed (decorationTheme theme)
+        choices = tall ||| wide ||| bsd
      in hooks choices

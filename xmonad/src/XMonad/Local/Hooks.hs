@@ -5,8 +5,10 @@ module XMonad.Local.Hooks (
 import Control.Monad.Reader (ReaderT)
 import qualified Data.Map.Strict as Map
 import qualified Graphics.X11 as X11
+import XMonad (def)
 import qualified XMonad
 import qualified XMonad.Actions.FlexibleResize as FlexibleResize
+import qualified XMonad.Actions.Navigation2D as Nav2D
 import qualified XMonad.Hooks.EwmhDesktops as Ewmh
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import XMonad.Local.Environment (Environment)
@@ -27,5 +29,6 @@ applyHooks config =
         , Ewmh.ewmhFullscreen
         , ManageDocks.docks
         , resizeByAnyCorner
+        , Nav2D.withNavigation2DConfig def
         ]
    in StatusBar.addStatusBar $ foldr ($) config hooks

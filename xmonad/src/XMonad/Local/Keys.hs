@@ -9,23 +9,25 @@ import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
 import Control.Monad.Trans (lift)
 import Data.Bits ((.|.))
-import Data.Foldable (foldl')
 import Data.Map (Map)
 import qualified Data.Map.Merge.Strict as Merge
 import qualified Data.Map.Strict as Map
 import Data.Maybe (fromMaybe)
+import qualified Data.Set as Set
 import qualified Data.Text as Text
 import qualified Graphics.X11 as X11
 import qualified Graphics.X11.ExtraTypes as X11
 import System.Exit (exitSuccess)
 import XMonad (X)
 import qualified XMonad
+import qualified XMonad.Actions.Navigation2D as Nav2D
 import qualified XMonad.Actions.SwapWorkspaces as Swap
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (..))
 import XMonad.Local.Layout (LayoutName)
 import qualified XMonad.Local.Layout as Layout
+import qualified XMonad.Local.Layout as LayoutName
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import qualified XMonad.Local.Theme.Font as Font
@@ -188,36 +190,55 @@ quitAndRestartKeyMap XMonad.XConfig{modMask} =
     , ((modMask, X11.xK_q), XMonad.spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
     ]
 
+merge :: Ord k => Map k a -> Map k a -> Map k a
+merge =
+  Merge.merge
+    Merge.preserveMissing
+    Merge.preserveMissing
+    (Merge.zipWithMatched (\_ _ new -> new))
+
 defaultKeys :: KeyMap
 defaultKeys conf =
   let allKeyMaps =
-        [ dmenuKeyMap
-        , applicationShortcuts
-        , screenshotKeyMap
-        , mediaKeyMap
-        , workspaceKeyMap
-        , screenKeyMap
-        , layoutKeyMap
-        , quitAndRestartKeyMap
-        ]
-      merge oldMap keyMap =
-        Merge.merge
-          Merge.preserveMissing
-          Merge.preserveMissing
-          (Merge.zipWithMatched (\_ _ action -> action))
-          oldMap
-          (keyMap conf)
-   in foldl' merge Map.empty allKeyMaps
+        fmap
+          ($ conf)
+          [ dmenuKeyMap
+          , applicationShortcuts
+          , screenshotKeyMap
+          , mediaKeyMap
+          , workspaceKeyMap
+          , screenKeyMap
+          , layoutKeyMap
+          , quitAndRestartKeyMap
+          ]
+   in foldr (flip merge) Map.empty allKeyMaps
 
 layoutOverrides :: LayoutName -> KeyMap
 layoutOverrides layoutName XMonad.XConfig{modMask} =
   Map.fromList $ case layoutName of
+    LayoutName.Bsp ->
+      [ ((modMask .|. X11.shiftMask, X11.xK_Return), pure ())
+      , ((modMask, X11.xK_m), pure ())
+      , ((modMask, X11.xK_comma), pure ())
+      , ((modMask, X11.xK_period), pure ())
+      , ((modMask, X11.xK_l), lift $ Nav2D.windowGo Nav2D.R False)
+      , ((modMask, X11.xK_h), lift $ Nav2D.windowGo Nav2D.L False)
+      , ((modMask, X11.xK_k), lift $ Nav2D.windowGo Nav2D.U False)
+      , ((modMask, X11.xK_j), lift $ Nav2D.windowGo Nav2D.D False)
+      , ((modMask .|. X11.shiftMask, X11.xK_l), lift $ Nav2D.windowSwap Nav2D.R False)
+      , ((modMask .|. X11.shiftMask, X11.xK_h), lift $ Nav2D.windowSwap Nav2D.L False)
+      , ((modMask .|. X11.shiftMask, X11.xK_k), lift $ Nav2D.windowSwap Nav2D.U False)
+      , ((modMask .|. X11.shiftMask, X11.xK_j), lift $ Nav2D.windowSwap Nav2D.D False)
+      ]
     _ -> []
 
 keys :: KeyMap
 keys conf =
-  let overlay binding originalCommand = do
+  let layoutNames = [minBound @LayoutName ..]
+      allKeys = foldMap (Set.fromList . Map.keys . flip layoutOverrides conf) layoutNames
+      doNothingMap = Map.fromList . fmap (,pure ()) $ Set.toList allKeys
+      overlay binding originalCommand = do
         layoutName <- lift Layout.getLayoutName
         let overrides = layoutOverrides layoutName conf
         fromMaybe originalCommand (Map.lookup binding overrides)
-   in Map.mapWithKey overlay $ defaultKeys conf
+   in Map.mapWithKey overlay $ merge doNothingMap (defaultKeys conf)
