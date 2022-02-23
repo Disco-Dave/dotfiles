@@ -23,6 +23,7 @@ import qualified XMonad
 import qualified XMonad.Actions.Navigation2D as Nav2D
 import qualified XMonad.Actions.SwapWorkspaces as Swap
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
+import qualified XMonad.Layout.BinarySpacePartition as Bsp
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (..))
 import XMonad.Local.Layout (LayoutName)
@@ -167,7 +168,7 @@ layoutKeyMap conf@XMonad.XConfig{modMask} =
     , ((modMask .|. X11.shiftMask, X11.xK_space), lift . XMonad.setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
     , ((modMask, X11.xK_f), lift $ XMonad.sendMessage Toggle.ToggleLayout) -- %! Toggle the Full layout
     , ((modMask, X11.xK_n), lift XMonad.refresh) -- %! Resize viewed windows to the correct size
-    , ((modMask, X11.xK_s), lift $ XMonad.sendMessage ManageDocks.ToggleStruts) -- move focus up or down the window stack
+    , ((modMask .|. X11.shiftMask, X11.xK_s), lift $ XMonad.sendMessage ManageDocks.ToggleStruts) -- move focus up or down the window stack
     , ((modMask, X11.xK_Tab), lift $ XMonad.windows StackSet.focusDown) -- %! Move focus to the next window
     , ((modMask .|. X11.shiftMask, X11.xK_Tab), lift $ XMonad.windows StackSet.focusUp) -- %! Move focus to the previous window
     , ((modMask, X11.xK_j), lift $ XMonad.windows StackSet.focusDown) -- %! Move focus to the next window
@@ -229,6 +230,12 @@ layoutOverrides layoutName XMonad.XConfig{modMask} =
       , ((modMask .|. X11.shiftMask, X11.xK_h), lift $ Nav2D.windowSwap Nav2D.L False)
       , ((modMask .|. X11.shiftMask, X11.xK_k), lift $ Nav2D.windowSwap Nav2D.U False)
       , ((modMask .|. X11.shiftMask, X11.xK_j), lift $ Nav2D.windowSwap Nav2D.D False)
+      , ((modMask .|. X11.controlMask, X11.xK_l), lift . XMonad.sendMessage $ Bsp.ExpandTowards Bsp.R)
+      , ((modMask .|. X11.controlMask, X11.xK_h), lift . XMonad.sendMessage $ Bsp.ExpandTowards Bsp.L)
+      , ((modMask .|. X11.controlMask, X11.xK_j), lift . XMonad.sendMessage $ Bsp.ExpandTowards Bsp.D)
+      , ((modMask .|. X11.controlMask, X11.xK_k), lift . XMonad.sendMessage $ Bsp.ExpandTowards Bsp.U)
+      , ((modMask, X11.xK_r), lift $ XMonad.sendMessage Bsp.Rotate)
+      , ((modMask, X11.xK_s), lift $ XMonad.sendMessage Bsp.Swap)
       ]
     _ -> []
 
