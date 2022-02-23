@@ -16,7 +16,8 @@ data Hostname
   = Laptop
   | Desktop
   | Virt
-  | Other Text
+  | Work
+  | Other
   deriving (Show, Eq)
 
 fromText :: Text -> Hostname
@@ -24,7 +25,8 @@ fromText (Text.strip . Text.toCaseFold -> rawHostName)
   | is "desktop" = Desktop
   | is "laptop" = Laptop
   | is "virt" = Virt
-  | otherwise = Other rawHostName
+  | is "PA-DBURKE1021" = Work
+  | otherwise = Other
  where
   is hostname = Text.toCaseFold hostname == rawHostName
 
@@ -33,7 +35,8 @@ toText = \case
   Laptop -> "laptop"
   Desktop -> "desktop"
   Virt -> "virt"
-  Other hostname -> hostname
+  Work -> "PA-DBURKE1021"
+  Other -> "other"
 
 toString :: Hostname -> String
 toString =
