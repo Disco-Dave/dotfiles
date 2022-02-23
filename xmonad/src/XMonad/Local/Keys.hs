@@ -24,6 +24,8 @@ import qualified XMonad.Actions.Navigation2D as Nav2D
 import qualified XMonad.Actions.SwapWorkspaces as Swap
 import qualified XMonad.Hooks.ManageDocks as ManageDocks
 import qualified XMonad.Layout.BinarySpacePartition as Bsp
+import XMonad.Layout.MultiToggle (Toggle (Toggle))
+import XMonad.Layout.Reflect (REFLECTX (REFLECTX), REFLECTY (REFLECTY))
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (..))
 import XMonad.Local.Layout (LayoutName)
@@ -182,6 +184,7 @@ layoutKeyMap conf@XMonad.XConfig{modMask} =
     , ((modMask, X11.xK_t), lift . XMonad.withFocused $ XMonad.windows . StackSet.sink) -- %! Push window back into tiling
     , ((modMask, X11.xK_comma), lift $ XMonad.sendMessage (XMonad.IncMasterN 1)) -- %! Increment the number of windows in the master area
     , ((modMask, X11.xK_period), lift $ XMonad.sendMessage (XMonad.IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
+    , ((modMask, X11.xK_x), lift . XMonad.sendMessage $ Toggle REFLECTX)
     ]
 
 quitAndRestartKeyMap :: KeyMap
@@ -236,6 +239,9 @@ layoutOverrides layoutName XMonad.XConfig{modMask} =
       , ((modMask .|. X11.controlMask, X11.xK_k), lift . XMonad.sendMessage $ Bsp.ExpandTowards Bsp.U)
       , ((modMask, X11.xK_r), lift $ XMonad.sendMessage Bsp.Rotate)
       , ((modMask, X11.xK_s), lift $ XMonad.sendMessage Bsp.Swap)
+      ]
+    LayoutName.Wide ->
+      [ ((modMask, X11.xK_x), lift . XMonad.sendMessage $ Toggle REFLECTY)
       ]
     _ -> []
 
