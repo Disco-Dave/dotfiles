@@ -35,6 +35,13 @@ makePp = do
         let hexColor = Color.toHashString . xmobarColor $ Theme.themeXmobar theme
          in PP.xmobarColor hexColor ""
 
+  hostname <- Reader.asks envHostname
+
+  let hostnameExtra =
+        pure $ case hostname of
+          Hostname.Work -> Just $ Hostname.toString Hostname.Work
+          _ -> Nothing
+
   lift . clickablePP $
     PP.def
       { PP.ppCurrent = color Theme.xmobarCurrentWs . PP.wrap "[" "]"
@@ -42,7 +49,7 @@ makePp = do
       , PP.ppUrgent = color Theme.xmobarUrgentWs
       , PP.ppTitle = color Theme.xmobarWindowTitle
       , PP.ppTitleSanitize = PP.xmobarRaw . PP.shorten 40
-      , PP.ppExtras = [fullScreenWindowCount]
+      , PP.ppExtras = [fullScreenWindowCount, hostnameExtra]
       }
 
 addStatusBar ::
@@ -58,6 +65,7 @@ addStatusBar xconfig = do
 
   let sbConfig = mconcat $ case envHostname env of
         Hostname.Desktop -> [primary, secondary]
+        Hostname.Work -> [primary, secondary]
         _ -> [primary]
 
   pure $ StatusBar.withSB sbConfig xconfig
