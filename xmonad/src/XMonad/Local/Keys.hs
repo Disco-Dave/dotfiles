@@ -221,11 +221,7 @@ layoutOverrides :: LayoutName -> KeyMap
 layoutOverrides layoutName XMonad.XConfig{modMask} =
   Map.fromList $ case layoutName of
     LayoutName.Bsp ->
-      [ ((modMask .|. X11.shiftMask, X11.xK_Return), pure ())
-      , ((modMask, X11.xK_m), pure ())
-      , ((modMask, X11.xK_comma), pure ())
-      , ((modMask, X11.xK_period), pure ())
-      , ((modMask, X11.xK_l), lift $ Nav2D.windowGo Nav2D.R False)
+      [ ((modMask, X11.xK_l), lift $ Nav2D.windowGo Nav2D.R False)
       , ((modMask, X11.xK_h), lift $ Nav2D.windowGo Nav2D.L False)
       , ((modMask, X11.xK_k), lift $ Nav2D.windowGo Nav2D.U False)
       , ((modMask, X11.xK_j), lift $ Nav2D.windowGo Nav2D.D False)
