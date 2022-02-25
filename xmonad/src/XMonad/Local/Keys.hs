@@ -146,7 +146,7 @@ workspaceKeyMap XMonad.XConfig{modMask, workspaces = workspaceNames} =
 screenKeyMap :: KeyMap
 screenKeyMap XMonad.XConfig{modMask} =
   Map.fromList $
-    zip [0 ..] [X11.xK_w, X11.xK_e, X11.xK_r] >>= \(screenId, key) ->
+    zip [0 ..] [X11.xK_w, X11.xK_e] >>= \(screenId, key) ->
       let modifyWindowSet f = do
             maybeWorkspace <- lift $ XMonad.screenWorkspace screenId
             case maybeWorkspace of
