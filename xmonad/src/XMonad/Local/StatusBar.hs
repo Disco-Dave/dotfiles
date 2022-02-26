@@ -4,11 +4,10 @@ module XMonad.Local.StatusBar (
 
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
-import Control.Monad.Trans (lift)
 import XMonad (X)
 import qualified XMonad
 import qualified XMonad.Hooks.StatusBar as StatusBar
-import XMonad.Hooks.StatusBar.PP (PP)
+import XMonad.Hooks.StatusBar.PP (PP, xmobarAction)
 import qualified XMonad.Hooks.StatusBar.PP as PP
 import XMonad.Local.Environment (Environment (..))
 import qualified XMonad.Local.Hostname as Hostname
@@ -16,7 +15,6 @@ import XMonad.Local.Layout (LayoutName (..), getLayoutName)
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import XMonad.Local.Utils (numberOfWindowsOnWorkspace)
-import XMonad.Util.ClickableWorkspaces (clickablePP)
 
 fullScreenWindowCount :: X (Maybe String)
 fullScreenWindowCount = do
@@ -26,6 +24,10 @@ fullScreenWindowCount = do
     if currentLayout == Full && numberOfWindows > 0
       then Just $ show numberOfWindows
       else Nothing
+
+makeClickable :: Monad m => String -> m String
+makeClickable tag =
+  pure $ xmobarAction ("xdotool key alt+" <> tag) "1" tag
 
 makePp :: ReaderT Environment X PP
 makePp = do
@@ -42,7 +44,7 @@ makePp = do
           Hostname.Work -> Just $ Hostname.toString Hostname.Work
           _ -> Nothing
 
-  lift . clickablePP $
+  pure $
     PP.def
       { PP.ppCurrent = color Theme.xmobarCurrentWs . PP.wrap "[" "]"
       , PP.ppVisible = color Theme.xmobarForeground . PP.wrap "(" ")"
@@ -50,6 +52,7 @@ makePp = do
       , PP.ppTitle = color Theme.xmobarWindowTitle
       , PP.ppTitleSanitize = PP.xmobarRaw . PP.shorten 40
       , PP.ppExtras = [fullScreenWindowCount, hostnameExtra]
+      , PP.ppRename = makeClickable
       }
 
 addStatusBar ::
