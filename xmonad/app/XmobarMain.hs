@@ -4,6 +4,7 @@ import System.Environment (getArgs)
 import qualified System.FilePath as FilePath
 import XMonad.Local.Environment (Environment (..), getEnvironment)
 import qualified XMonad.Local.FilePaths as FilePaths
+import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Theme (Theme (Theme))
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
@@ -41,16 +42,28 @@ primary env =
           , "xmonad"
           , "padding-icon.sh"
           ]
-   in (defaultConfig (envTheme env))
-        { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
-        , Xmobar.commands =
-            [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
-            , Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
-            , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
-            , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "panel"] "tray" 10
-            ]
-        , Xmobar.template = "%_XMONAD_LOG_1% } %date% { %mpd% %tray%"
-        }
+   in case envHostname env of
+        Hostname.Work ->
+          (defaultConfig (envTheme env))
+            { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
+            , Xmobar.commands =
+                [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
+                , Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
+                , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "panel"] "tray" 10
+                ]
+            , Xmobar.template = "%_XMONAD_LOG_1% } %date% { %tray%"
+            }
+        _ ->
+          (defaultConfig (envTheme env))
+            { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
+            , Xmobar.commands =
+                [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
+                , Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
+                , Xmobar.Run $ Xmobar.ComX "mpc" ["current", "-f", "%title% by %artist%"] "" "mpd" 10
+                , Xmobar.Run $ Xmobar.Com "bash" [paddingIconScript, "panel"] "tray" 10
+                ]
+            , Xmobar.template = "%_XMONAD_LOG_1% } %date% { %mpd% %tray%"
+            }
 
 secondary :: Environment -> Xmobar.Config
 secondary env =

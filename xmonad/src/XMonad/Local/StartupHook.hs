@@ -61,7 +61,7 @@ startupHook = do
       extraTrayerFlags =
         case hostname of
           Hostname.Desktop -> [" --height 30", "--iconspacing 8"]
-          Hostname.Work -> [" --height 30", "--iconspacing 8"]
+          Hostname.Work -> [" --height 30", "--iconspacing 5"]
           _ -> ["--height 22", "--iconspacing 5"]
 
 
