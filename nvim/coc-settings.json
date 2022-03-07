@@ -77,6 +77,10 @@
         "elmTestPath": "elm-test",
         "elmAnalyseTrigger": "change"
       }
+    },
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"]
     }
   }
 }
