@@ -141,6 +141,7 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 
 " CoC extensions
 let g:coc_global_extensions=[
+    \ '@yaegassy/coc-ansible',
     \ 'coc-css',
     \ 'coc-diagnostic',
     \ 'coc-docker',
