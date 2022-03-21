@@ -20,6 +20,7 @@ Plug 'vmchale/dhall-vim' " dhall support
 Plug 'tpope/vim-surround' " Keybindings for surrounding things with quotes, parenthesis, etc.
 Plug 'vimwiki/vimwiki' " Personal wiki managed inside vim, useful notes.
 Plug 'michal-h21/vimwiki-sync' " Synchronize vimwiki with git
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
