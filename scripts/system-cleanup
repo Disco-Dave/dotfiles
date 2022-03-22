@@ -3,3 +3,5 @@
 paru -Sc --noconfirm
 
 docker system prune --all --volumes --force
+
+rm -rvf ~/Downloads/*
