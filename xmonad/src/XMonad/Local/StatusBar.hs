@@ -15,6 +15,7 @@ import XMonad.Local.Layout (LayoutName (..), getLayoutName)
 import qualified XMonad.Local.Theme as Theme
 import qualified XMonad.Local.Theme.Color as Color
 import XMonad.Local.Utils (numberOfWindowsOnWorkspace)
+import XMonad.Util.WorkspaceCompare (getSortByTag)
 
 fullScreenWindowCount :: X (Maybe String)
 fullScreenWindowCount = do
@@ -53,6 +54,7 @@ makePp = do
       , PP.ppTitleSanitize = PP.xmobarRaw . PP.shorten 40
       , PP.ppExtras = [fullScreenWindowCount, hostnameExtra]
       , PP.ppRename = makeClickable
+      , PP.ppSort = getSortByTag
       }
 
 addStatusBar ::
@@ -65,10 +67,11 @@ addStatusBar xconfig = do
   let pp = Reader.runReaderT makePp env
       primary = StatusBar.statusBarPropTo "_XMONAD_LOG_1" "xmobar" pp
       secondary = StatusBar.statusBarPropTo "_XMONAD_LOG_2" "xmobar --secondary" pp
+      tertiary = StatusBar.statusBarPropTo "_XMONAD_LOG_3" "xmobar --tertiary" pp
 
   let sbConfig = mconcat $ case envHostname env of
-        Hostname.Desktop -> [primary, secondary]
-        Hostname.Work -> [primary, secondary]
+        Hostname.Desktop -> [primary, secondary, tertiary]
+        Hostname.Work -> [primary, secondary, tertiary]
         _ -> [primary]
 
   pure $ StatusBar.withSB sbConfig xconfig

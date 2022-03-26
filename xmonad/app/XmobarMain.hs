@@ -68,15 +68,25 @@ primary env =
 secondary :: Environment -> Xmobar.Config
 secondary env =
   (defaultConfig (envTheme env))
-    { Xmobar.position = Xmobar.OnScreen 1 Xmobar.Top
+    { Xmobar.position = Xmobar.OnScreen 2 Xmobar.Top
     , Xmobar.commands =
         [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_2"
         , Xmobar.Run $ Xmobar.ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 6000
+        ]
+    , Xmobar.template = "%_XMONAD_LOG_2% } %weather% { "
+    }
+
+tertiary :: Environment -> Xmobar.Config
+tertiary env =
+  (defaultConfig (envTheme env))
+    { Xmobar.position = Xmobar.OnScreen 1 Xmobar.Top
+    , Xmobar.commands =
+        [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_3"
         , Xmobar.Run $ Xmobar.Memory ["-t", "Mem: <usedratio>%"] 10
         , Xmobar.Run $ Xmobar.Swap [] 10
         , Xmobar.Run $ Xmobar.Cpu [] 10
         ]
-    , Xmobar.template = "%_XMONAD_LOG_2% } %weather% { %cpu% | %memory% * %swap%"
+    , Xmobar.template = "%_XMONAD_LOG_3% } { %cpu% | %memory% * %swap%"
     }
 
 main :: IO ()
@@ -87,4 +97,5 @@ main = do
 
   case args of
     ("--secondary" : _) -> Xmobar.xmobar (secondary env)
+    ("--tertiary" : _) -> Xmobar.xmobar (tertiary env)
     _ -> Xmobar.xmobar (primary env)

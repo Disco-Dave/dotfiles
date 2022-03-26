@@ -28,6 +28,7 @@ import XMonad.Layout.MultiToggle (Toggle (Toggle))
 import XMonad.Layout.Reflect (REFLECTX (REFLECTX), REFLECTY (REFLECTY))
 import qualified XMonad.Layout.ToggleLayouts as Toggle
 import XMonad.Local.Environment (Environment (..))
+import XMonad.Local.Hostname (Hostname)
 import XMonad.Local.Layout (LayoutName)
 import qualified XMonad.Local.Layout as Layout
 import qualified XMonad.Local.Layout as LayoutName
@@ -124,10 +125,10 @@ mediaKeyMap _ =
     , ((X11.noModMask, X11.xF86XK_AudioPlay), XMonad.spawn "mpc toggle")
     ]
 
-workspaceKeyMap :: KeyMap
-workspaceKeyMap XMonad.XConfig{modMask, workspaces = workspaceNames} =
+workspaceKeyMap :: Hostname -> KeyMap
+workspaceKeyMap hostname XMonad.XConfig{modMask, workspaces = workspaceNames} =
   Map.fromList $
-    zip workspaceNames workspaceKeys >>= \(workspaceId, key) ->
+    zip workspaceNames (workspaceKeys hostname) >>= \(workspaceId, key) ->
       let modifyWindowSet f = lift $ XMonad.windows (f workspaceId)
        in [
             ( (modMask, key) -- Focus workspace
@@ -146,7 +147,7 @@ workspaceKeyMap XMonad.XConfig{modMask, workspaces = workspaceNames} =
 screenKeyMap :: KeyMap
 screenKeyMap XMonad.XConfig{modMask} =
   Map.fromList $
-    zip [0 ..] [X11.xK_q, X11.xK_w, X11.xK_e] >>= \(screenId, key) ->
+    [(1, X11.xK_q), (0, X11.xK_w), (2, X11.xK_e)] >>= \(screenId, key) ->
       let modifyWindowSet f = do
             maybeWorkspace <- lift $ XMonad.screenWorkspace screenId
             case maybeWorkspace of
@@ -171,8 +172,6 @@ layoutKeyMap conf@XMonad.XConfig{modMask} =
     , ((modMask, X11.xK_f), lift $ XMonad.sendMessage Toggle.ToggleLayout) -- %! Toggle the Full layout
     , ((modMask, X11.xK_n), lift XMonad.refresh) -- %! Resize viewed windows to the correct size
     , ((modMask .|. X11.shiftMask, X11.xK_s), lift $ XMonad.sendMessage ManageDocks.ToggleStruts) -- move focus up or down the window stack
-    , ((modMask, X11.xK_Tab), lift $ XMonad.windows StackSet.focusDown) -- %! Move focus to the next window
-    , ((modMask .|. X11.shiftMask, X11.xK_Tab), lift $ XMonad.windows StackSet.focusUp) -- %! Move focus to the previous window
     , ((modMask, X11.xK_j), lift $ XMonad.windows StackSet.focusDown) -- %! Move focus to the next window
     , ((modMask, X11.xK_k), lift $ XMonad.windows StackSet.focusUp) -- %! Move focus to the previous window
     , ((modMask, X11.xK_m), lift $ XMonad.windows StackSet.focusMaster) -- %! Move focus to the master window
@@ -201,8 +200,8 @@ merge =
     Merge.preserveMissing
     (Merge.zipWithMatched (\_ _ new -> new))
 
-defaultKeys :: KeyMap
-defaultKeys conf =
+defaultKeys :: Hostname -> KeyMap
+defaultKeys hostname conf =
   let allKeyMaps =
         fmap
           ($ conf)
@@ -210,7 +209,7 @@ defaultKeys conf =
           , applicationShortcuts
           , screenshotKeyMap
           , mediaKeyMap
-          , workspaceKeyMap
+          , workspaceKeyMap hostname
           , screenKeyMap
           , layoutKeyMap
           , quitAndRestartKeyMap
@@ -241,8 +240,8 @@ layoutOverrides layoutName XMonad.XConfig{modMask} =
       ]
     _ -> []
 
-keys :: KeyMap
-keys conf =
+keys :: Hostname -> KeyMap
+keys hostname conf =
   let layoutNames = [minBound @LayoutName ..]
       allKeys = foldMap (Set.fromList . Map.keys . flip layoutOverrides conf) layoutNames
       doNothingMap = Map.fromList . fmap (,pure ()) $ Set.toList allKeys
@@ -250,4 +249,4 @@ keys conf =
         layoutName <- lift Layout.getLayoutName
         let overrides = layoutOverrides layoutName conf
         fromMaybe originalCommand (Map.lookup binding overrides)
-   in Map.mapWithKey overlay $ merge doNothingMap (defaultKeys conf)
+   in Map.mapWithKey overlay $ merge doNothingMap (defaultKeys hostname conf)

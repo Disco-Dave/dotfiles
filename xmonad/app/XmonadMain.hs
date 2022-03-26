@@ -3,7 +3,7 @@ module Main (main) where
 import qualified Control.Monad.Reader as Reader
 import qualified Data.Map.Strict as Map
 import qualified XMonad
-import XMonad.Local.Environment (Environment (envTheme), getEnvironment)
+import XMonad.Local.Environment (Environment (envHostname, envTheme), getEnvironment)
 import XMonad.Local.Hooks (applyHooks)
 import qualified XMonad.Local.Keys as Keys
 import qualified XMonad.Local.Layout as LayoutHook
@@ -30,15 +30,16 @@ main = do
           let theme = envTheme env
               windowTheme = Theme.themeWindow theme
            in Color.toHashString $ windowColor windowTheme
+        hostname = envHostname env
      in XMonad.def
           { XMonad.terminal = "alacritty"
           , XMonad.borderWidth = 3
           , XMonad.focusedBorderColor = color Theme.windowBorderFocussed
           , XMonad.normalBorderColor = color Theme.windowBorder
           , XMonad.modMask = Keys.altKey
-          , XMonad.keys = Map.map runReaderT . Keys.keys
+          , XMonad.keys = Map.map runReaderT . Keys.keys hostname
           , XMonad.manageHook = runReader ManageHook.manageHook
           , XMonad.startupHook = runReaderT StartupHook.startupHook
-          , XMonad.workspaces = workspaceNames
+          , XMonad.workspaces = workspaceNames hostname
           , XMonad.layoutHook = runReader LayoutHook.layoutHook
           }
