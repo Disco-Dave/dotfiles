@@ -146,7 +146,7 @@ workspaceKeyMap XMonad.XConfig{modMask, workspaces = workspaceNames} =
 screenKeyMap :: KeyMap
 screenKeyMap XMonad.XConfig{modMask} =
   Map.fromList $
-    zip [0 ..] [X11.xK_w, X11.xK_e] >>= \(screenId, key) ->
+    zip [0 ..] [X11.xK_q, X11.xK_w, X11.xK_e] >>= \(screenId, key) ->
       let modifyWindowSet f = do
             maybeWorkspace <- lift $ XMonad.screenWorkspace screenId
             case maybeWorkspace of
@@ -190,8 +190,8 @@ layoutKeyMap conf@XMonad.XConfig{modMask} =
 quitAndRestartKeyMap :: KeyMap
 quitAndRestartKeyMap XMonad.XConfig{modMask} =
   Map.fromList
-    [ ((modMask .|. X11.shiftMask, X11.xK_q), liftIO exitSuccess) -- %! Quit xmonad
-    , ((modMask, X11.xK_q), XMonad.spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
+    [ ((modMask .|. X11.shiftMask, X11.xK_Tab), liftIO exitSuccess) -- %! Quit xmonad
+    , ((modMask, X11.xK_Tab), XMonad.spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
     ]
 
 merge :: Ord k => Map k a -> Map k a -> Map k a
