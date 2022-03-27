@@ -44,7 +44,7 @@ focusPrimaryScreen = do
 startupHook :: ReaderT Environment X ()
 startupHook = do
   lift $ setWMName "LG3D" -- Fixes GUIs built with Java
-  --lift focusPrimaryScreen
+  lift focusPrimaryScreen
 
   configHome <- Reader.asks (FilePaths.xdgConfig . envFilePaths)
   hostname <- Reader.asks envHostname

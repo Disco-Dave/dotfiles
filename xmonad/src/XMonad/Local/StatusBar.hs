@@ -4,11 +4,14 @@ module XMonad.Local.StatusBar (
 
 import Control.Monad.Reader (ReaderT)
 import qualified Control.Monad.Reader as Reader
+import Control.Monad.Trans (lift)
 import XMonad (X)
 import qualified XMonad
+import XMonad.Core (WorkspaceId)
 import qualified XMonad.Hooks.StatusBar as StatusBar
 import XMonad.Hooks.StatusBar.PP (PP, xmobarAction)
 import qualified XMonad.Hooks.StatusBar.PP as PP
+import XMonad.Hooks.StatusBar.WorkspaceScreen (combineWithScreenNumber)
 import XMonad.Local.Environment (Environment (..))
 import qualified XMonad.Local.Hostname as Hostname
 import XMonad.Local.Layout (LayoutName (..), getLayoutName)
@@ -30,6 +33,16 @@ makeClickable :: Monad m => String -> m String
 makeClickable tag =
   pure $ xmobarAction ("xdotool key alt+" <> tag) "1" tag
 
+prefixScreenName :: WorkspaceId -> String -> String
+prefixScreenName workspaceId screenNumber =
+  let screenName =
+        case screenNumber of
+          "0" -> " C"
+          "2" -> " R"
+          "1" -> " L"
+          _ -> ""
+   in workspaceId <> screenName
+
 makePp :: ReaderT Environment X PP
 makePp = do
   theme <- Reader.asks envTheme
@@ -45,7 +58,13 @@ makePp = do
           Hostname.Work -> Just $ Hostname.toString Hostname.Work
           _ -> Nothing
 
-  pure $
+  let addScreenName =
+        case hostname of
+          Hostname.Work -> combineWithScreenNumber prefixScreenName
+          Hostname.Desktop -> combineWithScreenNumber prefixScreenName
+          _ -> pure
+
+  lift . addScreenName $
     PP.def
       { PP.ppCurrent = color Theme.xmobarCurrentWs . PP.wrap "[" "]"
       , PP.ppVisible = color Theme.xmobarForeground . PP.wrap "(" ")"
