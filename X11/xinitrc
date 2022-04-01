@@ -4,7 +4,7 @@
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 # Start the compositor so we can have transparency and shadow effects
-picom &
+picom --experimental-backends &
 
 # Fix screen stuff
 xsetroot -cursor_name left_ptr
