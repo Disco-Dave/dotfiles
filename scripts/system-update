@@ -3,4 +3,3 @@
 set -e
 
 topgrade -y
-~/.config/dotfiles/migrate.sh run
