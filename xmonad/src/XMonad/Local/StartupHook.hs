@@ -76,4 +76,5 @@ startupHook = do
     , "blueman-applet"
     , "birdtray -H"
     , "redshift-gtk -l 40.19342:-76.7633"
+    , "update-firefox-user-js.sh"
     ]
