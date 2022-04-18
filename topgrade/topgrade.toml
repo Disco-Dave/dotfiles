@@ -59,8 +59,6 @@ disable = ["stack", "containers", "git_repos"]
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 "ghcup" = "ghcup upgrade"
-"dotfiles" = "cd ~/.config/dotfiles && git pull && ~/.config/dotfiles/migrate.sh run"
-"dotfiles-private" = "cd ~/.config/dotfiles-private && git pull && ~/.config/dotfiles-private/migrate.sh run"
 
 [brew]
 #greedy_cask = true
