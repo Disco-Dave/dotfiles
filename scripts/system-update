@@ -2,8 +2,6 @@
 
 set -e
 
-topgrade -y
-
 if [[ -e ~/.config/dotfiles ]]; then
   cd ~/.config/dotfiles 
   git pull 
@@ -15,3 +13,6 @@ if [[ -e ~/.config/dotfiles-private ]]; then
   git pull 
   ~/.config/dotfiles-private/migrate.sh run
 fi
+
+topgrade -y
+
