@@ -152,7 +152,6 @@ let g:coc_global_extensions=[
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-metals',
-    \ 'coc-omnisharp',
     \ 'coc-phpls',
     \ 'coc-prettier',
     \ 'coc-rust-analyzer',

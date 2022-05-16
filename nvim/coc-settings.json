@@ -81,6 +81,11 @@
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": ["terraform"]
+    },
+    "csharp-ls": {
+      "command": "csharp-ls",
+      "filetypes": ["cs"],
+      "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/", "*.sln"]
     }
   }
 }
