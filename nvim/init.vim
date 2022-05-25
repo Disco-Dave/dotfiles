@@ -38,6 +38,7 @@ let g:nord_bold = 1
 let g:nord_underline = 1
 set cursorline
 colorscheme nord
+set signcolumn=number
 
 " Indent settings
 set autoindent
@@ -127,7 +128,7 @@ highlight SignColumn ctermbg=none
 " CoC Key Bindings
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> <leader>I <Plug>(coc-implementation)
-nmap <silent> <leader>h :call CocAction('doHover')<CR>
+nmap <silent> <leader>h :call CocActionAsync('doHover')<CR>
 nmap <silent> <leader>d <Plug>(coc-definition)
 nmap <silent> <leader>t <Plug>(coc-type-definition)
 nmap <silent> <leader>r <Plug>(coc-references)
@@ -155,7 +156,6 @@ let g:coc_global_extensions=[
     \ 'coc-phpls',
     \ 'coc-prettier',
     \ 'coc-rust-analyzer',
-    \ 'coc-sh',
     \ 'coc-tsserver',
     \ 'coc-yaml'
 \ ]
