@@ -1,6 +1,5 @@
 {
   "suggest.autoTrigger": "trigger",
-  "codeLens.enable": false,
   "signature.enable": true,
   "suggest.enablePreview": true,
   "suggest.floatEnable": false,
@@ -36,16 +35,10 @@
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
-      "rootPatterns": [
-        "*.cabal",
-        "stack.yaml",
-        "cabal.project",
-        "package.yaml"
-      ],
-      "filetypes": ["hs", "lhs", "haskell"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"],
       "settings": {
         "haskell": {
-          "hlintOn": true,
           "formattingProvider": "fourmolu"
         }
       }
