@@ -30,3 +30,5 @@
     cmd = "nvim -f -c \"Gdiffsplit!\" \"$MERGED\""
 
 # vim: set filetype=gitconfig:
+[core]
+	excludesfile = ~/.config/git/ignore
