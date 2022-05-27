@@ -22,6 +22,7 @@ Plug 'vimwiki/vimwiki' " Personal wiki managed inside vim, useful notes.
 Plug 'michal-h21/vimwiki-sync' " Synchronize vimwiki with git
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'tpope/vim-dadbod', { 'for': ['sql'] }
 
 call plug#end()
 
@@ -146,18 +147,16 @@ nmap <silent> <leader>c <Plug>(coc-codelens-action)
 let g:coc_global_extensions=[
     \ '@yaegassy/coc-ansible',
     \ 'coc-css',
+    \ 'coc-db',
     \ 'coc-diagnostic',
     \ 'coc-docker',
     \ 'coc-eslint',
     \ 'coc-fsharp',
     \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-metals',
-    \ 'coc-phpls',
-    \ 'coc-prettier',
     \ 'coc-rust-analyzer',
     \ 'coc-tsserver',
-    \ 'coc-yaml'
+    \ 'coc-yaml',
 \ ]
 
 " Rainbow parens
