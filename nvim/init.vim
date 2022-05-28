@@ -165,6 +165,7 @@ let g:rainbow_active = 1
 " Since lightline shows the mode, we no longer need it shown on the last line
 set noshowmode
 
+" Enables autocompletion in sql files
 let g:db = $DATABASE_URL
 
 " Lightline settings

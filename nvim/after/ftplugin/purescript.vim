@@ -1,5 +1,2 @@
-nmap <silent> <buffer> <leader>f :Neoformat purty<CR>
-
-setlocal tabstop=2
-setlocal softtabstop=2 
-setlocal shiftwidth=2 
+vmap <buffer> <silent> <leader>f :Neoformat purty<CR>
+nmap <buffer> <silent> <leader>f :Neoformat purty<CR>

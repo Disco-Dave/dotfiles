@@ -1,1 +1,2 @@
-nmap <silent> <buffer> <leader>f :Neoformat<CR>
+vmap <buffer> <silent> <leader>f :Neoformat<CR>
+nmap <buffer> <silent> <leader>f :Neoformat<CR>
