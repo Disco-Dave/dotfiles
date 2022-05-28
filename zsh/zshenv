@@ -80,6 +80,12 @@ export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 # readline
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 
+# docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+
+# elm
+export ELM_HOME="$XDG_CONFIG_HOME"/elm
+
 # Prevent less from storing history
 export LESSHISTFILE=-
 
