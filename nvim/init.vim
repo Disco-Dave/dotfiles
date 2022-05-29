@@ -14,7 +14,7 @@ Plug 'scrooloose/nerdtree' " A file browser
 Plug 'sheerun/vim-polyglot' " Adds a bunch of syntax highlight suport for many file types
 Plug 'tpope/vim-fugitive' " Git support
 Plug 'vim-scripts/Tabmerge' " A script to merge tabs
-Plug 'arcticicestudio/nord-vim' " nord color scheme
+Plug 'arcticicestudio/nord-vim', {'branch': 'main'} " nord color scheme
 Plug 'editorconfig/editorconfig-vim' " editorconfig support
 Plug 'vmchale/dhall-vim' " dhall support
 Plug 'tpope/vim-surround' " Keybindings for surrounding things with quotes, parenthesis, etc.
