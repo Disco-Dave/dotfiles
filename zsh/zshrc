@@ -27,7 +27,11 @@ zplug load
 
 
 # Custom completions are usually stored in this folder
-fpath=(~/.local/share/zsh/functions/ $fpath)
+fpath=(
+    ~/.local/share/zsh/functions/ 
+    /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh
+    $fpath
+)
 
 
 # Enable substring searches for up and down arrows
