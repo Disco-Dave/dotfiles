@@ -7,6 +7,10 @@ trap 'rm -r $TEMP_DIR' exit
 
 cd "$XDG_CONFIG_HOME/xmonad"
 
-cabal build exe:xmonad -O2
-cp "$(cabal list-bin exe:xmonad)" "$TEMP_DIR/xmonad"
+cabal install \
+  -O2 \
+  --installdir "$TEMP_DIR" \
+  --install-method copy \
+  exe:xmonad
+
 mv "$TEMP_DIR/xmonad" "$1"

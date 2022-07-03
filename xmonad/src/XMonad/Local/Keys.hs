@@ -162,6 +162,10 @@ screenKeyMap XMonad.XConfig{modMask} =
             ( (modMask .|. X11.shiftMask, key) -- Move window to screen
             , modifyWindowSet StackSet.shift
             )
+          ,
+            ( (modMask .|. X11.controlMask, key)
+            , modifyWindowSet StackSet.greedyView
+            )
           ]
 
 layoutKeyMap :: KeyMap
