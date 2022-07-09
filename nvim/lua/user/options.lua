@@ -6,7 +6,7 @@ vim.opt.tabstop = tab_size -- number of spaces for tab
 
 -- Line Numbers --
 vim.opt.number = true -- adds actual line number for current line
-vim.opt.numberwidth = 2 -- width of the line number column
+vim.opt.numberwidth = 1 -- width of the line number column
 vim.opt.relativenumber = true -- enables relative line numbering
 vim.opt.signcolumn = "number" -- adds signs to the number column
 
