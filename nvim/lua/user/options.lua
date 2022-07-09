@@ -30,7 +30,7 @@ vim.opt.backupcopy = "yes" -- Fixes hot reloading for things like parcel
 vim.opt.undofile = true -- enables undo files, keeps undo tree in between sessions
 vim.opt.undodir = vim.env.XDG_CACHE_HOME .. "/nvim/undo//" -- store the undo files in $XDG_CONFIG_HOME
 vim.opt.backupdir = vim.env.XDG_CACHE_HOME .. "/nvim/backup//" -- store the backup files in $XDG_CONFIG_HOME
-vim.opt.directory = vim.env.XDG_RUNTIME_DIR .. "/nvim/swap//" -- store the swap files in $XDG_CONFIG_HOME
+vim.opt.directory = vim.env.XDG_CACHE_HOME .. "/nvim/swap//" -- store the swap files in $XDG_CONFIG_HOME
 
 -- Folding --
 vim.opt.foldenable = false -- disable all syntax folding
