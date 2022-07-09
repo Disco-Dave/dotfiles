@@ -24,6 +24,7 @@ keymap("n", "<C-Up>", ":resize +2<CR>", opts) -- increase vertical space of a wi
 keymap("n", "<C-Down>", ":resize -2<CR>", opts) -- decrease vertical space of a window
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts) -- decrease horizontal space of a window
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts) -- increase horizontal space of a window
+keymap("v", "<leader>i", "<Plug>SlimeRegionSend", opts) -- send region to neovim terminal
 
 
 -- Identation --
