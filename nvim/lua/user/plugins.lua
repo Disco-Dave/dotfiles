@@ -69,6 +69,7 @@ return packer.startup(function(use)
   use "mattn/emmet-vim" -- keybindings for html shorthand
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
   use "windwp/nvim-autopairs" -- auto close things
+  use "numToStr/Comment.nvim" -- comment things
 
 
   -- syntax, colors, and themes
