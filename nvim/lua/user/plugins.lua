@@ -23,7 +23,7 @@ vim.cmd [[
   augroup end
 ]]
 
--- Use a protected call so we don't error out on first use
+-- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   return
@@ -55,11 +55,10 @@ return packer.startup(function(use)
 
   -- file explorer
   use {
-    'kyazdani42/nvim-tree.lua',
+    "kyazdani42/nvim-tree.lua",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
 
@@ -68,19 +67,23 @@ return packer.startup(function(use)
   use "duff/vim-bufonly" -- close all buffers with :BufOnly
   use "jpalardy/vim-slime" -- send snippets to a terminal window
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
-  use 'mattn/emmet-vim' -- keybindings for html shorthand
+  use "mattn/emmet-vim" -- keybindings for html shorthand
 
 
-  -- syntax and colors
+  -- syntax, colors, and themes
   use "arcticicestudio/nord-vim" -- download the official nord colorscheme for (neo)vim
   use "romainl/vim-cool" -- disables search highlighting when you are done searching and re-enables it when you search again 
   use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  use { -- advanced syntax highlighting
+    "nvim-treesitter/nvim-treesitter",
+    run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
   }
   use "p00f/nvim-ts-rainbow" -- rainbow parens for treesitter
-
+  use { -- status line
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  }
+  use "kdheepak/tabline.nvim"
 
   -- lsp
   use "neovim/nvim-lspconfig" -- enable LSP
