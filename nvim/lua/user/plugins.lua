@@ -67,7 +67,8 @@ return packer.startup(function(use)
 
 
   -- lsp
-  use "neovim/nvim-lspconfig"
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
 
 
   -- snippets
@@ -79,7 +80,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-path"
   use "hrsh7th/nvim-cmp"
   use "saadparwaiz1/cmp_luasnip"
