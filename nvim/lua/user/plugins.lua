@@ -44,8 +44,8 @@ return packer.startup(function(use)
 
 
   -- neovim-from-scratch says these two plugins are often required by other plugins
---   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
---   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
 
 
   -- vikwiki stuff
