@@ -75,6 +75,11 @@ return packer.startup(function(use)
   use "arcticicestudio/nord-vim" -- download the official nord colorscheme for (neo)vim
   use "romainl/vim-cool" -- disables search highlighting when you are done searching and re-enables it when you search again 
   use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
+  use "p00f/nvim-ts-rainbow" -- rainbow parens for treesitter
 
 
   -- lsp
