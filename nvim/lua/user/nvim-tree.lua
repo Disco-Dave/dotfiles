@@ -24,4 +24,4 @@ nvim_tree.setup({
 local opts = { noremap = true, silent = true } -- options for all key bindings
 local keymap = vim.api.nvim_set_keymap -- shorten vim.api.nvim_set_keymap to keymap
 
-keymap("n", "';", ":NvimTreeToggle<CR>", opts) -- toggle nvim-tree
+keymap("n", "<leader>;", ":NvimTreeToggle<CR>", opts) -- toggle nvim-tree
