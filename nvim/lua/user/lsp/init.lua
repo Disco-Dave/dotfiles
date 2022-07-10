@@ -1,3 +1,10 @@
+-- NOTE: You shouldn't need to modify this file.
+--
+-- Instead go to:
+-- * user.lsp.keymaps to modify keybindings
+-- * user.lsp.servers to modify the list language servers
+-- * user.lsp.settings.* to add language specific settings
+
 -- Import lsp_installer, and exit if we can't.
 local installer_status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not installer_status_ok then
