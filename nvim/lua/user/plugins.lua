@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use "duff/vim-bufonly" -- close all buffers with :BufOnly
   use "jpalardy/vim-slime" -- send snippets to a terminal window
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
+  use 'mattn/emmet-vim' -- keybindings for html shorthand
 
 
   -- syntax and colors

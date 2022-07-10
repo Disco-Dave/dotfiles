@@ -1,6 +1,5 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
-  vim.notify("unable to load nvim-tree")
   return
 end
 
@@ -11,8 +10,12 @@ nvim_tree.setup({
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
-        { key = "<C-k>", action = "" },
-        { key = "i", action = "toggle-file-info" },
+        { key = "<C-x>", action = "" },
+        { key = "s", action = "split" },
+        { key = "<C-v>", action = "" },
+        { key = "v", action = "vsplit" },
+        { key = "<C-t>", action = "" },
+        { key = "t", action = "tabnew" },
       },
     },
   },

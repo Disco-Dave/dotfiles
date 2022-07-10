@@ -13,6 +13,5 @@ end
 
 local status_ok, _ = pcall(set_colorscheme)
 if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
 end
