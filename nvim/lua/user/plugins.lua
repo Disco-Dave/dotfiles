@@ -44,13 +44,23 @@ return packer.startup(function(use)
 
 
   -- neovim-from-scratch says these two plugins are often required by other plugins
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+--   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+--   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
 
 
   -- vikwiki stuff
   use "michal-h21/vimwiki-sync" -- synchronize vimwiki with a git repo
   use "vimwiki/vimwiki" -- note taking with in a wiki syntax
+
+
+  -- file explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
 
 
   -- commands
