@@ -43,21 +43,46 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
 
 
-  -- Transitive Dependencies --
+  -- neovim-from-scratch says these two plugins are often required by other plugins
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
 
 
-  -- Explicit Dependencies --
-  use "arcticicestudio/nord-vim" -- download the official nord colorscheme for (neo)vim
+  -- vikwiki stuff
+  use "michal-h21/vimwiki-sync" -- synchronize vimwiki with a git repo
+  use "vimwiki/vimwiki" -- note taking with in a wiki syntax
+
+
+  -- commands
   use "christoomey/vim-tmux-navigator" -- share C-j, C-h, C-k, C-l with tmux to navigate between splits
   use "duff/vim-bufonly" -- close all buffers with :BufOnly
   use "jpalardy/vim-slime" -- send snippets to a terminal window
-  use "michal-h21/vimwiki-sync" -- synchronize vimwiki with a git repo
+  use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
+
+
+  -- syntax and colors
+  use "arcticicestudio/nord-vim" -- download the official nord colorscheme for (neo)vim
   use "romainl/vim-cool" -- disables search highlighting when you are done searching and re-enables it when you search again 
   use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
-  use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
-  use "vimwiki/vimwiki" -- note taking with in a wiki syntax
+
+
+  -- lsp
+  use "neovim/nvim-lspconfig"
+
+
+  -- snippets
+  use "L3MON4D3/LuaSnip"
+  use "rafamadriz/friendly-snippets"
+
+
+  -- completion
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/nvim-cmp"
+  use "saadparwaiz1/cmp_luasnip"
 
 
   -- Automatically set up your configuration after cloning packer.nvim

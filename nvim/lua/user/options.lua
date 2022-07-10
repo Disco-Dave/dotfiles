@@ -28,7 +28,7 @@ vim.opt.termguicolors = true -- enables 24-bit rgb color in the |tui
 
 
 -- Completion --
-vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+vim.opt.completeopt = { "menu", "menuone", "noselect" } -- recommended from https://github.com/knubie/nvim-cmp#recommended-configuration
 vim.opt.shortmess:append "c" -- don't give ins-completion-menu messages
 vim.opt.updatetime = 300  -- faster completion (4000ms default)
 
@@ -48,7 +48,6 @@ vim.opt.foldenable = false -- disable all syntax folding
 
 -- Peripherals --
 vim.opt.mouse = "nv" -- enable the mouse for normal and visual mode
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 
 -- Misc --
