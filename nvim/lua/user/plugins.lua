@@ -85,6 +85,7 @@ return packer.startup(function(use)
   }
   use "kdheepak/tabline.nvim"
 
+
   -- lsp
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
@@ -104,6 +105,9 @@ return packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "saadparwaiz1/cmp_luasnip"
 
+
+  -- misc
+  use "lewis6991/impatient.nvim" -- startup caching
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
