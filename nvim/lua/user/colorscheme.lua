@@ -1,6 +1,6 @@
 local colorscheme = "nord" -- name of the colorscheme to use
 
-function set_colorscheme()
+local function set_colorscheme()
   vim.opt.cursorline = true -- highlight the current line
   vim.g.nord_cursor_line_number_background = 1 -- extend cursorline highlight into the number column
   vim.g.nord_italic = 1 -- enable italic fonts
