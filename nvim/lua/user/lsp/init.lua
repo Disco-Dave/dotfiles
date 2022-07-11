@@ -3,6 +3,7 @@
 -- Instead go to:
 -- * user.lsp.keymaps to modify keybindings
 -- * user.lsp.servers to modify the list language servers
+-- * user.lsp.null-ls to add integration with local executables as an lsp source
 -- * user.lsp.settings.* to add language specific settings
 
 -- Import lsp_installer, and exit if we can't.
@@ -51,7 +52,7 @@ local signs = {
   { name = "DiagnosticSignInfo", text = "" },
 }
 
-for _, sign in ipairs(signs) do
+for _, sign in pairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
