@@ -19,14 +19,14 @@ end
 
 
 -- Import our list of servers
-local lsp_servers = require("user.lsp.servers")
+local servers = require("user.lsp.servers")
 
 
 -- Select the servers that should be installed by lsp_installer
 local lsp_servers_to_install = {}
-for _, server in ipairs(lsp_servers) do
-  if server.install then
-    table.insert(lsp_servers_to_install, server.name)
+for name, opts in pairs(servers) do
+  if opts.install then
+    table.insert(lsp_servers_to_install, name)
   end
 end
 
@@ -96,14 +96,17 @@ local on_attach = function(client, bufnr)
       false
     )
   end
+  if servers[client.name].disable_formatting then
+    client.resolved_capabilities.document_formatting = false
+  end
 end
 
 local lsp_options = {
   on_attach = on_attach,
 }
 
-for _, server in ipairs(lsp_servers) do
-  local extra_options_exist, extra_options = pcall(require, "user.lsp.settings." .. server.name)
+for name, _ in pairs(servers) do
+  local extra_options_exist, extra_options = pcall(require, "user.lsp.settings." .. name)
 
   local server_options = lsp_options
 
@@ -111,5 +114,7 @@ for _, server in ipairs(lsp_servers) do
     server_options = vim.tbl_deep_extend("force", extra_options, lsp_options)
   end
 
-  lspconfig[server.name].setup(server_options)
+  lspconfig[name].setup(server_options)
 end
+
+require("user.lsp.null-ls")()

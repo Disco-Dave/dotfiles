@@ -1,10 +1,10 @@
 -- "name": name of server from :help lspconfig-all
 -- "install": boolean value indicating if the server should be installed by lsp-installer
 return {
-  { name = "cssls", install = true },
-  { name = "elmls", install = false },
-  { name = "hls", install = false },
-  { name = "html", install = true },
-  { name = "sumneko_lua", install = true },
-  { name = "tsserver", install = true },
+  cssls = { install = true, },
+  elmls = {},
+  hls = { disable_formatting = false }, -- TODO Get native fourmolu via null-ls working
+  html = { install = true },
+  sumneko_lua = { install = true },
+  tsserver = { install = true },
 }
