@@ -30,7 +30,7 @@ vim.opt.termguicolors = true -- enables 24-bit rgb color in the |tui
 -- Completion --
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- recommended from https://github.com/knubie/nvim-cmp#recommended-configuration
 vim.opt.shortmess:append "c" -- don't give ins-completion-menu messages
-vim.opt.updatetime = 300  -- faster completion (4000ms default)
+vim.opt.updatetime = 300 -- faster completion (4000ms default)
 
 
 -- Backups and Undo Files --
@@ -50,11 +50,6 @@ vim.opt.foldenable = false -- disable all syntax folding
 vim.opt.mouse = "nv" -- enable the mouse for normal and visual mode
 
 
--- SQL --
-vim.g.db = vim.env.DATABASE_URL
-
-
 -- Misc --
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 vim.opt.wrap = false -- display lines as one long line
-

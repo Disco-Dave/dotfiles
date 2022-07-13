@@ -13,7 +13,7 @@ treesitter.setup({
 
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "haskell" }, -- list of language that will be disabled
+    disable = { "haskell", "elm", "purescript" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
 

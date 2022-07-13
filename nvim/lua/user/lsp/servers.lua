@@ -19,4 +19,5 @@ return {
   sumneko_lua = { install = true },
   tsserver = { install = true, on_attach = disable_formatting },
   rust_analyzer = { install = true },
+  purescriptls = { install = true },
 }
