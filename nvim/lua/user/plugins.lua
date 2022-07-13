@@ -86,7 +86,6 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
-  -- use "kdheepak/tabline.nvim"
   use "alvarosevilla95/luatab.nvim"
 
 
