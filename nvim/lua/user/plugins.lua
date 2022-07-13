@@ -92,6 +92,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "jose-elias-alvarez/null-ls.nvim"
+  use "simrat39/rust-tools.nvim"
 
 
   -- snippets
@@ -111,6 +112,8 @@ return packer.startup(function(use)
 
   -- misc
   use "lewis6991/impatient.nvim" -- startup caching
+  use 'mfussenegger/nvim-dap' -- add debugging
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
