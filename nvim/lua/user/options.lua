@@ -50,6 +50,11 @@ vim.opt.foldenable = false -- disable all syntax folding
 vim.opt.mouse = "nv" -- enable the mouse for normal and visual mode
 
 
+-- SQL --
+vim.g.db = vim.env.DATABASE_URL
+
+
 -- Misc --
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 vim.opt.wrap = false -- display lines as one long line
+

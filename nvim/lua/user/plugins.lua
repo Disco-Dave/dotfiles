@@ -88,6 +88,11 @@ return packer.startup(function(use)
   use "kdheepak/tabline.nvim"
 
 
+  -- sql
+  use "tpope/vim-dadbod"
+  use "kristijanhusak/vim-dadbod-completion"
+
+
   -- lsp
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
