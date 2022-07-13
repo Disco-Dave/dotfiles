@@ -71,7 +71,7 @@ local config = {
     style = "minimal",
     border = "rounded",
     source = "always",
-   header = "",
+    header = "",
     prefix = "",
   },
 }
@@ -79,10 +79,12 @@ local config = {
 vim.diagnostic.config(config)
 
 
+local keymaps = require("user.lsp.keymaps")
+
 -- Run this function every time a lanuage server starts
 local on_attach = function(client, bufnr)
   -- Set keymaps inside of the buffer lsp is active for
-  require("user.lsp.keymaps")(client, bufnr)
+  keymaps.setup(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
@@ -97,8 +99,9 @@ local on_attach = function(client, bufnr)
       false
     )
   end
-  if servers[client.name].disable_formatting then
-    client.resolved_capabilities.document_formatting = false
+
+  if servers[client.name].on_attach then
+    servers[client.name].on_attach(client, bufnr)
   end
 end
 
@@ -118,4 +121,4 @@ for name, _ in pairs(servers) do
   lspconfig[name].setup(server_options)
 end
 
-require("user.lsp.null-ls")()
+require("user.lsp.null-ls").setup()
