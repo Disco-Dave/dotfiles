@@ -46,6 +46,7 @@ return packer.startup(function(use)
   -- neovim-from-scratch says these two plugins are often required by other plugins
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "kyazdani42/nvim-web-devicons"
 
 
   -- vikwiki stuff
@@ -85,7 +86,8 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
-  use "kdheepak/tabline.nvim"
+  -- use "kdheepak/tabline.nvim"
+  use "alvarosevilla95/luatab.nvim"
 
 
   -- sql
