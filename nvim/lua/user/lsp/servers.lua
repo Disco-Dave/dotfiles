@@ -13,11 +13,14 @@ end
 
 return {
   cssls = { install = true, on_attach = disable_formatting },
+  dockerls = { install = true },
   elmls = {},
   hls = {},
   html = { install = true, on_attach = disable_formatting },
+  jsonls = { install = true },
+  purescriptls = { install = true },
+  rust_analyzer = { install = true },
   sumneko_lua = { install = true },
   tsserver = { install = true, on_attach = disable_formatting },
-  rust_analyzer = { install = true },
-  purescriptls = { install = true },
+  yamlls = { install = true },
 }

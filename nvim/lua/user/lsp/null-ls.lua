@@ -18,6 +18,7 @@ return {
           "javascriptreact",
           "typescript",
           "typescriptreact",
+          "yaml",
         },
       }),
       formatting.shfmt,
