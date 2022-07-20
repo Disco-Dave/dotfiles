@@ -16,17 +16,12 @@ return {
 
     local purstidy = h.make_builtin({
       name = "tidy",
-      meta = {
-        url = "https://github.com/natefaubion/purescript-tidy",
-        description = "A syntax tidy-upper for PureScript.",
-      },
       method = { FORMATTING },
       filetypes = { "purescript" },
       generator_opts = {
         command = "purs-tidy",
         args = {
-          "format-in-place",
-          "$FILENAME",
+          "format",
         },
         to_stdin = true,
       },
