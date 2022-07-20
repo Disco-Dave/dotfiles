@@ -1,6 +1,7 @@
-local function combine(on_attaches)
+local function combine(...)
+  local on_attaches = { ... }
   return function(client, buffnr)
-    for _, on_attach in ipairs(on_attaches) do
+    for _, on_attach in pairs(on_attaches) do
       on_attach(client, buffnr)
     end
   end
@@ -13,6 +14,7 @@ end
 
 return {
   cssls = { install = true, on_attach = disable_formatting },
+  dhall_lsp_server = { install = true },
   dockerls = { install = true },
   elmls = {},
   hls = {},

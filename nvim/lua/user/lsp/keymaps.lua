@@ -1,5 +1,5 @@
 return {
-  setup = function(client, bufnr)
+  setup = function(_, bufnr)
     local function keymap(mode, bind, action)
       local opts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set(mode, bind, action, opts)

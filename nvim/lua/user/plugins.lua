@@ -67,7 +67,6 @@ return packer.startup(function(use)
   use "christoomey/vim-tmux-navigator" -- share C-j, C-h, C-k, C-l with tmux to navigate between splits
   use "duff/vim-bufonly" -- close all buffers with :BufOnly
   use "jpalardy/vim-slime" -- send snippets to a terminal window
-  use "mattn/emmet-vim" -- keybindings for html shorthand
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
   use "windwp/nvim-autopairs" -- auto close things
   use "numToStr/Comment.nvim" -- comment things

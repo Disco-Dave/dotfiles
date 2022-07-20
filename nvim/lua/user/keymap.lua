@@ -3,17 +3,8 @@ local function keymap(mode, bind, action)
   vim.keymap.set(mode, bind, action, opts)
 end
 
-local function term_keymap(bind, action)
-  local term_opts = { silent = true }
-  vim.keymap.set("t", bind, action, term_opts)
-end
 
 -- Terminals --
-term_keymap("<C-h>", "<C-\\><C-N><C-w>h") -- move left from a terminal window
-term_keymap("<C-j>", "<C-\\><C-N><C-w>j") -- move down from a terminal window 
-term_keymap("<C-k>", "<C-\\><C-N><C-w>k") -- move up from a terminal window
-term_keymap("<C-l>", "<C-\\><C-N><C-w>l") -- move right from a terminal window
-
 keymap("n", "<leader>nt", ":tabe<CR><ESC>:terminal<CR>") -- open a terminal in a new tab
 keymap("n", "<leader>nts", ":split<CR><ESC>:terminal<CR>") -- open a terminal in a horizontal split
 keymap("n", "<leader>ntv", ":vsplit<CR><ESC>:terminal<CR>") -- open a terminal in a vertical split
