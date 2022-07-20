@@ -70,6 +70,7 @@ return packer.startup(function(use)
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
   use "windwp/nvim-autopairs" -- auto close things
   use "numToStr/Comment.nvim" -- comment things
+  use "tpope/vim-fugitive" -- git stuff
 
 
   -- syntax, colors, and themes

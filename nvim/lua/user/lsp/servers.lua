@@ -20,7 +20,7 @@ return {
   hls = {},
   html = { install = true, on_attach = disable_formatting },
   jsonls = { install = true },
-  purescriptls = { install = true },
+  purescriptls = { install = true, on_attach = disable_formatting },
   rust_analyzer = { install = true },
   sumneko_lua = { install = true },
   tsserver = { install = true, on_attach = disable_formatting },
