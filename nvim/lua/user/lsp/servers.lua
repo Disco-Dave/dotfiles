@@ -25,4 +25,6 @@ return {
   sumneko_lua = { install = true },
   tsserver = { install = true, on_attach = disable_formatting },
   yamlls = { install = true },
+  terraformls = { install = true },
+  tflint = { install = true },
 }
