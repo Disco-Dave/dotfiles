@@ -1,8 +1,9 @@
 -- Tabs --
-local tab_size = 2
+vim.b.tab_size = 2
+
 vim.opt.expandtab = true -- replace tab with spaces
-vim.opt.shiftwidth = tab_size -- number of spaces for << and >>
-vim.opt.tabstop = tab_size -- number of spaces for tab
+vim.opt.shiftwidth = vim.b.tab_size -- number of spaces for << and >>
+vim.opt.tabstop = vim.b.tab_size -- number of spaces for tab
 
 
 -- Line Numbers --
