@@ -6,8 +6,14 @@
 -- * user.lsp.null-ls to add integration with local executables as an lsp source
 -- * user.lsp.settings.* to add language specific settings
 
+local mason_status_ok, mason = pcall(require, "mason")
+if not mason_status_ok then
+  return
+end
+
+
 -- Import lsp_installer, and exit if we can't.
-local installer_status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local installer_status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not installer_status_ok then
   return
 end
@@ -33,15 +39,9 @@ end
 
 
 -- Call lsp_installer so it can install our language servers for us
+mason.setup()
 lsp_installer.setup({
   ensure_installed = lsp_servers_to_install,
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
-    }
-  }
 })
 
 
