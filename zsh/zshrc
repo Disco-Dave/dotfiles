@@ -89,6 +89,15 @@ man() {
     command man "$@"
 }
 
+# Vimwiki aliases
+function personal-wiki {
+    (cd ~/Documents/wiki/personal && nvim +VimwikiIndex 1) 
+}
+
+function work-wiki {
+    (cd ~/Documents/wiki/work && nvim +VimwikiIndex 2) 
+}
+
 # Enable direnv if installed.
 # https://github.com/direnv/direnv/blob/master/docs/hook.md
 if command -v direnv &> /dev/null; then
