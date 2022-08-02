@@ -1,3 +1,7 @@
+local function require_vim(file_path)
+  vim.cmd("source " .. file_path)
+end
+
 require("user.options")
 require("user.keymap")
 require("user.plugins")
@@ -11,4 +15,4 @@ require("user.luatab")
 require("user.nvim-tree")
 require("user.autopairs")
 require("user.comment")
-require("user.vimwiki")
+require_vim("~/.config/nvim/vimscript/user/vimwiki.vim")

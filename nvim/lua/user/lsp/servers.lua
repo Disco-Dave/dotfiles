@@ -23,8 +23,9 @@ return {
   purescriptls = { install = true, on_attach = disable_formatting },
   rust_analyzer = { install = true },
   sumneko_lua = { install = true },
-  tsserver = { install = true, on_attach = disable_formatting },
-  yamlls = { install = true },
   terraformls = { install = true },
   tflint = { install = true },
+  tsserver = { install = true, on_attach = disable_formatting },
+  vimls = { install = true },
+  yamlls = { install = true },
 }
