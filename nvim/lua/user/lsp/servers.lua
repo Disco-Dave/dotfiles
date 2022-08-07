@@ -15,6 +15,7 @@ end
 return {
   cssls = { install = true, on_attach = disable_formatting },
   dhall_lsp_server = { install = true },
+  ansiblels = { install = true, mason_name = "ansible-language-server" },
   dockerls = { install = true },
   elmls = {},
   hls = {},

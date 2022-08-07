@@ -33,7 +33,12 @@ local servers = require("user.lsp.servers")
 local lsp_servers_to_install = {}
 for name, opts in pairs(servers) do
   if opts.install then
-    table.insert(lsp_servers_to_install, name)
+
+    if opts.mason_name then
+      table.insert(lsp_servers_to_install, opts.mason_name)
+    else
+      table.insert(lsp_servers_to_install, name)
+    end
   end
 end
 
