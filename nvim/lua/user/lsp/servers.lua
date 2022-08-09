@@ -13,16 +13,19 @@ local function disable_formatting(client, _)
 end
 
 return {
+  ansiblels = { install = true, mason_name = "ansible-language-server" },
   cssls = { install = true, on_attach = disable_formatting },
   dhall_lsp_server = { install = true },
-  ansiblels = { install = true, mason_name = "ansible-language-server" },
   dockerls = { install = true },
   elmls = {},
   hls = {},
   html = { install = true, on_attach = disable_formatting },
   jsonls = { install = true },
   purescriptls = { install = true, on_attach = disable_formatting },
+  -- rubocop = { install = true },
   rust_analyzer = { install = true },
+  solargraph = { install = true },
+  sorbet = { install = true },
   sumneko_lua = { install = true },
   terraformls = { install = true },
   tflint = { install = true },
