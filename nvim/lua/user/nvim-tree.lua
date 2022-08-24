@@ -6,7 +6,7 @@ end
 nvim_tree.setup({
   sort_by = "case_sensitive",
   view = {
-    adaptive_size = true,
+    adaptive_size = false,
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
@@ -21,6 +21,11 @@ nvim_tree.setup({
   },
   renderer = {
     group_empty = true,
+  },
+  actions = {
+    open_file = {
+      resize_window = false,
+    }
   },
 })
 
