@@ -21,9 +21,6 @@ xrdb -merge -I$HOME ~/.config/X11/Xresources
 # Set default cursor
 xsetroot -cursor_name left_ptr
 
-# Set ELECOM Huge settings
-bash ~/code/scripts/set_elecom_huge_settings
-
 
 # Start xmonad
 exec zsh -c "$HOME/.cache/xmonad/xmonad-x86_64-linux"
