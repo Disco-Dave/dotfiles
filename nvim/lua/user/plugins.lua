@@ -121,8 +121,8 @@ return packer.startup(function(use)
 
   -- misc
   use "lewis6991/impatient.nvim" -- startup caching
-  use 'mfussenegger/nvim-dap' -- add debugging
-
+  use "mfussenegger/nvim-dap" -- add debugging
+  use "samjwill/nvim-unception"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
