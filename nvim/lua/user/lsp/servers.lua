@@ -7,9 +7,11 @@ local function combine(...)
   end
 end
 
+-- :lua =vim.lsp.get_active_clients()[1].server_capabilities
+
 local function disable_formatting(client, _)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentRangeFormattingProvider = false
 end
 
 return {

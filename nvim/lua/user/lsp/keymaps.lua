@@ -17,7 +17,7 @@ return {
     keymap("n", "<leader>R", vim.lsp.buf.rename)
     keymap("n", "<leader>r", vim.lsp.buf.references)
     keymap("n", "<leader>a", vim.lsp.buf.code_action)
-    keymap("n", "<leader>f", vim.lsp.buf.formatting)
+    keymap("n", "<leader>f", vim.lsp.buf.format)
     keymap("v", "<leader>f", vim.lsp.buf.range_formatting)
   end
 }
