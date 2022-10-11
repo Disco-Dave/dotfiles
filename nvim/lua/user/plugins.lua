@@ -87,6 +87,7 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
   }
   use "alvarosevilla95/luatab.nvim"
+  use "NvChad/nvim-colorizer.lua"
 
 
   -- sql

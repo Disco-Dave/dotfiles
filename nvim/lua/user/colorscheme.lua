@@ -15,3 +15,20 @@ local status_ok, _ = pcall(set_colorscheme)
 if not status_ok then
   return
 end
+
+
+local colorizer_status_ok, colorizer = pcall(require, "colorizer")
+if colorizer_status_ok then
+  colorizer.setup({
+    filetypes = {
+      "html",
+      css = {
+        rgb_fn = true,
+        hsl_fn = true,
+      },
+    },
+    user_default_options = {
+      mode = "virtualtext",
+    },
+  })
+end
