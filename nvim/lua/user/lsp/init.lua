@@ -110,8 +110,12 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local lsp_options = {
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 for name, _ in pairs(servers) do
