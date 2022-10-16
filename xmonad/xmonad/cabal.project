@@ -1,0 +1,23 @@
+packages: 
+  ../shared
+  *.cabal
+
+test-show-details: direct
+with-compiler: ghc-9.2.4
+
+package *
+  coverage: True
+  library-coverage: True
+
+source-repository-package
+  type: git
+  location: https://github.com/xmonad/xmonad.git
+  tag: a2259bb3091429f4293d371e13fd5a2ee8da30db
+
+source-repository-package
+  type: git
+  location: https://github.com/xmonad/xmonad-contrib.git
+  tag: 7d4f0aaece8c9e9cbaae7d399651f8118bf0555a
+
+package xmonad-contrib
+  flags: +use_xft

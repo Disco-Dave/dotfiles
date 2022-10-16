@@ -1,7 +1,7 @@
 cabal-version: 3.4
 
 
-name: xmobar-local
+name: xmonad-local
 version: 0.1.0.0
 
 
@@ -51,10 +51,10 @@ common shared
     , base >=4.7 && <5
 
   autogen-modules:
-    Paths_xmobar_local
+    Paths_xmonad_local
     
   other-modules:
-    Paths_xmobar_local
+    Paths_xmonad_local
 
 
 common shared-exe
@@ -62,7 +62,7 @@ common shared-exe
     , shared
 
   build-depends:
-    , xmobar-local
+    , xmonad-local
 
   ghc-options:
     -threaded 
@@ -76,15 +76,15 @@ library
   hs-source-dirs: src
 
   build-depends:
-    , filepath
     , shared
-    , xmobar
+    , xmonad
+    , xmonad-contrib
 
   exposed-modules:
-    Xmobar.Local
+    MyLib
 
 
-executable xmobar
+executable xmonad
   import: shared-exe
 
   hs-source-dirs: app
