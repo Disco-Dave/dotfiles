@@ -4,16 +4,14 @@ module Shared.FilePaths
   )
 where
 
-import System.Directory.OsPath qualified as Directory
-import System.OsPath (OsPath)
+import System.Directory qualified as Directory
 
 
 data FilePaths = FilePaths
-  { home :: OsPath
-  , xdgCache :: OsPath
-  , xdgConfig :: OsPath
-  , xdgData :: OsPath
-  , xdgState :: OsPath
+  { home :: FilePath
+  , xdgCache :: FilePath
+  , xdgConfig :: FilePath
+  , xdgData :: FilePath
   }
   deriving (Show, Eq)
 
@@ -25,6 +23,5 @@ getFilePaths = do
   xdgCache <- Directory.getXdgDirectory Directory.XdgCache mempty
   xdgConfig <- Directory.getXdgDirectory Directory.XdgConfig mempty
   xdgData <- Directory.getXdgDirectory Directory.XdgData mempty
-  xdgState <- Directory.getXdgDirectory Directory.XdgState mempty
 
   pure FilePaths{..}

@@ -11,8 +11,6 @@ import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import Data.Text qualified as Text
 import Shared.Utils (enumFromText, readFileToText)
-import System.OsPath (osp)
-import Prelude hiding (readFile)
 
 
 data Hostname
@@ -45,5 +43,5 @@ toString =
 
 getHostname :: IO Hostname
 getHostname = do
-  contents <- fromMaybe mempty <$> readFileToText [osp|/etc/hostname|]
+  contents <- fromMaybe mempty <$> readFileToText "/etc/hostname"
   pure $ fromText contents

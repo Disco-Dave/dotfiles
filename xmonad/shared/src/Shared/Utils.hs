@@ -11,9 +11,7 @@ import Data.Text (Text)
 import Data.Text qualified as Text
 import Data.Text.Encoding qualified as Encoding
 import Data.Text.Encoding.Error (lenientDecode)
-import System.Directory.OsPath (doesFileExist)
-import System.OsPath (OsPath)
-import System.OsPath qualified as OsPath
+import System.Directory (doesFileExist)
 
 
 showToText :: Show a => a -> Text
@@ -21,13 +19,12 @@ showToText =
   Text.pack . show
 
 
-readFileToText :: OsPath -> IO (Maybe Text)
-readFileToText osPath = do
-  fileExists <- doesFileExist osPath
+readFileToText :: FilePath -> IO (Maybe Text)
+readFileToText filePath = do
+  fileExists <- doesFileExist filePath
 
   if fileExists
     then do
-      filePath <- OsPath.decodeUtf osPath
       bytes <- ByteString.readFile filePath
       pure . Just $ Encoding.decodeUtf8With lenientDecode bytes
     else pure Nothing
