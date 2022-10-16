@@ -7,14 +7,11 @@ module Shared.Hostname
   )
 where
 
-import Data.ByteString qualified as ByteString
+import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import Data.Text qualified as Text
-import Data.Text.Encoding qualified as Encoding
-import Data.Text.Encoding.Error (lenientDecode)
-import System.Directory.OsPath (doesFileExist)
-import System.OsPath (OsPath, osp)
-import System.OsPath qualified as OsPath
+import Shared.Utils (enumFromText, readFileToText)
+import System.OsPath (osp)
 import Prelude hiding (readFile)
 
 
@@ -24,20 +21,7 @@ data Hostname
   | Virt
   | Work
   | Other
-  deriving (Show, Eq)
-
-
-fromText :: Text -> Hostname
-fromText text
-  | is "desktop" = Desktop
-  | is "laptop" = Laptop
-  | is "virt" = Virt
-  | is "PA-DBURKE1021" = Work
-  | otherwise = Other
- where
-  normalize = Text.toCaseFold . Text.strip
-  normalizedText = normalize text
-  is hostname = normalize hostname == normalizedText
+  deriving (Show, Eq, Bounded, Enum)
 
 
 toText :: Hostname -> Text
@@ -49,23 +33,17 @@ toText = \case
   Other -> "other"
 
 
+fromText :: Text -> Hostname
+fromText =
+  fromMaybe Other . enumFromText toText
+
+
 toString :: Hostname -> String
 toString =
   Text.unpack . toText
 
 
-readFile :: OsPath -> IO Text
-readFile osPath = do
-  fileExists <- doesFileExist osPath
-
-  if fileExists
-    then do
-      filePath <- OsPath.decodeUtf osPath
-      bytes <- ByteString.readFile filePath
-      pure $ Encoding.decodeUtf8With lenientDecode bytes
-    else pure mempty
-
-
 getHostname :: IO Hostname
-getHostname =
-  fromText <$> readFile [osp|/etc/hostname|]
+getHostname = do
+  contents <- fromMaybe mempty <$> readFileToText [osp|/etc/hostname|]
+  pure $ fromText contents
