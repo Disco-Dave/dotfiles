@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 
 TEMP_DIR="$(mktemp -d /tmp/xmonad-build-XXXXXXXXXX)"
 trap 'rm -r $TEMP_DIR' exit
 
-cd "$XDG_CONFIG_HOME/xmonad"
+cd "$XDG_CONFIG_HOME/xmonad/xmonad"
 
 cabal install \
   -O2 \
   --installdir "$TEMP_DIR" \
   --install-method copy \
-  exe:xmonad
+  xmonad-local:exe:xmonad
 
 mv "$TEMP_DIR/xmonad" "$1"

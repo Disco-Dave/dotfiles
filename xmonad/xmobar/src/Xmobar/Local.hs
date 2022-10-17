@@ -42,6 +42,7 @@ primary env =
         FilePath.joinPath
           [ env.filePaths.xdgConfig
           , "xmonad"
+          , "xmobar"
           , "padding-icon.sh"
           ]
    in case env.hostname of
