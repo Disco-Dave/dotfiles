@@ -1,5 +1,7 @@
 module Shared.Theme.Font
   ( Font (..)
+  , toPangoText
+  , toPangoString
   , toXftText
   , toXftString
   )
@@ -16,6 +18,16 @@ data Font = Font
   , size :: Natural
   }
   deriving (Show, Eq)
+
+
+toPangoText :: Font -> Text
+toPangoText font =
+  font.name <> " " <> showToText font.size
+
+
+toPangoString :: Font -> String
+toPangoString =
+  Text.unpack . toPangoText
 
 
 toXftText :: Font -> Text
