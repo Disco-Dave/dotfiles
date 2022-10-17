@@ -8,7 +8,7 @@ module Shared.Theme.Font
 where
 
 import Data.Text (Text)
-import Data.Text qualified as Text
+import qualified Data.Text as Text
 import Numeric.Natural (Natural)
 import Shared.Utils (showToText)
 
@@ -21,8 +21,8 @@ data Font = Font
 
 
 toPangoText :: Font -> Text
-toPangoText font =
-  font.name <> " " <> showToText font.size
+toPangoText Font{..} =
+  name <> " " <> showToText size
 
 
 toPangoString :: Font -> String
@@ -31,8 +31,8 @@ toPangoString =
 
 
 toXftText :: Font -> Text
-toXftText font =
-  "xft:" <> font.name <> ":size=" <> showToText font.size
+toXftText Font{..} =
+  "xft:" <> name <> ":size=" <> showToText size
 
 
 toXftString :: Font -> String

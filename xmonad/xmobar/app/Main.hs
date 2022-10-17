@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Xmobar.Local qualified
+import qualified Xmobar.Local 
 
 main :: IO ()
 main =

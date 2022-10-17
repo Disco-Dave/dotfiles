@@ -9,7 +9,7 @@ where
 
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import Data.Text qualified as Text
+import qualified Data.Text as Text
 import Shared.Utils (enumFromText, readFileToText)
 
 

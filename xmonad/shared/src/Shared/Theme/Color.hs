@@ -57,10 +57,10 @@ data Color = Color
 
 
 toString :: Color -> String
-toString color =
-  let (r1, r2) = color.red
-      (g1, g2) = color.green
-      (b1, b2) = color.blue
+toString Color{..} =
+  let (r1, r2) = red
+      (g1, g2) = green
+      (b1, b2) = blue
    in fmap digitToChar [r1, r2, g1, g2, b1, b2]
 
 

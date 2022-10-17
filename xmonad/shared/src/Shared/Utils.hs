@@ -6,10 +6,10 @@ module Shared.Utils
   )
 where
 
-import Data.ByteString qualified as ByteString
+import qualified Data.ByteString as ByteString
 import Data.Text (Text)
-import Data.Text qualified as Text
-import Data.Text.Encoding qualified as Encoding
+import qualified Data.Text as Text
+import qualified Data.Text.Encoding as Encoding
 import Data.Text.Encoding.Error (lenientDecode)
 import System.Directory (doesFileExist)
 

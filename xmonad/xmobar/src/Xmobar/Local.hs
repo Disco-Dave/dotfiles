@@ -1,53 +1,55 @@
 module Xmobar.Local (start) where
 
 import Shared.Environment (Environment (..), getEnvironment)
-import Shared.FilePaths qualified as FilePaths
-import Shared.Hostname qualified as Hostname
-import Shared.Theme (Theme)
-import Shared.Theme qualified as Theme
-import Shared.Theme.Color qualified as Color
-import Shared.Theme.Font qualified as Font
+import qualified Shared.FilePaths as FilePaths
+import qualified Shared.Hostname as Hostname
+import Shared.Theme (Theme (Theme))
+import qualified Shared.Theme as Theme
+import qualified Shared.Theme.Color as Color
+import qualified Shared.Theme.Font as Font
 import System.Environment (getArgs)
-import System.FilePath qualified as FilePath
-import Xmobar qualified
+import qualified System.FilePath as FilePath
+import qualified Xmobar
 
 
 defaultConfig :: Theme -> Xmobar.Config
-defaultConfig theme =
-  Xmobar.defaultConfig
-    { Xmobar.font = Font.toPangoString theme.font
-    , Xmobar.additionalFonts = []
-    , Xmobar.border = Xmobar.FullB
-    , Xmobar.borderColor = Color.toHashString theme.xmobar.border
-    , Xmobar.bgColor = Color.toHashString theme.xmobar.background
-    , Xmobar.fgColor = Color.toHashString theme.xmobar.foreground
-    , Xmobar.alpha = 255
-    , Xmobar.textOffset = -1
-    , Xmobar.iconOffset = -1
-    , Xmobar.lowerOnStart = True
-    , Xmobar.pickBroadest = False
-    , Xmobar.persistent = False
-    , Xmobar.hideOnStart = False
-    , Xmobar.iconRoot = "."
-    , Xmobar.allDesktops = True
-    , Xmobar.overrideRedirect = True
-    , Xmobar.sepChar = "%"
-    , Xmobar.alignSep = "}{"
-    }
+defaultConfig Theme{..} =
+  let color selector =
+        Color.toHashString (selector xmobar)
+   in Xmobar.defaultConfig
+        { Xmobar.font = Font.toXftString font
+        , Xmobar.additionalFonts = []
+        , Xmobar.border = Xmobar.FullB
+        , Xmobar.borderColor = color Theme.border
+        , Xmobar.bgColor = color Theme.background
+        , Xmobar.fgColor = color Theme.foreground
+        , Xmobar.alpha = 255
+        , Xmobar.textOffset = -1
+        , Xmobar.iconOffset = -1
+        , Xmobar.lowerOnStart = True
+        , Xmobar.pickBroadest = False
+        , Xmobar.persistent = False
+        , Xmobar.hideOnStart = False
+        , Xmobar.iconRoot = "."
+        , Xmobar.allDesktops = True
+        , Xmobar.overrideRedirect = True
+        , Xmobar.sepChar = "%"
+        , Xmobar.alignSep = "}{"
+        }
 
 
 primary :: Environment -> Xmobar.Config
-primary env =
+primary Environment{..} =
   let paddingIconScript =
         FilePath.joinPath
-          [ env.filePaths.xdgConfig
+          [ FilePaths.xdgConfig filePaths
           , "xmonad"
           , "xmobar"
           , "padding-icon.sh"
           ]
-   in case env.hostname of
+   in case hostname of
         Hostname.Work ->
-          (defaultConfig env.theme)
+          (defaultConfig theme)
             { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
             , Xmobar.commands =
                 [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
@@ -56,8 +58,8 @@ primary env =
                 ]
             , Xmobar.template = "%_XMONAD_LOG_1% } %date% { %tray%"
             }
-        _ ->
-          (defaultConfig env.theme)
+        _other ->
+          (defaultConfig theme)
             { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
             , Xmobar.commands =
                 [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
@@ -70,8 +72,8 @@ primary env =
 
 
 secondary :: Environment -> Xmobar.Config
-secondary env =
-  (defaultConfig env.theme)
+secondary Environment{..} =
+  (defaultConfig theme)
     { Xmobar.position = Xmobar.OnScreen 2 Xmobar.Top
     , Xmobar.commands =
         [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_2"
@@ -82,8 +84,8 @@ secondary env =
 
 
 tertiary :: Environment -> Xmobar.Config
-tertiary env =
-  (defaultConfig env.theme)
+tertiary Environment{..} =
+  (defaultConfig theme)
     { Xmobar.position = Xmobar.OnScreen 1 Xmobar.Top
     , Xmobar.commands =
         [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_3"
@@ -104,4 +106,4 @@ start = do
   case args of
     ("--secondary" : _) -> Xmobar.xmobar (secondary env)
     ("--tertiary" : _) -> Xmobar.xmobar (tertiary env)
-    _ -> Xmobar.xmobar (primary env)
+    _other -> Xmobar.xmobar (primary env)

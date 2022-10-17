@@ -7,7 +7,7 @@ where
 import Shared.FilePaths (FilePaths, getFilePaths)
 import Shared.Hostname (Hostname, getHostname)
 import Shared.Theme (Theme)
-import Shared.Theme qualified as Theme
+import qualified Shared.Theme as Theme
 
 
 data Environment = Environment

@@ -4,7 +4,7 @@ module Shared.FilePaths
   )
 where
 
-import System.Directory qualified as Directory
+import qualified System.Directory as Directory
 
 
 data FilePaths = FilePaths

@@ -9,7 +9,7 @@ where
 
 import Shared.Theme.Color (Color)
 import Shared.Theme.Font (Font (..))
-import Shared.Theme.Palettes.Nord qualified as Nord
+import qualified Shared.Theme.Palettes.Nord as Nord
 
 
 data WindowColors = WindowColors

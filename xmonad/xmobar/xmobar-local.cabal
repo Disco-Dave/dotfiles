@@ -12,14 +12,12 @@ flag pedantic
 
 
 common shared
-  default-language: GHC2021
+  default-language: Haskell2010
 
   default-extensions:
     DuplicateRecordFields
     LambdaCase
     NamedFieldPuns
-    NoFieldSelectors
-    OverloadedRecordDot
     OverloadedStrings
     QuasiQuotes
     RecordWildCards
@@ -78,7 +76,7 @@ library
   build-depends:
     , filepath
     , shared
-    , xmobar
+    , xmobar ==0.41
 
   exposed-modules:
     Xmobar.Local

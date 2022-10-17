@@ -12,18 +12,19 @@ flag pedantic
 
 
 common shared
-  default-language: GHC2021
+  default-language: Haskell2010
 
   default-extensions:
     DuplicateRecordFields
     LambdaCase
     NamedFieldPuns
-    NoFieldSelectors
-    OverloadedRecordDot
     OverloadedStrings
     QuasiQuotes
+    RankNTypes
     RecordWildCards
+    ScopedTypeVariables
     StrictData
+    TypeApplications
 
   ghc-options:
     -Weverything 
