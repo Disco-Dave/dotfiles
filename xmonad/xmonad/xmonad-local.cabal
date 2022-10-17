@@ -76,12 +76,26 @@ library
   hs-source-dirs: src
 
   build-depends:
+    , base
+    , containers
+    , filepath
+    , mtl
     , shared
+    , text
+    , X11
     , xmonad
     , xmonad-contrib
 
   exposed-modules:
-    MyLib
+    XMonad.Local
+    XMonad.Local.Hooks
+    XMonad.Local.Keys
+    XMonad.Local.Layout
+    XMonad.Local.ManageHook
+    XMonad.Local.StartupHook
+    XMonad.Local.StatusBar
+    XMonad.Local.Utils
+    XMonad.Local.Workspaces
 
 
 executable xmonad

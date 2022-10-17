@@ -1,6 +1,7 @@
 module Main (main) where
 
+import XMonad.Local qualified
 
 main :: IO ()
 main =
-  pure ()
+  XMonad.Local.start
