@@ -2,7 +2,3 @@ packages: *.cabal
 
 test-show-details: direct
 with-compiler: ghc-9.2.4
-
-package *
-  coverage: True
-  library-coverage: True

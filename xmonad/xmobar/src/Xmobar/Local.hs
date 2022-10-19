@@ -15,24 +15,17 @@ import Xmobar qualified
 defaultConfig :: Theme -> Xmobar.Config
 defaultConfig theme =
   Xmobar.defaultConfig
-    { Xmobar.font = Font.toPangoString theme.font
-    , Xmobar.additionalFonts = []
-    , Xmobar.border = Xmobar.FullB
+    { Xmobar.font = Font.toXftString theme.font
     , Xmobar.borderColor = Color.toHashString theme.xmobar.border
     , Xmobar.bgColor = Color.toHashString theme.xmobar.background
     , Xmobar.fgColor = Color.toHashString theme.xmobar.foreground
-    , Xmobar.alpha = 255
-    , Xmobar.textOffset = -1
-    , Xmobar.iconOffset = -1
     , Xmobar.lowerOnStart = True
     , Xmobar.pickBroadest = False
     , Xmobar.persistent = False
     , Xmobar.hideOnStart = False
-    , Xmobar.iconRoot = "."
+    , Xmobar.textOutputFormat = Xmobar.Pango
     , Xmobar.allDesktops = True
     , Xmobar.overrideRedirect = True
-    , Xmobar.sepChar = "%"
-    , Xmobar.alignSep = "}{"
     }
 
 
@@ -58,7 +51,7 @@ primary env =
             }
         _ ->
           (defaultConfig env.theme)
-            { Xmobar.position = Xmobar.OnScreen 0 Xmobar.Top
+            { Xmobar.position = Xmobar.OnScreen 0 (Xmobar.TopH 25)
             , Xmobar.commands =
                 [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_1"
                 , Xmobar.Run $ Xmobar.Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
@@ -95,13 +88,18 @@ tertiary env =
     }
 
 
+getConfig :: IO (Environment -> Xmobar.Config)
+getConfig = do
+  args <- getArgs
+
+  pure $ case args of
+    ("--secondary" : _) -> secondary
+    ("--tertiary" : _) -> tertiary
+    _other -> primary
+
+
 start :: IO ()
 start = do
   env <- getEnvironment
-
-  args <- getArgs
-
-  case args of
-    ("--secondary" : _) -> Xmobar.xmobar (secondary env)
-    ("--tertiary" : _) -> Xmobar.xmobar (tertiary env)
-    _ -> Xmobar.xmobar (primary env)
+  config <- getConfig
+  Xmobar.xmobar (config env)
