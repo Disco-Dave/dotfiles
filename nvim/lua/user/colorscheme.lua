@@ -22,10 +22,7 @@ if colorizer_status_ok then
   colorizer.setup({
     filetypes = {
       "html",
-      css = {
-        rgb_fn = true,
-        hsl_fn = true,
-      },
+      "css",
     },
     user_default_options = {
       mode = "virtualtext",
