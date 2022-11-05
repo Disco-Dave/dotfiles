@@ -68,9 +68,8 @@ secondary env =
     { Xmobar.position = Xmobar.OnScreen 2 Xmobar.Top
     , Xmobar.commands =
         [ Xmobar.Run $ Xmobar.UnsafeXPropertyLog "_XMONAD_LOG_2"
-        , Xmobar.Run $ Xmobar.ComX "curl" ["-s", "-G", "-d", "format=%C,%20%t", "wttr.in/17070"] "" "weather" 6000
         ]
-    , Xmobar.template = "%_XMONAD_LOG_2% } %weather% { "
+    , Xmobar.template = "%_XMONAD_LOG_2% } { "
     }
 
 
