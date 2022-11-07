@@ -58,7 +58,6 @@ disable = ["stack", "containers", "git_repos", "gcloud", "gem", "pip3","vagrant"
 # Custom commands
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
-"ghcup" = "ghcup upgrade"
 
 [brew]
 #greedy_cask = true
