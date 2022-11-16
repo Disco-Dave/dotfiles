@@ -15,7 +15,7 @@ import Xmobar qualified
 defaultConfig :: Theme -> Xmobar.Config
 defaultConfig theme =
   Xmobar.defaultConfig
-    { Xmobar.font = Font.toXftString theme.font
+    { Xmobar.font = Font.toPangoString theme.font
     , Xmobar.borderColor = Color.toHashString theme.xmobar.border
     , Xmobar.bgColor = Color.toHashString theme.xmobar.background
     , Xmobar.fgColor = Color.toHashString theme.xmobar.foreground

@@ -78,7 +78,7 @@ library
   build-depends:
     , filepath
     , shared
-    , xmobar ==0.44.2
+    , xmobar
 
   exposed-modules:
     Xmobar.Local

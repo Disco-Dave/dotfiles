@@ -37,4 +37,4 @@ constraints: any.X11 ==1.10.3,
              any.xmonad-contrib ==0.17.1.9,
              xmonad-contrib -pedantic +use_xft,
              xmonad-local -pedantic
-index-state: hackage.haskell.org 2022-10-16T19:17:16Z
+index-state: hackage.haskell.org 2022-11-15T00:05:25Z
