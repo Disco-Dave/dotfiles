@@ -20,6 +20,7 @@ import Graphics.X11 qualified as X11
 import Graphics.X11.ExtraTypes qualified as X11
 import Shared.Environment (Environment (..))
 import Shared.Hostname (Hostname)
+import Shared.Hostname qualified as Hostname
 import Shared.Theme qualified as Theme
 import Shared.Theme.Color qualified as Color
 import Shared.Theme.Font qualified as Font
@@ -52,6 +53,7 @@ altKey = X11.mod1Mask
 dmenuFlags :: ReaderT Environment X String
 dmenuFlags = do
   theme <- Reader.asks (.theme)
+  hostname <- Reader.asks (.hostname)
 
   screenId <- lift Utils.currentScreenId
 
@@ -67,7 +69,9 @@ dmenuFlags = do
   pure . unwords $
     [ flag "-fn" $
         let family = Text.unpack font.name
-            size = show font.size
+            size = show $ case hostname of
+              Hostname.Laptop -> font.size
+              _ -> 14
          in family <> "-" <> size
     , flag "-nb" (color (.normalBackground))
     , flag "-sb" (color (.selectedBackground))
