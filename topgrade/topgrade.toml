@@ -67,7 +67,7 @@ disable = ["stack", "containers", "git_repos", "gcloud", "gem", "pip3","vagrant"
 #arch_package_manager = "pacman"
 # Arguments to pass yay (or paru) when updating packages
 #yay_arguments = "--nodevel"
-#show_arch_news = true
+show_arch_news = false
 #trizen_arguments = "--devel"
 #enable_tlmgr = true
 #emerge_sync_flags = "-q"
