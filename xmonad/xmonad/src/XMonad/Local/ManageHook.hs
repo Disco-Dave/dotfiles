@@ -14,4 +14,5 @@ manageHook :: Reader Environment XMonad.ManageHook
 manageHook =
   pure . mconcat $ -- use xprop to find this information
     [ XMonad.className =? "Pavucontrol" --> ManageHelpers.doCenterFloat
+    , XMonad.className =? "Gcolor3" --> ManageHelpers.doCenterFloat
     ]
