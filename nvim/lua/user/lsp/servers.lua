@@ -25,7 +25,7 @@ return {
   jsonls = { install = true },
   purescriptls = { install = true, on_attach = disable_formatting },
   rust_analyzer = { install = true },
-  solargraph = { install = true },
+  solargraph = { },
   sumneko_lua = { install = true },
   terraformls = { install = true },
   tflint = { install = true },

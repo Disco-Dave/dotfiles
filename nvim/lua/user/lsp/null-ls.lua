@@ -44,6 +44,8 @@ return {
       diagnostics.shellcheck,
       code_actions.shellcheck,
       purstidy,
+      diagnostics.rubocop,
+      -- formatting.rubocop,
     }
 
     null_ls.setup({ sources = sources })
