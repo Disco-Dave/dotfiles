@@ -3,13 +3,13 @@ packages:
   *.cabal
 
 test-show-details: direct
-with-compiler: ghc-9.2.4
+with-compiler: ghc-9.2.5
 
 
 source-repository-package
   type: git
   location: https://codeberg.org/xmobar/xmobar.git
-  tag: 26726e092beb0851743c3fb046e82ce323d818e6
+  tag: 01c545188e1904406b1afddde29ca8deefa5216a
 
 
 package xmobar
