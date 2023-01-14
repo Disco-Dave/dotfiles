@@ -6,6 +6,7 @@ if [[ ! -f "$HOME/.local/share/zsh-snap/znap.zsh" ]]; then
     git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git "$HOME/.local/share/zsh-snap"
 fi
 
+zstyle ':znap:*' repos-dir "$HOME/.local/share/zsh/plugins"
 source "$HOME/.local/share/zsh-snap/znap.zsh"
 
 eval "$(starship init zsh)"
