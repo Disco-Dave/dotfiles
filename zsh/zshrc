@@ -1,38 +1,24 @@
 # Official ZSH documentation: http://zsh.sourceforge.net/Doc/Release/index.html#Top
 # Arch Wiki article: https://wiki.archlinux.org/index.php/Zsh
 
-# Plugins via zplug https://github.com/zplug/zplug
-source "$ZPLUG_HOME/init.zsh"
-
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-
-zplug "jeffreytse/zsh-vi-mode"
-
-zplug "olivierverdier/zsh-git-prompt", \
-    hook-build:"stack install --local-bin-path src/.bin ", \
-    use:"zshrc.sh"
-
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
+# Setup plugins, https://github.com/marlonrichert/zsh-snap
+if [[ ! -f "$HOME/.local/share/zsh-snap/znap.zsh" ]]; then
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git "$HOME/.local/share/zsh-snap"
 fi
 
-# source plugins and add commands to the PATH
-zplug load
+source "$HOME/.local/share/zsh-snap/znap.zsh"
 
+eval "$(starship init zsh)"
+znap prompt
 
-# Custom completions are usually stored in this folder
-fpath=(
-    ~/.local/share/zsh/functions/ 
-    /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh
-    $fpath
-)
+znap source "zsh-users/zsh-autosuggestions"
+znap source "zsh-users/zsh-history-substring-search"
+znap source "zsh-users/zsh-syntax-highlighting"
 
+bindkey -v
+
+bindkey ^R history-incremental-search-backward 
+bindkey ^S history-incremental-search-forward
 
 # Enable substring searches for up and down arrows
 # https://github.com/zsh-users/zsh-history-substring-search
@@ -53,14 +39,6 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export HISTSIZE=99999999
 export SAVEHIST=99999999
-
-
-# Setup custom prompt
-# https://wiki.archlinux.org/index.php/Zsh#Customized_prompt
-# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-PS1='%B%F{white}%n@%M%f:%F{blue}%/%f%b $(git_super_status)
-%F{red}%(?..%? )%f%(!.#.$) '
-RPS1="[%*]"
 
 
 # Add additional colors to various commands
@@ -102,4 +80,19 @@ function work-wiki {
 # https://github.com/direnv/direnv/blob/master/docs/hook.md
 if command -v direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
+fi
+
+# Enable nvm if installed.
+# https://github.com/nvm-sh/nvm#manual-install
+if [[ -f "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh"
+fi
+if [[ -f "$NVM_DIR/bash_completion" ]]; then
+  source "$NVM_DIR/bash_completion"
+fi
+
+# Enable rbenv if installed.
+# https://github.com/rbenv/rbenv#basic-git-checkout
+if [[ -x "$RBENV_ROOT/bin/rbenv" ]]; then
+  eval "$("$RBENV_ROOT/bin/rbenv" init - zsh)"
 fi
