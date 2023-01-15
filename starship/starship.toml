@@ -35,6 +35,7 @@ symbol = " "
 symbol = " "
 
 [haskell]
+disabled = true
 symbol = " "
 
 [haxe]
