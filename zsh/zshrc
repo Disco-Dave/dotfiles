@@ -18,14 +18,13 @@ znap source "zsh-users/zsh-syntax-highlighting"
 
 bindkey -v
 
-bindkey ^R history-incremental-search-backward 
-bindkey ^S history-incremental-search-forward
+bindkey ^N history-incremental-search-backward
+bindkey ^P history-incremental-search-forward
 
 # Enable substring searches for up and down arrows
 # https://github.com/zsh-users/zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 # Enable auto completion
 # https://wiki.archlinux.org/index.php/Zsh#Command_completion
