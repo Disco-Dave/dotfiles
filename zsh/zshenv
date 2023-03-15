@@ -27,7 +27,7 @@ export GIT_PROMPT_EXECUTABLE="haskell"
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # haskell
-export CABAL_DIR="$XDG_DATA_HOME"/cabal
+# export CABAL_DIR="$XDG_DATA_HOME"/cabal
 export GHCUP_USE_XDG_DIRS="yes"
 export STACK_ROOT="$XDG_DATA_HOME"/stack
 
