@@ -100,7 +100,6 @@ typeset -U PATH path
 path=(
     "$XDG_BIN_HOME" 
     "$XDG_DATA_HOME/ghcup/env"
-    "$XDG_DATA_HOME/cabal/bin"
     "$XDG_DATA_HOME/cargo/bin"
     "$XDG_DATA_HOME/npm/bin"
     "$HOME/.local/scripts"
