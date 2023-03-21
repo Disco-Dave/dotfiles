@@ -3,17 +3,7 @@ packages:
   *.cabal
 
 test-show-details: direct
-with-compiler: ghc-9.2.5
-
-source-repository-package
-  type: git
-  location: https://github.com/xmonad/xmonad.git
-  tag: 57c3a131253720e542fb399b229b697614642b53
-
-source-repository-package
-  type: git
-  location: https://github.com/xmonad/xmonad-contrib.git
-  tag: 55855ccb5fb125200385922f411285b7282af686
+with-compiler: ghc-9.4.4
 
 package xmonad-contrib
   flags: +use_xft
