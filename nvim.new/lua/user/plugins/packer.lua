@@ -23,25 +23,8 @@ end
 return packer.startup(function(use)
   use "wbthomason/packer.nvim"
 
-  use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
-
-
-  -- colorschemes
-  use "arcticicestudio/nord-vim" -- official nord colorscheme
-
-
-  -- commands
-  use "duff/vim-bufonly" -- close all buffers with :BufOnly
-  use "jpalardy/vim-slime" -- select text in a buffer, send it to a neovim terminal
-  use "numToStr/Comment.nvim" -- comment things
-  use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
-
-
-  -- behavior
-  use "christoomey/vim-tmux-navigator" -- share C-j, C-h, C-k, C-l with tmux to navigate between splits
-  use "romainl/vim-cool" -- disables search highlighting when you are done searching and re-enables it when you search again
-  use "windwp/nvim-autopairs" -- auto close things
-
+  use "nvim-lua/plenary.nvim"
+  use "nvim-lua/popup.nvim"
 
   -- treesitter
   use {
@@ -62,8 +45,15 @@ return packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
 
 
-  -- git
-  use "tpope/vim-fugitive" -- git stuff
+  -- lsp
+  use "neovim/nvim-lspconfig"
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
+
+
+  use "arcticicestudio/nord-vim" -- official nord colorscheme
+  use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
 
 
   -- Automatically set up your configuration after cloning packer.nvim

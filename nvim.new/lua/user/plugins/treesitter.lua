@@ -13,15 +13,14 @@ local disabled_parsers = {
   "gitignore",
   "markdown",
   "markdown_inline",
+  "haskell",
 }
 
 treesitter.setup({
   auto_install = false,
-
   sync_install = false,
   ensure_installed = "all",
   ignore_install = disabled_parsers,
-
   highlight = {
     enable = true,
     disabled = disabled_parsers,
