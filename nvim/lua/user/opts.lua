@@ -3,11 +3,6 @@ vim.opt.syntax = "on"        -- enable syntax highlighting
 vim.opt.termguicolors = true -- enables 24-bit rgb color in the |tui
 
 
--- Disable netrw --
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-
 -- Tabs --
 vim.b.tab_size = 2
 

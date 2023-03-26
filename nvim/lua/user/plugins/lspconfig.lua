@@ -69,5 +69,19 @@ lspconfig.rust_analyzer.setup({
 -- Typescript
 lspconfig.tsserver.setup({
   capabilities = capabilities,
-  on_attach = disable_formatting
+  on_attach = disable_formatting,
+})
+
+
+-- CSS
+lspconfig.cssls.setup({
+  capabilities = capabilities,
+  on_attach = disable_formatting,
+})
+
+
+-- HTML
+lspconfig.html.setup({
+  capabilities = capabilities,
+  on_attach = disable_formatting,
 })
