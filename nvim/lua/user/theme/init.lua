@@ -1,8 +1,3 @@
-local status_ok, _ = pcall(require, "user.theme.nord")
-if not status_ok then
-  return
-end
-
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
@@ -12,4 +7,9 @@ local signs = {
 
 for _, sign in pairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+end
+
+local status_ok, _ = pcall(require, "user.theme.nord")
+if not status_ok then
+  return
 end
