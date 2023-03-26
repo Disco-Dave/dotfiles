@@ -6,17 +6,19 @@ end
 
 
 local opts = {
-  null_ls.builtins.formatting.prettier.with({
-    filetypes = {
-      "css",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "yaml",
-    },
-  }),
+  sources = {
+    null_ls.builtins.formatting.prettier.with({
+      filetypes = {
+        "css",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+      },
+    }),
+  }
 }
 
 
