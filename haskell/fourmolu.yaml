@@ -1,5 +1,5 @@
 # How many spaces to use as an indent
-# - any non-negative integer 
+# - any non-negative integer
 indentation: 2
 
 # Where to place arrows in type signatures
@@ -30,7 +30,7 @@ indent-wheres: false
 record-brace-space: false
 
 # Number of newlines between top-level declarations
-# - any non-negative integer 
+# - any non-negative integer
 newlines-between-decls: 2
 
 # Use -- |, {- |, or {-| for multiline haddocks (single-line haddocks always use --)
@@ -39,7 +39,7 @@ newlines-between-decls: 2
 # - multi-line-compact
 haddock-style: single-line
 
-# How to style let blocks (auto uses newline if there's a newline in the input and 
+# How to style let blocks (auto uses newline if there's a newline in the input and
 # inline otherwise, and mixed uses inline only when the let has exactly one binding)
 # - inline
 # - newline

@@ -79,11 +79,39 @@ lspconfig.cssls.setup({
   on_attach = disable_formatting,
 })
 
+lspconfig.stylelint_lsp.setup({
+  capabilities = capabilities,
+  on_attach = disable_formatting,
+})
+
 
 -- HTML
 lspconfig.html.setup({
   capabilities = capabilities,
   on_attach = disable_formatting,
+})
+
+
+-- JSON
+lspconfig.jsonls.setup({
+  capabilities = capabilities,
+
+})
+
+
+-- YAML
+lspconfig.yamlls.setup({
+  capabilities = capabilities,
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false,
+      },
+    },
+    yaml = {
+      keyOrdering = false,
+    },
+  },
 })
 
 
@@ -93,5 +121,20 @@ lspconfig.dockerls.setup({
 })
 
 lspconfig.docker_compose_language_service.setup({
+  capabilities = capabilities,
+})
+
+
+-- Terraform
+lspconfig.terraformls.setup({
+  capabilities = capabilities,
+})
+lspconfig.tflint.setup({
+  capabilities = capabilities,
+})
+
+
+-- Ansible
+lspconfig.ansiblels.setup({
   capabilities = capabilities,
 })

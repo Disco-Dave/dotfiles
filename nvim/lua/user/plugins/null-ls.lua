@@ -16,6 +16,7 @@ local opts = {
         "typescript",
         "typescriptreact",
         "yaml",
+        "json",
       },
     }),
     null_ls.builtins.formatting.shfmt,
