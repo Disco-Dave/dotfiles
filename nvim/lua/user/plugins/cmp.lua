@@ -1,8 +1,14 @@
--- https://github.com/hrsh7th/nvim-cmp 
+-- https://github.com/hrsh7th/nvim-cmp
 -- :help nvim-cmp
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+  return
+end
+
+
+local luasnip_status_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_status_ok then
   return
 end
 
@@ -38,6 +44,11 @@ local kind_icons = {
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -67,6 +78,7 @@ cmp.setup({
         omni = "[omni]",
         buffer = "[Buffer]",
         path = "[Path]",
+        luasnip = "[Snippet]"
       })[entry.source.name]
       return vim_item
     end,
