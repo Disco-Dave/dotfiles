@@ -23,7 +23,7 @@ treesitter.setup({
   ignore_install = disabled_parsers,
   highlight = {
     enable = true,
-    disabled = disabled_parsers,
+    disable = disabled_parsers,
     additional_vim_regex_highlighting = false,
   },
 })
