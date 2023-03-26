@@ -51,6 +51,9 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
 
+  -- file tree
+  use "nvim-tree/nvim-tree.lua"
+  use "nvim-tree/nvim-web-devicons"
 
   use "arcticicestudio/nord-vim" -- official nord colorscheme
   use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
