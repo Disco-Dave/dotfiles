@@ -85,3 +85,13 @@ lspconfig.html.setup({
   capabilities = capabilities,
   on_attach = disable_formatting,
 })
+
+
+-- Docker
+lspconfig.dockerls.setup({
+  capabilities = capabilities,
+})
+
+lspconfig.docker_compose_language_service.setup({
+  capabilities = capabilities,
+})

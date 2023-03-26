@@ -18,9 +18,11 @@ mason.setup()
 mason_lspconfig.setup({
   -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
   ensure_installed = {
+    "cssls",
+    "docker_compose_language_service",
+    "dockerls",
+    "html",
     "lua_ls",
     "tsserver",
-    "cssls",
-    "html",
   }
 })
