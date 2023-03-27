@@ -129,6 +129,7 @@ lspconfig.docker_compose_language_service.setup({
 lspconfig.terraformls.setup({
   capabilities = capabilities,
 })
+
 lspconfig.tflint.setup({
   capabilities = capabilities,
 })
