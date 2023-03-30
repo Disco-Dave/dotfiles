@@ -75,7 +75,6 @@ cmp.setup({
         nvim_lsp = "[LSP]",
         ["vim-dadbod-completion"] = "[DB]",
         nvim_lua = "[Lua]",
-        omni = "[omni]",
         buffer = "[Buffer]",
         path = "[Path]",
         luasnip = "[Snippet]"
@@ -90,7 +89,6 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "omni" },
   }),
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
