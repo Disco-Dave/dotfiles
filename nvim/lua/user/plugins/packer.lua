@@ -81,6 +81,7 @@ return packer.startup(function(use)
   use "tpope/vim-fugitive" -- git stuff
   use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
   use "windwp/nvim-autopairs" -- auto close things
+  use "editorconfig/editorconfig-vim" -- editorconfig support. NOTE: this will be built into neovim soon
 
 
   -- Automatically set up your configuration after cloning packer.nvim
