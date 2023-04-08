@@ -63,25 +63,24 @@ return packer.startup(function(use)
 
   -- vimwiki
   use "michal-h21/vimwiki-sync" -- synchronize vimwiki with a git repo
-  use "vimwiki/vimwiki" -- note taking with in a wiki syntax
+  use "vimwiki/vimwiki"         -- note taking with in a wiki syntax
 
 
   -- others
-  use "arcticicestudio/nord-vim" -- official nord colorscheme
+  use "arcticicestudio/nord-vim"       -- official nord colorscheme
   use "christoomey/vim-tmux-navigator" -- share C-j, C-h, C-k, C-l with tmux to navigate between splits
-  use "duff/vim-bufonly" -- close all buffers with :BufOnly
-  use "jpalardy/vim-slime" -- send snippets to a terminal window
-  use "luochen1990/rainbow" -- rainbow parens
-  use "numToStr/Comment.nvim" -- comment things
-  use "NvChad/nvim-colorizer.lua" -- highlight color
-  use "nvim-lualine/lualine.nvim" -- fancy statusline
-  use "nvim-tree/nvim-tree.lua" -- file tree
-  use "romainl/vim-cool" -- disables search highlighting when you are done searching and re-enables it when you search again
-  use "sheerun/vim-polyglot" -- big collection of syntax highlighting for various file types
-  use "tpope/vim-fugitive" -- git stuff
-  use "vim-scripts/Tabmerge" -- merge tabs with :TabMerge <target index>
-  use "windwp/nvim-autopairs" -- auto close things
-  use "gpanders/editorconfig.nvim" -- editorconfig support. NOTE: this will be built into neovim soon
+  use "duff/vim-bufonly"               -- close all buffers with :BufOnly
+  use "jpalardy/vim-slime"             -- send snippets to a terminal window
+  use "luochen1990/rainbow"            -- rainbow parens
+  use "numToStr/Comment.nvim"          -- comment things
+  use "NvChad/nvim-colorizer.lua"      -- highlight color
+  use "nvim-lualine/lualine.nvim"      -- fancy statusline
+  use "nvim-tree/nvim-tree.lua"        -- file tree
+  use "romainl/vim-cool"               -- disables search highlighting when you are done searching and re-enables it when you search again
+  use "sheerun/vim-polyglot"           -- big collection of syntax highlighting for various file types
+  use "tpope/vim-fugitive"             -- git stuff
+  use "vim-scripts/Tabmerge"           -- merge tabs with :TabMerge <target index>
+  use "windwp/nvim-autopairs"          -- auto close things
 
 
   -- Automatically set up your configuration after cloning packer.nvim
