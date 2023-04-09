@@ -17,6 +17,13 @@ vim.opt.numberwidth = 1       -- width of the line number column
 vim.opt.relativenumber = true -- enables relative line numbering
 vim.opt.signcolumn = "number" -- adds signs to the number column
 
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    -- Remove line numbers for terminal
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
 
 -- Windows --
 vim.opt.equalalways = false -- avoid resizing windows after splitting or closing
