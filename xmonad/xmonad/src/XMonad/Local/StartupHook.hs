@@ -71,7 +71,7 @@ startupHook = do
   lift . traverse_ spawnOnce $
     [ "mpv " <> startupSound
     , trayer xmobar.background extraTrayerFlags
-    , "lxsession"
+    , "lxpolicy-kit-agent"
     , "nm-applet"
     , "/usr/bin/xfce4-power-manager"
     , "/usr/lib/xfce4/notifyd/xfce4-notifyd"
