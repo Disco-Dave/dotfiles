@@ -95,13 +95,14 @@ lspconfig.html.setup({
 -- JSON
 lspconfig.jsonls.setup({
   capabilities = capabilities,
-
+  on_attach = disable_formatting,
 })
 
 
 -- YAML
 lspconfig.yamlls.setup({
   capabilities = capabilities,
+  on_attach = disable_formatting,
   settings = {
     redhat = {
       telemetry = {
@@ -122,6 +123,7 @@ lspconfig.dockerls.setup({
 
 lspconfig.docker_compose_language_service.setup({
   capabilities = capabilities,
+  on_attach = disable_formatting,
 })
 
 
