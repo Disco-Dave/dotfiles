@@ -6,6 +6,7 @@ end
 
 
 local opts = {
+  temp_dir = "/tmp",
   sources = {
     null_ls.builtins.formatting.prettier.with({
       filetypes = {
