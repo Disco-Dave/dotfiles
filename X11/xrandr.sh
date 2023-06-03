@@ -1,0 +1,1 @@
+/home/david/Code/config/roles/xorg/files/xrandr/laptop.sh

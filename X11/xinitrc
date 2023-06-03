@@ -1,23 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Set caps lock key to be escape
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+xresources="$XDG_CONFIG_HOME/X11/Xresources"
+cached_xmonad="$XDG_CACHE_HOME/xmonad/xmonad-x86_64-linux"
+xrandr_script="$XDG_CONFIG_HOME/X11/xrandr.sh"
 
-# Start the compositor so we can have transparency and shadow effects
-picom --experimental-backends &
+if [ -x "$xrandr_script" ]; then
+	"$xrandr_script"
+fi
 
-# Fix screen stuff
 xsetroot -cursor_name left_ptr
-~/.config/xrandr/set.sh
+xsetroot -xcf /usr/share/icons/Vanilla-DMZ/cursors/left_ptr 16
 
-# Draw the wallpaper
-feh --no-fehbg --bg-center --no-xinerama ~/.config/dotfiles/assets/wallpaper.jpg &
+if [ -f "$xresources" ]; then
+	xrdb -merge -I"$HOME" "$xresources"
+fi
 
-# Generate alacritty config
-(cd ~/.config/alacritty && ./merge.sh) &
-
-# Start our window manager XMonad. XMonad will then start other applications
-# for us ie: xmobar, notifcation daemon, redshift, nm-applet, etc.
-exec ~/.cache/xmonad/xmonad-x86_64-linux
-
-# vim: filetype=sh:
+if [ -x "$cached_xmonad" ]; then
+	# exec dbus-launch --exit-with-session "$cached_xmonad"
+	exec "$cached_xmonad"
+else
+	# exec dbus-launch --exit-with-session xmonad
+	exec monad
+fi
